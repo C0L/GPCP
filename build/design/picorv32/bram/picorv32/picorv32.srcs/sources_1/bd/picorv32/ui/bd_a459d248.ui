@@ -1,0 +1,58 @@
+{
+   ExpandedHierarchyInLayout: "/processor",
+   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -y 430 -defaultsOSRD
+preplace port arduino_gpio -pg 1 -y 20 -defaultsOSRD
+preplace port pmodb_gpio -pg 1 -y 100 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -y 450 -defaultsOSRD
+preplace port pmoda_gpio -pg 1 -y 80 -defaultsOSRD
+preplace port arduino_iic -pg 1 -y 40 -defaultsOSRD
+preplace portBus pb_i -pg 1 -y 20 -defaultsOSRD
+preplace portBus led_o -pg 1 -y 60 -defaultsOSRD
+preplace inst processor -pg 1 -lvl 3 -y 754 -defaultsOSRD
+preplace inst processor|riscvBram -pg 1 -lvl 4 -y 934 -defaultsOSRD
+preplace inst processor|riscvReset -pg 1 -lvl 1 -y 824 -defaultsOSRD
+preplace inst psAxiInterconnect -pg 1 -lvl 2 -y 170 -defaultsOSRD
+preplace inst processor|riscvBramBridge -pg 1 -lvl 3 -y 784 -defaultsOSRD
+preplace inst subprocessorClk -pg 1 -lvl 3 -y 540 -defaultsOSRD
+preplace inst psInterruptController -pg 1 -lvl 3 -y 180 -defaultsOSRD
+preplace inst processor|psBramController -pg 1 -lvl 3 -y 944 -defaultsOSRD
+preplace inst processor|picorv32 -pg 1 -lvl 2 -y 764 -defaultsOSRD
+preplace inst porReset -pg 1 -lvl 1 -y 720 -defaultsOSRD
+preplace inst irqConcat -pg 1 -lvl 4 -y 750 -defaultsOSRD
+preplace inst resetSlice -pg 1 -lvl 2 -y 370 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -y 470 -defaultsOSRD
+preplace netloc processor|picorv32_bram_0_trap 1 2 3 1610J 864 NJ 864 NJ
+preplace netloc processing_system7_0_DDR 1 1 4 NJ 430 NJ 430 NJ 430 NJ
+preplace netloc por_resetn 1 0 3 -10 620 460 722 790
+preplace netloc processor|riscvReset_peripheral_aresetn 1 1 2 1360 934 1600J
+preplace netloc psAxiInterconnect_M01_AXI 1 2 1 790
+preplace netloc processing_system7_0_GPIO_O 1 1 1 450J
+preplace netloc psAxiInterconnect_M00_AXI 1 2 1 N
+preplace netloc processor|psBramController_BRAM_PORTA 1 3 1 N
+preplace netloc S_AXI_MEM 1 2 1 780
+preplace netloc processor|riscvBramBridge 1 3 1 1900
+preplace netloc processor|picoBramInterface 1 2 1 N
+preplace netloc processor|s_axi_aresetn_1 1 0 3 NJ 1024 NJ 1024 1620
+preplace netloc subprocessorClk 1 2 2 830 630 2200
+preplace netloc xlconcat_0_dout 1 2 3 830 90 NJ 90 3460
+preplace netloc processor|Conn2 1 0 3 NJ 924 NJ 924 N
+preplace netloc processing_system7_0_FIXED_IO 1 1 4 NJ 450 NJ 450 NJ 450 NJ
+preplace netloc psirq 1 0 4 -20 330 460J 440 830J 420 2200
+preplace netloc processor|clk_in1_1 1 0 3 NJ 1004 NJ 1004 1600
+preplace netloc processor|aux_reset_in_1 1 0 1 1000
+preplace netloc porReset_interconnect_aresetn 1 1 1 470
+preplace netloc processor|subprocessorClk 1 0 3 980 724 1360 684 1620
+preplace netloc processor|ext_reset_in_1 1 0 1 990
+preplace netloc S_AXI_PSX 1 1 1 440
+preplace netloc irq 1 3 1 2200J
+preplace netloc FCLK_CLK0 1 0 3 -30 320 430 10 810
+preplace netloc riscv_resetn 1 2 1 800
+preplace netloc FCLK_CLK1 1 0 2 -10 610 440
+preplace netloc S00_ARESETN_1 1 1 2 480 460 820
+levelinfo -pg 1 -50 210 630 1020 3359 3480 -top 0 -bot 1220
+levelinfo -hier processor * 1180 1480 1760 2010 *
+",
+}
+
