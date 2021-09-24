@@ -32,48 +32,23 @@
 # USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
 # DAMAGE.
 # ----------------------------------------------------------------------
-from setuptools import setup, find_packages
+TARGETS=sweep synth single
+all: single
 
-import os
+clean:
+	$(foreach IP,$(IPS), PART=$(PART) $(MAKE) -C $(IP_PATH)/$(IP) clean;)
+	rm -rf $(DESIGN) *.jou *.log
 
-jupyter_dest = '//home/xilinx/jupyter_notebooks'
-notebooks_root = 'notebooks'
-data_files = []
+ip:
+	$(foreach IP,$(IPS), PART=$(PART) $(MAKE) -C $(IP_PATH)/$(IP);)
 
-# Find all of the tutorial notebooks in the tutorials_src path
-tutorials_src = os.path.join(notebooks_root, 'tutorial')
-tutorials_dest = os.path.join(jupyter_dest, 'RISC-V-Tutorial')
-tutorials = [os.path.join(tutorials_src, f)
-             for f in os.listdir(tutorials_src)
-             if f.endswith(".ipynb")]
-data_files.append((tutorials_dest, tutorials))
+.PHONY: $(DESIGN)
 
-# Find all of the tutorial notebook pictures in the pictures_src path
-#pictures_src = os.path.join(tutorials_src, 'pictures')
-#pictures_dest = os.path.join(tutorials_dest, 'pictures')
-#pictures = [os.path.join(pictures_src, f)
-#            for f in os.listdir(pictures_src)
-#            if f.endswith(".png")]
-#data_files.append((pictures_dest, pictures))
+$(TARGETS): $(DESIGN) ip $(BUILD_PATH)/$(BOARD).xdc $(DESIGN).tcl
+	vivado -mode batch -source $(BUILD_PATH)/build.tcl -tclargs $(DESIGN) \
+		$@ $(PART) $(BOARD) $(IP_PATH)
+	cp ./$(DESIGN)/$(DESIGN).srcs/sources_1/bd/$(DESIGN)/hw_handoff/$(DESIGN).hwh $(DESIGN).hwh
 
-#examples_src = os.path.join(notebooks_root, 'examples')
-#examples_dest = os.path.join(jupyter_dest, 'RISC-V-Examples')
-#examples = [os.path.join(examples_src, f)
-#             for f in os.listdir(examples_src)
-#             if f.endswith(".ipynb")]
-#data_files.append((examples_dest, examples))
-
-setup(name='riscvonpynq',
-      version='0.1',
-      description="A simple package describing how to create a RISC-V FPGA bitstream\
-            and package it as a PYNQ overlay",
-      author='Dustin Richmond',
-      author_email='drichmond@eng.ucsd.edu',
-      url='https://github.com/drichmond/RISC-V-On-PYNQ/',
-      license='BSD-3',
-      #data_files = data_files,
-      packages=find_packages(),
-      package_data={'':['*.bit', '*.tcl', '*.hwh', '*.S', '*.ld', 'makefile']},
-      #install_requires=['pynq'],
-      #dependency_links=['http://github.com/xilinx/PYNQ.git@v2.1#egg=pynq'],
-)
+results:
+	grep Slack vivado.log > sweep.log
+	vivado -mode batch $(DESIGN)/$(DESIGN).xpr -source $(BUILD_PATH)/resources.tcl -tclargs $(DESIGN) 

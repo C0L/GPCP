@@ -72,7 +72,7 @@ class Processor(MixedProcessor):
     in __get_path.
 
     """
-    _name = 'picoAxiProcessor'
+    _name = 'processor'
     _proc = 'picorv32'
     _bits = 32
 
@@ -99,6 +99,7 @@ class Processor(MixedProcessor):
             Dictionary describing this processor.
 
         """
+        print("INIT")
         build_path = os.path.join(self.__get_path(), "build")
         reset_value = 0
         super().__init__(build_path, reset_value, description, *args)

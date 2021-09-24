@@ -34,6 +34,7 @@
 # ----------------------------------------------------------------------
 import pynq, os, enum, numpy as np, time
 from pynq import Xlnk
+from pynq import GPIO
 
 __author__ = "Dustin Richmond"
 __copyright__ = "Copyright 2018, The Regents of the University of California"
@@ -66,8 +67,7 @@ class Processor(pynq.DefaultHierarchy):
     @classmethod
     def checkhierarchy(cls, description):
         return ((cls._bram in description['ip'].keys()) and
-                (cls._name == description['fullpath']) and
-                (cls._reset_name in description['gpio']))
+               (cls._name == description['fullpath']))
 
     def __init__(self, build_path, reset_value, description, *args):
         """Return a new Processor object. 
@@ -93,7 +93,8 @@ class Processor(pynq.DefaultHierarchy):
         self.__reset_value = reset_value
         self.__nreset_value = int(not(reset_value))
 
-        self.__resetPin = self.__getattr__(self._reset_name)
+        self.__resetPin = GPIO(GPIO.get_gpio_pin(0), 'out')
+        #self.__getattr__(self._reset_name)
         self.__reset_s = None
         self._reset()
 
@@ -209,7 +210,9 @@ class Processor(pynq.DefaultHierarchy):
 
         """
         self.launch(prog, *args)
-        self.irq.wait()
+        #self.irq.wait()
+        #pynq.interrupt.get_uio_irq(0).wait()
+        pynq.interrupt.Interrupt('irqConcat/In0')
         return self.land()
 
     def launch(self, prog, *args):
