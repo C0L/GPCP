@@ -10,11 +10,11 @@ init.o: init.S
 	@echo "Combining object files $< to produce $@"
 	/opt/riscv32im/bin/riscv32-unknown-elf-gcc -Os -ffreestanding -nostdlib -o $@ \
 		-Wl,-Bstatic,-T,picorv32.ld \
-		$^ -lgcc -march=rv32im 
+		$^ -lgcc -march=rv32im
 
 %.o: %.c 
 	@echo "Building object file $@ for $<"
-	/opt/riscv32im/bin/riscv32-unknown-elf-gcc -c -Qn -march=rv32im -o $@ -Os --std=c99 $< 
+	/opt/riscv32im/bin/riscv32-unknown-elf-gcc -c -S -Qn -march=rv32im -o $@ -Os --std=c99 $< 
 
 %.o: %.cpp
 	@echo "Building object file $@ for $<"
