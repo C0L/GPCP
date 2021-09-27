@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Mon Sep 20 00:28:36 2021
+| Date         : Fri Sep 24 19:50:22 2021
 | Host         : ZenBook running 64-bit Ubuntu 21.04
 | Command      : report_utilization -file picorv32_wrapper_utilization_synth.rpt -pb picorv32_wrapper_utilization_synth.pb
 | Design       : picorv32_wrapper
@@ -169,6 +169,7 @@ Table of Contents
 | picorv32_porReset_0              |    1 |
 | picorv32_picorv32_0              |    1 |
 | picorv32_irqConcat_0             |    1 |
+| picorv32_cp_const_0_0            |    1 |
 | picorv32_auto_us_0               |    1 |
 | picorv32_auto_pc_3               |    1 |
 | picorv32_auto_pc_2               |    1 |

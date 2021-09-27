@@ -845,17 +845,17 @@
       <spirit:adHocConnection>
         <spirit:name>FCLK_CLK0</spirit:name>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="FCLK_CLK0"/>
-        <spirit:internalPortReference spirit:componentRef="processor" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="porReset" spirit:portRef="slowest_sync_clk"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="M_AXI_GP0_ACLK"/>
+        <spirit:internalPortReference spirit:componentRef="psInterruptController" spirit:portRef="s_axi_aclk"/>
+        <spirit:internalPortReference spirit:componentRef="subprocessorClk" spirit:portRef="clk_in1"/>
+        <spirit:internalPortReference spirit:componentRef="subprocessorClk" spirit:portRef="s_axi_aclk"/>
+        <spirit:internalPortReference spirit:componentRef="processor" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="psAxiInterconnect" spirit:portRef="ACLK"/>
         <spirit:internalPortReference spirit:componentRef="psAxiInterconnect" spirit:portRef="M00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="psAxiInterconnect" spirit:portRef="M01_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="psAxiInterconnect" spirit:portRef="M02_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="psAxiInterconnect" spirit:portRef="S00_ACLK"/>
-        <spirit:internalPortReference spirit:componentRef="psInterruptController" spirit:portRef="s_axi_aclk"/>
-        <spirit:internalPortReference spirit:componentRef="subprocessorClk" spirit:portRef="clk_in1"/>
-        <spirit:internalPortReference spirit:componentRef="subprocessorClk" spirit:portRef="s_axi_aclk"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>FCLK_CLK1</spirit:name>
@@ -865,13 +865,13 @@
       <spirit:adHocConnection>
         <spirit:name>S00_ARESETN_1</spirit:name>
         <spirit:internalPortReference spirit:componentRef="porReset" spirit:portRef="peripheral_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="psInterruptController" spirit:portRef="s_axi_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="subprocessorClk" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="processor" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="psAxiInterconnect" spirit:portRef="M00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="psAxiInterconnect" spirit:portRef="M01_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="psAxiInterconnect" spirit:portRef="M02_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="psAxiInterconnect" spirit:portRef="S00_ARESETN"/>
-        <spirit:internalPortReference spirit:componentRef="psInterruptController" spirit:portRef="s_axi_aresetn"/>
-        <spirit:internalPortReference spirit:componentRef="subprocessorClk" spirit:portRef="s_axi_aresetn"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>irq</spirit:name>
@@ -891,8 +891,8 @@
       <spirit:adHocConnection>
         <spirit:name>por_resetn</spirit:name>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="FCLK_RESET0_N"/>
-        <spirit:internalPortReference spirit:componentRef="processor" spirit:portRef="por_resetn"/>
         <spirit:internalPortReference spirit:componentRef="porReset" spirit:portRef="ext_reset_in"/>
+        <spirit:internalPortReference spirit:componentRef="processor" spirit:portRef="por_resetn"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>processing_system7_0_GPIO_O</spirit:name>
@@ -2420,6 +2420,7 @@
           <spirit:configurableElementValue spirit:referenceId="ENABLE_REGS_DUALPORT">true</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CATCH_MISALIGN">false</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CATCH_ILLINSN">false</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="ENABLE_PCPI">true</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="ENABLE_FAST_MUL">true</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="ENABLE_DIV">true</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="ENABLE_IRQ_QREGS">false</spirit:configurableElementValue>
@@ -2483,6 +2484,13 @@
           <spirit:configurableElementValue spirit:referenceId="C_EXT_RST_WIDTH">1</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>cp_const</spirit:instanceName>
+        <spirit:componentRef spirit:library="colindrewes" spirit:name="cp_const" spirit:vendor="ucsd.edu" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">picorv32_cp_const_0_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
     </spirit:componentInstances>
     <spirit:interconnections>
       <spirit:interconnection>
@@ -2538,11 +2546,12 @@
         <spirit:externalPortReference spirit:portRef="m_axi_riscv_aclk"/>
         <spirit:internalPortReference spirit:componentRef="picorv32" spirit:portRef="clk"/>
         <spirit:internalPortReference spirit:componentRef="riscvBramController" spirit:portRef="s_axi_aclk"/>
+        <spirit:internalPortReference spirit:componentRef="riscvReset" spirit:portRef="slowest_sync_clk"/>
         <spirit:internalPortReference spirit:componentRef="riscvInterconnect" spirit:portRef="ACLK"/>
         <spirit:internalPortReference spirit:componentRef="riscvInterconnect" spirit:portRef="M00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="riscvInterconnect" spirit:portRef="M01_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="riscvInterconnect" spirit:portRef="S00_ACLK"/>
-        <spirit:internalPortReference spirit:componentRef="riscvReset" spirit:portRef="slowest_sync_clk"/>
+        <spirit:internalPortReference spirit:componentRef="cp_const" spirit:portRef="clk"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>riscvReset_peripheral_aresetn</spirit:name>
@@ -2557,6 +2566,46 @@
         <spirit:name>s_axi_aresetn_1</spirit:name>
         <spirit:externalPortReference spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="psBramController" spirit:portRef="s_axi_aresetn"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>picorv32_pcpi_rs1</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="picorv32" spirit:portRef="pcpi_rs1"/>
+        <spirit:internalPortReference spirit:componentRef="cp_const" spirit:portRef="pcpi_rs1"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>picorv32_pcpi_rs2</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="picorv32" spirit:portRef="pcpi_rs2"/>
+        <spirit:internalPortReference spirit:componentRef="cp_const" spirit:portRef="pcpi_rs2"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>picorv32_pcpi_insn</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="picorv32" spirit:portRef="pcpi_insn"/>
+        <spirit:internalPortReference spirit:componentRef="cp_const" spirit:portRef="pcpi_insn"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>picorv32_pcpi_valid</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="picorv32" spirit:portRef="pcpi_valid"/>
+        <spirit:internalPortReference spirit:componentRef="cp_const" spirit:portRef="pcpi_valid"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>cp_const_pcpi_rd</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="cp_const" spirit:portRef="pcpi_rd"/>
+        <spirit:internalPortReference spirit:componentRef="picorv32" spirit:portRef="pcpi_rd"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>cp_const_pcpi_wr</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="cp_const" spirit:portRef="pcpi_wr"/>
+        <spirit:internalPortReference spirit:componentRef="picorv32" spirit:portRef="pcpi_wr"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>cp_const_pcpi_ready</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="cp_const" spirit:portRef="pcpi_ready"/>
+        <spirit:internalPortReference spirit:componentRef="picorv32" spirit:portRef="pcpi_ready"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>cp_const_pcpi_wait</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="cp_const" spirit:portRef="pcpi_wait"/>
+        <spirit:internalPortReference spirit:componentRef="picorv32" spirit:portRef="pcpi_wait"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>

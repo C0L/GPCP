@@ -23,45 +23,45 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.cache/wt [current_project]
-set_property parent.project_path /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.xpr [current_project]
+set_property webtalk.parent_dir /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.cache/wt [current_project]
+set_property parent.project_path /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_repo_paths /home/colindrewes/dev/GPCP/build/ip [current_project]
-set_property ip_output_repo /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.cache/ip [current_project]
+set_property ip_repo_paths /home/colindrewes/dev/GPCP/designs/ip [current_project]
+set_property ip_output_repo /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_verilog -library xil_defaultlib /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/hdl/picorv32_wrapper.v
-add_files /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/picorv32.bd
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_porReset_0/picorv32_porReset_0_board.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_porReset_0/picorv32_porReset_0.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_porReset_0/picorv32_porReset_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_processing_system7_0_0/picorv32_processing_system7_0_0.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_psInterruptController_0/picorv32_psInterruptController_0.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_psInterruptController_0/picorv32_psInterruptController_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_psInterruptController_0/picorv32_psInterruptController_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_subprocessorClk_0/picorv32_subprocessorClk_0_board.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_subprocessorClk_0/picorv32_subprocessorClk_0.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_subprocessorClk_0/picorv32_subprocessorClk_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_xbar_1/picorv32_xbar_1_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_pc_2/picorv32_auto_pc_2_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_pc_1/picorv32_auto_pc_1_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_pc_3/picorv32_auto_pc_3_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_psBramController_0/picorv32_psBramController_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_riscvBram_0/picorv32_riscvBram_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_riscvBramController_0/picorv32_riscvBramController_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_riscvReset_0/picorv32_riscvReset_0_board.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_riscvReset_0/picorv32_riscvReset_0.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_riscvReset_0/picorv32_riscvReset_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_xbar_0/picorv32_xbar_0_ooc.xdc]
-set_property used_in_synthesis false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_ds_0/picorv32_auto_ds_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_ds_0/picorv32_auto_ds_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_ds_0/picorv32_auto_ds_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_pc_0/picorv32_auto_pc_0_ooc.xdc]
-set_property used_in_synthesis false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_us_0/picorv32_auto_us_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_us_0/picorv32_auto_us_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_us_0/picorv32_auto_us_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/picorv32_ooc.xdc]
+read_verilog -library xil_defaultlib /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/hdl/picorv32_wrapper.v
+add_files /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/picorv32.bd
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_porReset_0/picorv32_porReset_0_board.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_porReset_0/picorv32_porReset_0.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_porReset_0/picorv32_porReset_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_processing_system7_0_0/picorv32_processing_system7_0_0.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_psInterruptController_0/picorv32_psInterruptController_0.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_psInterruptController_0/picorv32_psInterruptController_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_psInterruptController_0/picorv32_psInterruptController_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_subprocessorClk_0/picorv32_subprocessorClk_0_board.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_subprocessorClk_0/picorv32_subprocessorClk_0.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_subprocessorClk_0/picorv32_subprocessorClk_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_xbar_1/picorv32_xbar_1_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_psBramController_0/picorv32_psBramController_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_riscvBram_0/picorv32_riscvBram_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_riscvBramController_0/picorv32_riscvBramController_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_riscvReset_0/picorv32_riscvReset_0_board.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_riscvReset_0/picorv32_riscvReset_0.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_riscvReset_0/picorv32_riscvReset_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_xbar_0/picorv32_xbar_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_pc_2/picorv32_auto_pc_2_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_pc_1/picorv32_auto_pc_1_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_pc_3/picorv32_auto_pc_3_ooc.xdc]
+set_property used_in_synthesis false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_ds_0/picorv32_auto_ds_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_ds_0/picorv32_auto_ds_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_ds_0/picorv32_auto_ds_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_pc_0/picorv32_auto_pc_0_ooc.xdc]
+set_property used_in_synthesis false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_us_0/picorv32_auto_us_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_us_0/picorv32_auto_us_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_us_0/picorv32_auto_us_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/picorv32_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -71,8 +71,8 @@ set_property used_in_implementation false [get_files -all /home/colindrewes/dev/
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/colindrewes/dev/GPCP/build/design/PYNQ-Z1.xdc
-set_property used_in_implementation false [get_files /home/colindrewes/dev/GPCP/build/design/PYNQ-Z1.xdc]
+read_xdc /home/colindrewes/dev/GPCP/designs/PYNQ-Z1.xdc
+set_property used_in_implementation false [get_files /home/colindrewes/dev/GPCP/designs/PYNQ-Z1.xdc]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]

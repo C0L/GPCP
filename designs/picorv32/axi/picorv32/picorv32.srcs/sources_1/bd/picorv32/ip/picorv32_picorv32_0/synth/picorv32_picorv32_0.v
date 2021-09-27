@@ -74,7 +74,15 @@ module picorv32_picorv32_0 (
   mem_axi_arprot,
   mem_axi_rvalid,
   mem_axi_rready,
-  mem_axi_rdata
+  mem_axi_rdata,
+  pcpi_valid,
+  pcpi_insn,
+  pcpi_rs1,
+  pcpi_rs2,
+  pcpi_wr,
+  pcpi_rd,
+  pcpi_wait,
+  pcpi_ready
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF mem_axi, ASSOCIATED_RESET resetn, FREQ_HZ 50000000, PHASE 0.0, CLK_DOMAIN picorv32_subprocessorClk_0_clk_out1" *)
@@ -120,6 +128,22 @@ output wire mem_axi_rready;
 M_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 mem_axi RDATA" *)
 input wire [31 : 0] mem_axi_rdata;
+(* X_INTERFACE_INFO = "cliffordwolf:ip:pcpi:1.0 ip_pcpi pcpi_valid" *)
+output wire pcpi_valid;
+(* X_INTERFACE_INFO = "cliffordwolf:ip:pcpi:1.0 ip_pcpi pcpi_insn" *)
+output wire [31 : 0] pcpi_insn;
+(* X_INTERFACE_INFO = "cliffordwolf:ip:pcpi:1.0 ip_pcpi pcpi_rs1" *)
+output wire [31 : 0] pcpi_rs1;
+(* X_INTERFACE_INFO = "cliffordwolf:ip:pcpi:1.0 ip_pcpi pcpi_rs2" *)
+output wire [31 : 0] pcpi_rs2;
+(* X_INTERFACE_INFO = "cliffordwolf:ip:pcpi:1.0 ip_pcpi pcpi_wr" *)
+input wire pcpi_wr;
+(* X_INTERFACE_INFO = "cliffordwolf:ip:pcpi:1.0 ip_pcpi pcpi_rd" *)
+input wire [31 : 0] pcpi_rd;
+(* X_INTERFACE_INFO = "cliffordwolf:ip:pcpi:1.0 ip_pcpi pcpi_wait" *)
+input wire pcpi_wait;
+(* X_INTERFACE_INFO = "cliffordwolf:ip:pcpi:1.0 ip_pcpi pcpi_ready" *)
+input wire pcpi_ready;
 
   picorv32_axi #(
     .ENABLE_COUNTERS(1'B1),
@@ -133,7 +157,7 @@ input wire [31 : 0] mem_axi_rdata;
     .COMPRESSED_ISA(1'B0),
     .CATCH_MISALIGN(1'B0),
     .CATCH_ILLINSN(1'B0),
-    .ENABLE_PCPI(1'B0),
+    .ENABLE_PCPI(1'B1),
     .ENABLE_MUL(1'B0),
     .ENABLE_FAST_MUL(1'B1),
     .ENABLE_DIV(1'B1),
@@ -168,14 +192,14 @@ input wire [31 : 0] mem_axi_rdata;
     .mem_axi_rvalid(mem_axi_rvalid),
     .mem_axi_rready(mem_axi_rready),
     .mem_axi_rdata(mem_axi_rdata),
-    .pcpi_valid(),
-    .pcpi_insn(),
-    .pcpi_rs1(),
-    .pcpi_rs2(),
-    .pcpi_wr(1'B0),
-    .pcpi_rd(32'B0),
-    .pcpi_wait(1'B0),
-    .pcpi_ready(1'B0),
+    .pcpi_valid(pcpi_valid),
+    .pcpi_insn(pcpi_insn),
+    .pcpi_rs1(pcpi_rs1),
+    .pcpi_rs2(pcpi_rs2),
+    .pcpi_wr(pcpi_wr),
+    .pcpi_rd(pcpi_rd),
+    .pcpi_wait(pcpi_wait),
+    .pcpi_ready(pcpi_ready),
     .irq(32'B0),
     .eoi(),
     .trace_valid(),

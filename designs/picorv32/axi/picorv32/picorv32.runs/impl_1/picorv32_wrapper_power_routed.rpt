@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date             : Mon Sep 20 00:32:04 2021
+| Date             : Fri Sep 24 20:04:02 2021
 | Host             : ZenBook running 64-bit Ubuntu 21.04
 | Command          : report_power -file picorv32_wrapper_power_routed.rpt -pb picorv32_wrapper_power_summary_routed.pb -rpx picorv32_wrapper_power_routed.rpx
 | Design           : picorv32_wrapper
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.541        |
+| Total On-Chip Power (W)  | 1.539        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.404        |
+| Dynamic (W)              | 1.402        |
 | Device Static (W)        | 0.138        |
 | Effective TJA (C/W)      | 11.5         |
 | Max Ambient (C)          | 67.2         |
@@ -53,22 +53,22 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.010 |        7 |       --- |             --- |
-| Slice Logic              |     0.004 |    11000 |       --- |             --- |
-|   LUT as Logic           |     0.004 |     4326 |     53200 |            8.13 |
+| Slice Logic              |     0.005 |    10971 |       --- |             --- |
+|   LUT as Logic           |     0.004 |     4355 |     53200 |            8.19 |
 |   CARRY4                 |    <0.001 |      230 |     13300 |            1.73 |
-|   Register               |    <0.001 |     4762 |    106400 |            4.48 |
+|   Register               |    <0.001 |     4810 |    106400 |            4.52 |
 |   LUT as Distributed RAM |    <0.001 |       48 |     17400 |            0.28 |
-|   F7/F8 Muxes            |    <0.001 |      153 |     53200 |            0.29 |
+|   F7/F8 Muxes            |    <0.001 |      157 |     53200 |            0.30 |
 |   LUT as Shift Register  |    <0.001 |      132 |     17400 |            0.76 |
-|   Others                 |     0.000 |      376 |       --- |             --- |
-| Signals                  |     0.006 |     8651 |       --- |             --- |
-| Block RAM                |     0.015 |       16 |       140 |           11.43 |
+|   Others                 |     0.000 |      378 |       --- |             --- |
+| Signals                  |     0.007 |     8606 |       --- |             --- |
+| Block RAM                |     0.012 |       16 |       140 |           11.43 |
 | MMCM                     |     0.105 |        1 |         4 |           25.00 |
 | DSPs                     |     0.002 |        4 |       220 |            1.82 |
 | I/O                      |     0.000 |        4 |       125 |            3.20 |
 | PS7                      |     1.261 |        1 |       --- |             --- |
 | Static Power             |     0.138 |          |           |                 |
-| Total                    |     1.541 |          |           |                 |
+| Total                    |     1.539 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,7 +78,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.051 |       0.036 |      0.014 |
+| Vccint    |       1.000 |     0.049 |       0.035 |      0.014 |
 | Vccaux    |       1.800 |     0.073 |       0.058 |      0.015 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -158,8 +158,8 @@ Table of Contents
 +--------------------------------------------------------------------+-----------+
 | Name                                                               | Power (W) |
 +--------------------------------------------------------------------+-----------+
-| picorv32_wrapper                                                   |     1.404 |
-|   picorv32_i                                                       |     1.404 |
+| picorv32_wrapper                                                   |     1.402 |
+|   picorv32_i                                                       |     1.402 |
 |     irqConcat                                                      |     0.000 |
 |     porReset                                                       |    <0.001 |
 |       U0                                                           |    <0.001 |
@@ -170,11 +170,13 @@ Table of Contents
 |           SEQ_COUNTER                                              |    <0.001 |
 |     processing_system7_0                                           |     1.262 |
 |       inst                                                         |     1.262 |
-|     processor                                                      |     0.025 |
-|       picorv32                                                     |     0.008 |
-|         inst                                                       |     0.008 |
+|     processor                                                      |     0.024 |
+|       cp_const                                                     |    <0.001 |
+|         inst                                                       |    <0.001 |
+|       picorv32                                                     |     0.009 |
+|         inst                                                       |     0.009 |
 |           axi_adapter                                              |    <0.001 |
-|           picorv32_core                                            |     0.008 |
+|           picorv32_core                                            |     0.009 |
 |             cpuregs_reg_r1_0_31_0_5                                |    <0.001 |
 |             cpuregs_reg_r1_0_31_12_17                              |    <0.001 |
 |             cpuregs_reg_r1_0_31_18_23                              |    <0.001 |
@@ -199,11 +201,11 @@ Table of Contents
 |               I_WR_CHNL                                            |    <0.001 |
 |                 BID_FIFO                                           |    <0.001 |
 |                 I_WRAP_BRST                                        |    <0.001 |
-|       riscvBram                                                    |     0.015 |
-|         U0                                                         |     0.015 |
-|           inst_blk_mem_gen                                         |     0.015 |
-|             gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen  |     0.015 |
-|               valid.cstr                                           |     0.015 |
+|       riscvBram                                                    |     0.012 |
+|         U0                                                         |     0.012 |
+|           inst_blk_mem_gen                                         |     0.012 |
+|             gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen  |     0.012 |
+|               valid.cstr                                           |     0.012 |
 |                 ramloop[0].ram.r                                   |    <0.001 |
 |                   prim_noinit.ram                                  |    <0.001 |
 |                 ramloop[10].ram.r                                  |    <0.001 |
@@ -252,9 +254,9 @@ Table of Contents
 |           auto_us                                                  |    <0.001 |
 |             inst                                                   |    <0.001 |
 |               gen_upsizer.gen_lite_upsizer.lite_upsizer_inst       |    <0.001 |
-|         xbar                                                       |    <0.001 |
-|           inst                                                     |    <0.001 |
-|             gen_sasd.crossbar_sasd_0                               |    <0.001 |
+|         xbar                                                       |     0.001 |
+|           inst                                                     |     0.001 |
+|             gen_sasd.crossbar_sasd_0                               |     0.001 |
 |               addr_arbiter_inst                                    |    <0.001 |
 |               gen_decerr.decerr_slave_inst                         |    <0.001 |
 |               reg_slice_r                                          |    <0.001 |
@@ -357,8 +359,8 @@ Table of Contents
 |             I_DECODER                                              |    <0.001 |
 |         INTC_CORE_I                                                |    <0.001 |
 |     resetSlice                                                     |     0.000 |
-|     subprocessorClk                                                |     0.109 |
-|       inst                                                         |     0.109 |
+|     subprocessorClk                                                |     0.108 |
+|       inst                                                         |     0.108 |
 |         AXI_LITE_IPIF_I                                            |    <0.001 |
 |           I_SLAVE_ATTACHMENT                                       |    <0.001 |
 |             I_DECODER                                              |    <0.001 |

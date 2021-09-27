@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:/home/colindrewes/dev/GPCP/build/design/PYNQ-Z1.xdc rfile:../../../../../../PYNQ-Z1.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:/home/colindrewes/dev/GPCP/designs/PYNQ-Z1.xdc rfile:../../../../../../PYNQ-Z1.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:37 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN D19 IOSTANDARD LVCMOS33} [get_ports {pb_i[0]}]
 set_property src_info {type:XDC file:1 line:38 export:INPUT save:INPUT read:READ} [current_design]

@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-//Date        : Mon Sep 20 00:14:25 2021
+//Date        : Fri Sep 24 19:47:00 2021
 //Host        : ZenBook running 64-bit Ubuntu 21.04
 //Command     : generate_target picorv32.bd
 //Design      : picorv32
@@ -1357,7 +1357,7 @@ module m02_couplers_imp_1KB0LNA
   assign m02_couplers_to_m02_couplers_WVALID = S_AXI_wvalid[0];
 endmodule
 
-(* CORE_GENERATION_INFO = "picorv32,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=picorv32,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=29,numReposBlks=19,numNonXlnxBlks=1,numHierBlks=10,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "picorv32.hwdef" *) 
+(* CORE_GENERATION_INFO = "picorv32,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=picorv32,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=30,numReposBlks=20,numNonXlnxBlks=2,numHierBlks=10,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "picorv32.hwdef" *) 
 module picorv32
    (DDR_addr,
     DDR_ba,
@@ -3746,6 +3746,10 @@ module processor_imp_JBIKNI
   wire [3:0]axi_interconnect_0_M01_AXI_WSTRB;
   wire axi_interconnect_0_M01_AXI_WVALID;
   wire clk_in1_1;
+  wire [31:0]cp_const_pcpi_rd;
+  wire cp_const_pcpi_ready;
+  wire cp_const_pcpi_wait;
+  wire cp_const_pcpi_wr;
   wire ext_reset_in_1;
   wire [31:0]picorv32_mem_axi_ARADDR;
   wire [2:0]picorv32_mem_axi_ARPROT;
@@ -3764,6 +3768,10 @@ module processor_imp_JBIKNI
   wire picorv32_mem_axi_WREADY;
   wire [3:0]picorv32_mem_axi_WSTRB;
   wire picorv32_mem_axi_WVALID;
+  wire [31:0]picorv32_pcpi_insn;
+  wire [31:0]picorv32_pcpi_rs1;
+  wire [31:0]picorv32_pcpi_rs2;
+  wire picorv32_pcpi_valid;
   wire picorv32_trap;
   wire [15:0]psBramController_BRAM_PORTA_ADDR;
   wire psBramController_BRAM_PORTA_CLK;
@@ -3858,6 +3866,16 @@ module processor_imp_JBIKNI
   assign m_axi_riscv_aclk = subprocessorClk;
   assign s_axi_aresetn_1 = s_axi_aresetn;
   assign subprocessorClk = riscv_clk;
+  picorv32_cp_const_0_0 cp_const
+       (.clk(subprocessorClk),
+        .pcpi_insn(picorv32_pcpi_insn),
+        .pcpi_rd(cp_const_pcpi_rd),
+        .pcpi_ready(cp_const_pcpi_ready),
+        .pcpi_rs1(picorv32_pcpi_rs1),
+        .pcpi_rs2(picorv32_pcpi_rs2),
+        .pcpi_valid(picorv32_pcpi_valid),
+        .pcpi_wait(cp_const_pcpi_wait),
+        .pcpi_wr(cp_const_pcpi_wr));
   picorv32_picorv32_0 picorv32
        (.clk(subprocessorClk),
         .mem_axi_araddr(picorv32_mem_axi_ARADDR),
@@ -3877,6 +3895,14 @@ module processor_imp_JBIKNI
         .mem_axi_wready(picorv32_mem_axi_WREADY),
         .mem_axi_wstrb(picorv32_mem_axi_WSTRB),
         .mem_axi_wvalid(picorv32_mem_axi_WVALID),
+        .pcpi_insn(picorv32_pcpi_insn),
+        .pcpi_rd(cp_const_pcpi_rd),
+        .pcpi_ready(cp_const_pcpi_ready),
+        .pcpi_rs1(picorv32_pcpi_rs1),
+        .pcpi_rs2(picorv32_pcpi_rs2),
+        .pcpi_valid(picorv32_pcpi_valid),
+        .pcpi_wait(cp_const_pcpi_wait),
+        .pcpi_wr(cp_const_pcpi_wr),
         .resetn(riscvReset_peripheral_aresetn),
         .trap(picorv32_trap));
   (* BMM_INFO_ADDRESS_SPACE = "byte  0x40010000 32 > picorv32 processor/riscvBram" *) 

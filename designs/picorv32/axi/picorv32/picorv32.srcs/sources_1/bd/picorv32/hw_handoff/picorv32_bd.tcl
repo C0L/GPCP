@@ -168,6 +168,9 @@ proc create_hier_cell_processor { parentCell nameHier } {
   create_bd_pin -dir I -type clk s_axi_aclk
   create_bd_pin -dir I -type rst s_axi_aresetn
 
+  # Create instance: cp_const, and set properties
+  set cp_const [ create_bd_cell -type ip -vlnv ucsd.edu:colindrewes:cp_const:1.0 cp_const ]
+
   # Create instance: picorv32, and set properties
   set picorv32 [ create_bd_cell -type ip -vlnv cliffordwolf:ip:picorv32_axi:1.0 picorv32 ]
   set_property -dict [ list \
@@ -179,6 +182,7 @@ proc create_hier_cell_processor { parentCell nameHier } {
    CONFIG.ENABLE_FAST_MUL {true} \
    CONFIG.ENABLE_IRQ_QREGS {false} \
    CONFIG.ENABLE_IRQ_TIMER {false} \
+   CONFIG.ENABLE_PCPI {true} \
    CONFIG.ENABLE_REGS_16_31 {true} \
    CONFIG.ENABLE_REGS_DUALPORT {true} \
    CONFIG.STACKADDR {0x00000000} \
@@ -242,11 +246,19 @@ proc create_hier_cell_processor { parentCell nameHier } {
   connect_bd_net -net ARESETN_1 [get_bd_pins riscvInterconnect/ARESETN] [get_bd_pins riscvReset/interconnect_aresetn]
   connect_bd_net -net aux_reset_in_1 [get_bd_pins riscv_resetn] [get_bd_pins riscvReset/aux_reset_in]
   connect_bd_net -net clk_in1_1 [get_bd_pins s_axi_aclk] [get_bd_pins psBramController/s_axi_aclk]
+  connect_bd_net -net cp_const_pcpi_rd [get_bd_pins cp_const/pcpi_rd] [get_bd_pins picorv32/pcpi_rd]
+  connect_bd_net -net cp_const_pcpi_ready [get_bd_pins cp_const/pcpi_ready] [get_bd_pins picorv32/pcpi_ready]
+  connect_bd_net -net cp_const_pcpi_wait [get_bd_pins cp_const/pcpi_wait] [get_bd_pins picorv32/pcpi_wait]
+  connect_bd_net -net cp_const_pcpi_wr [get_bd_pins cp_const/pcpi_wr] [get_bd_pins picorv32/pcpi_wr]
   connect_bd_net -net ext_reset_in_1 [get_bd_pins por_resetn] [get_bd_pins riscvReset/ext_reset_in]
+  connect_bd_net -net picorv32_pcpi_insn [get_bd_pins cp_const/pcpi_insn] [get_bd_pins picorv32/pcpi_insn]
+  connect_bd_net -net picorv32_pcpi_rs1 [get_bd_pins cp_const/pcpi_rs1] [get_bd_pins picorv32/pcpi_rs1]
+  connect_bd_net -net picorv32_pcpi_rs2 [get_bd_pins cp_const/pcpi_rs2] [get_bd_pins picorv32/pcpi_rs2]
+  connect_bd_net -net picorv32_pcpi_valid [get_bd_pins cp_const/pcpi_valid] [get_bd_pins picorv32/pcpi_valid]
   connect_bd_net -net picorv32_trap [get_bd_pins irq] [get_bd_pins picorv32/trap]
   connect_bd_net -net riscvReset_peripheral_aresetn [get_bd_pins picorv32/resetn] [get_bd_pins riscvBramController/s_axi_aresetn] [get_bd_pins riscvInterconnect/M00_ARESETN] [get_bd_pins riscvInterconnect/M01_ARESETN] [get_bd_pins riscvInterconnect/S00_ARESETN] [get_bd_pins riscvReset/peripheral_aresetn]
   connect_bd_net -net s_axi_aresetn_1 [get_bd_pins s_axi_aresetn] [get_bd_pins psBramController/s_axi_aresetn]
-  connect_bd_net -net subprocessorClk [get_bd_pins m_axi_riscv_aclk] [get_bd_pins riscv_clk] [get_bd_pins picorv32/clk] [get_bd_pins riscvBramController/s_axi_aclk] [get_bd_pins riscvInterconnect/ACLK] [get_bd_pins riscvInterconnect/M00_ACLK] [get_bd_pins riscvInterconnect/M01_ACLK] [get_bd_pins riscvInterconnect/S00_ACLK] [get_bd_pins riscvReset/slowest_sync_clk]
+  connect_bd_net -net subprocessorClk [get_bd_pins m_axi_riscv_aclk] [get_bd_pins riscv_clk] [get_bd_pins cp_const/clk] [get_bd_pins picorv32/clk] [get_bd_pins riscvBramController/s_axi_aclk] [get_bd_pins riscvInterconnect/ACLK] [get_bd_pins riscvInterconnect/M00_ACLK] [get_bd_pins riscvInterconnect/M01_ACLK] [get_bd_pins riscvInterconnect/S00_ACLK] [get_bd_pins riscvReset/slowest_sync_clk]
 
   # Restore current instance
   current_bd_instance $oldCurInst

@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
--- Date        : Mon Sep 20 00:23:22 2021
+-- Date        : Mon Sep 20 00:23:20 2021
 -- Host        : ZenBook running 64-bit Ubuntu 21.04
--- Command     : write_vhdl -force -mode synth_stub
---               /home/colindrewes/dev/GPCP/build/design/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_auto_pc_3/picorv32_auto_pc_3_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top picorv32_auto_pc_3 -prefix
+--               picorv32_auto_pc_3_ picorv32_auto_pc_3_stub.vhdl
 -- Design      : picorv32_auto_pc_3
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1

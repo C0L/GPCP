@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7z020clg400-1" LaunchTime="1632122105">
+<GenRun Id="impl_1" LaunchPart="xc7z020clg400-1" LaunchTime="1632538828">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BG-DRC" Name="picorv32_wrapper.drc"/>
   <File Type="BG-BGN" Name="picorv32_wrapper.bgn"/>
@@ -31,44 +31,44 @@
   <File Type="ROUTE-STATUS-PB" Name="picorv32_wrapper_route_status.pb"/>
   <File Type="ROUTE-STATUS" Name="picorv32_wrapper_route_status.rpt"/>
   <File Type="ROUTE-PWR-RPX" Name="picorv32_wrapper_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="picorv32_wrapper_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="picorv32_wrapper_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="picorv32_wrapper_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="picorv32_wrapper_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="picorv32_wrapper_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="picorv32_wrapper_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="picorv32_wrapper_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="picorv32_wrapper_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="picorv32_wrapper_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="picorv32_wrapper_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="picorv32_wrapper_routed_error.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="picorv32_wrapper_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="picorv32_wrapper_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="picorv32_wrapper_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="picorv32_wrapper_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="picorv32_wrapper_postplace_pwropt.dcp"/>
+  <File Type="PLACE-TIMING" Name="picorv32_wrapper_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="picorv32_wrapper_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="picorv32_wrapper_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="picorv32_wrapper_control_sets_placed.rpt"/>
   <File Type="PLACE-UTIL-PB" Name="picorv32_wrapper_utilization_placed.pb"/>
   <File Type="PLACE-UTIL" Name="picorv32_wrapper_utilization_placed.rpt"/>
   <File Type="PLACE-CLK" Name="picorv32_wrapper_clock_utilization_placed.rpt"/>
   <File Type="PLACE-IO" Name="picorv32_wrapper_io_placed.rpt"/>
   <File Type="PLACE-DCP" Name="picorv32_wrapper_placed.dcp"/>
+  <File Type="PWROPT-TIMING" Name="picorv32_wrapper_timing_summary_pwropted.rpt"/>
+  <File Type="PWROPT-DRC" Name="picorv32_wrapper_drc_pwropted.rpt"/>
   <File Type="PWROPT-DCP" Name="picorv32_wrapper_pwropt.dcp"/>
   <File Type="OPT-TIMING" Name="picorv32_wrapper_timing_summary_opted.rpt"/>
-  <File Type="PLACE-SIMILARITY" Name="picorv32_wrapper_incremental_reuse_placed.rpt"/>
   <File Type="OPT-HWDEF" Name="picorv32_wrapper.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="picorv32_wrapper_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="picorv32_wrapper_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="picorv32_wrapper_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="picorv32_wrapper_timing_summary_init.rpt"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="picorv32_wrapper_bus_skew_routed.rpx"/>
   <File Type="REPORTS-TCL" Name="picorv32_wrapper_reports.tcl"/>
-  <File Type="PWROPT-DRC" Name="picorv32_wrapper_drc_pwropted.rpt"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="picorv32_wrapper_bus_skew_routed.pb"/>
   <File Type="PA-TCL" Name="picorv32_wrapper.tcl"/>
-  <File Type="INIT-TIMING" Name="picorv32_wrapper_timing_summary_init.rpt"/>
-  <File Type="PLACE-CTRL" Name="picorv32_wrapper_control_sets_placed.rpt"/>
-  <File Type="PWROPT-TIMING" Name="picorv32_wrapper_timing_summary_pwropted.rpt"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="picorv32_wrapper_incremental_reuse_pre_placed.rpt"/>
-  <File Type="OPT-DCP" Name="picorv32_wrapper_opt.dcp"/>
-  <File Type="OPT-DRC" Name="picorv32_wrapper_drc_opted.rpt"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="picorv32_wrapper_methodology_drc_opted.rpt"/>
-  <File Type="PLACE-TIMING" Name="picorv32_wrapper_timing_summary_placed.rpt"/>
-  <File Type="ROUTE-DRC" Name="picorv32_wrapper_drc_routed.rpt"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="picorv32_wrapper_postplace_pwropt.dcp"/>
-  <File Type="POSTPLACE-PWROPT-TIMING" Name="picorv32_wrapper_timing_summary_postplace_pwropted.rpt"/>
-  <File Type="ROUTE-DRC-PB" Name="picorv32_wrapper_drc_routed.pb"/>
-  <File Type="PHYSOPT-DCP" Name="picorv32_wrapper_physopt.dcp"/>
-  <File Type="PHYSOPT-DRC" Name="picorv32_wrapper_drc_physopted.rpt"/>
-  <File Type="PHYSOPT-TIMING" Name="picorv32_wrapper_timing_summary_physopted.rpt"/>
-  <File Type="ROUTE-PWR" Name="picorv32_wrapper_power_routed.rpt"/>
-  <File Type="ROUTE-ERROR-DCP" Name="picorv32_wrapper_routed_error.dcp"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="picorv32_wrapper_methodology_drc_routed.rpx"/>
-  <File Type="ROUTE-DCP" Name="picorv32_wrapper_routed.dcp"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="picorv32_wrapper_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="picorv32_wrapper_routed_bb.dcp"/>
-  <File Type="ROUTE-DRC-RPX" Name="picorv32_wrapper_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="picorv32_wrapper_methodology_drc_routed.rpt"/>
-  <File Type="ROUTE-PWR-SUM" Name="picorv32_wrapper_power_summary_routed.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/bd/picorv32/picorv32.bd">
@@ -116,23 +116,17 @@
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="picorv32_cp_const_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_riscvBram_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_psBramController_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_porReset_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_psInterruptController_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_riscvBramController_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_riscvReset_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_irqConcat_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_auto_us_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_picorv32_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_auto_ds_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_auto_pc_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="picorv32_xbar_1"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_processing_system7_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_resetSlice_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_subprocessorClk_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="picorv32_psInterruptController_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="picorv32_irqConcat_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="picorv32_porReset_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="picorv32_riscvReset_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_xbar_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_xbar_1"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_auto_pc_3"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_auto_pc_1"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_auto_pc_2"/>
+  <BlockFileSet Type="BlockSrcs" Name="picorv32_subprocessorClk_0"/>
 </GenRun>
