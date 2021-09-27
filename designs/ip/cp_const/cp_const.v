@@ -15,11 +15,11 @@ assign pcpi_wait = 0;
 always @(posedge clk) begin
     if (pcpi_valid) begin
         pcpi_ready <= 0;
-	    pcpi_rd <= pcpi_insn;
+	pcpi_rd <= pcpi_insn;
         pcpi_wr <= 1;
     end else begin
         pcpi_wr <= 0;
-        pcpi_ready <= 1;
+        pcpi_ready <= 0;
     end
 end
 
