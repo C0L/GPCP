@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-//Date        : Sun Sep 26 21:49:21 2021
+//Date        : Sun Sep 26 23:16:15 2021
 //Host        : ZenBook running 64-bit Ubuntu 21.04
 //Command     : generate_target picorv32.bd
 //Design      : picorv32

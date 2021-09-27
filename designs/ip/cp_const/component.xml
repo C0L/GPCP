@@ -36,7 +36,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7fb56eb9</spirit:value>
+            <spirit:value>b32e9a60</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -52,7 +52,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7fb56eb9</spirit:value>
+            <spirit:value>b32e9a60</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -213,7 +213,7 @@
       <spirit:file>
         <spirit:name>cp_const.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_7fb56eb9</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_b32e9a60</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -265,8 +265,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>cp_const</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>6</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-09-27T04:49:00Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>8</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-09-27T06:15:51Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="user.org:user:cp_const:1.0_ARCHIVE_LOCATION">/home/colindrewes/dev/GPCP/designs/ip/cp_const</xilinx:tag>
         <xilinx:tag xilinx:name="ucsd.edu:user:cp_const:1.0_ARCHIVE_LOCATION">/home/colindrewes/dev/GPCP/designs/ip/cp_const</xilinx:tag>
@@ -276,7 +276,7 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2018.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="a88d4390"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="bf786bd9"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="3b26eba9"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="c29a3471"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="ed562036"/>
     </xilinx:packagingInfo>

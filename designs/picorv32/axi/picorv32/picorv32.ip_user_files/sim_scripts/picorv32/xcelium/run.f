@@ -132,7 +132,7 @@
 -makelib xcelium_lib/xil_defaultlib \
   "../../../../picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_xbar_0/sim/picorv32_xbar_0.v" \
   "../../../../picorv32.srcs/sources_1/bd/picorv32/sim/picorv32.v" \
-  "../../../../picorv32.srcs/sources_1/bd/picorv32/ipshared/b891/cp_const.v" \
+  "../../../../picorv32.srcs/sources_1/bd/picorv32/ipshared/fd0a/cp_const.v" \
   "../../../../picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_cp_const_0_0/sim/picorv32_cp_const_0_0.v" \
 -endlib
 -makelib xcelium_lib/axi_protocol_converter_v2_1_17 \

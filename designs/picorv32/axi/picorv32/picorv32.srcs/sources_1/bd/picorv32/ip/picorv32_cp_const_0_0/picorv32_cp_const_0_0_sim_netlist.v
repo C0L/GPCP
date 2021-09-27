@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-// Date        : Sun Sep 26 21:50:49 2021
+// Date        : Sun Sep 26 23:18:28 2021
 // Host        : ZenBook running 64-bit Ubuntu 21.04
 // Command     : write_verilog -force -mode funcsim
 //               /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_cp_const_0_0/picorv32_cp_const_0_0_sim_netlist.v
@@ -41,9 +41,9 @@ module picorv32_cp_const_0_0
   wire [31:0]pcpi_rd;
   wire pcpi_ready;
   wire pcpi_valid;
-  wire pcpi_wr;
 
   assign pcpi_wait = \<const0> ;
+  assign pcpi_wr = pcpi_ready;
   GND GND
        (.G(\<const0> ));
   picorv32_cp_const_0_0_cp_const inst
@@ -51,33 +51,44 @@ module picorv32_cp_const_0_0
         .pcpi_insn(pcpi_insn),
         .pcpi_rd(pcpi_rd),
         .pcpi_ready(pcpi_ready),
-        .pcpi_valid(pcpi_valid),
-        .pcpi_wr(pcpi_wr));
+        .pcpi_valid(pcpi_valid));
 endmodule
 
 (* ORIG_REF_NAME = "cp_const" *) 
 module picorv32_cp_const_0_0_cp_const
    (pcpi_rd,
-    pcpi_wr,
     pcpi_ready,
     pcpi_valid,
     pcpi_insn,
     clk);
   output [31:0]pcpi_rd;
-  output pcpi_wr;
   output pcpi_ready;
   input pcpi_valid;
   input [31:0]pcpi_insn;
   input clk;
 
   wire clk;
+  wire finish_i_1_n_0;
+  wire finish_reg_n_0;
   wire [31:0]pcpi_insn;
   wire [31:0]pcpi_rd;
   wire pcpi_ready;
-  wire pcpi_ready_i_1_n_0;
   wire pcpi_valid;
-  wire pcpi_wr;
 
+  LUT2 #(
+    .INIT(4'h4)) 
+    finish_i_1
+       (.I0(finish_reg_n_0),
+        .I1(pcpi_valid),
+        .O(finish_i_1_n_0));
+  FDRE #(
+    .INIT(1'b0)) 
+    finish_reg
+       (.C(clk),
+        .CE(1'b1),
+        .D(finish_i_1_n_0),
+        .Q(finish_reg_n_0),
+        .R(1'b0));
   FDRE \pcpi_rd_reg[0] 
        (.C(clk),
         .CE(pcpi_valid),
@@ -270,22 +281,11 @@ module picorv32_cp_const_0_0_cp_const
         .D(pcpi_insn[9]),
         .Q(pcpi_rd[9]),
         .R(1'b0));
-  LUT1 #(
-    .INIT(2'h1)) 
-    pcpi_ready_i_1
-       (.I0(pcpi_valid),
-        .O(pcpi_ready_i_1_n_0));
   FDRE pcpi_ready_reg
        (.C(clk),
         .CE(1'b1),
-        .D(pcpi_ready_i_1_n_0),
+        .D(finish_reg_n_0),
         .Q(pcpi_ready),
-        .R(1'b0));
-  FDRE pcpi_wr_reg
-       (.C(clk),
-        .CE(1'b1),
-        .D(pcpi_valid),
-        .Q(pcpi_wr),
         .R(1'b0));
 endmodule
 `ifndef GLBL
