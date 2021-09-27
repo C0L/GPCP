@@ -48,7 +48,7 @@
 
 
 // IP VLNV: ucsd.edu:colindrewes:cp_const:1.0
-// IP Revision: 4
+// IP Revision: 6
 
 `timescale 1ns/1ps
 

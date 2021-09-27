@@ -6,20 +6,20 @@ module cp_const(
     input pcpi_valid,
     output reg[31:0] pcpi_rd,
     output reg pcpi_wr,
-    output pcpi_ready,
+    output reg pcpi_ready,
     output pcpi_wait
 );
 
-assign pcpi_ready = 1;
 assign pcpi_wait = 0;
-
 
 always @(posedge clk) begin
     if (pcpi_valid) begin
-        pcpi_rd <= pcpi_insn;
+        pcpi_ready <= 0;
+	    pcpi_rd <= pcpi_insn;
         pcpi_wr <= 1;
     end else begin
         pcpi_wr <= 0;
+        pcpi_ready <= 1;
     end
 end
 

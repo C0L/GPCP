@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
--- Date        : Fri Sep 24 19:48:57 2021
+-- Date        : Sun Sep 26 21:50:50 2021
 -- Host        : ZenBook running 64-bit Ubuntu 21.04
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/sources_1/bd/picorv32/ip/picorv32_cp_const_0_0/picorv32_cp_const_0_0_sim_netlist.vhdl
@@ -18,6 +18,7 @@ entity picorv32_cp_const_0_0_cp_const is
   port (
     pcpi_rd : out STD_LOGIC_VECTOR ( 31 downto 0 );
     pcpi_wr : out STD_LOGIC;
+    pcpi_ready : out STD_LOGIC;
     pcpi_valid : in STD_LOGIC;
     pcpi_insn : in STD_LOGIC_VECTOR ( 31 downto 0 );
     clk : in STD_LOGIC
@@ -27,6 +28,7 @@ entity picorv32_cp_const_0_0_cp_const is
 end picorv32_cp_const_0_0_cp_const;
 
 architecture STRUCTURE of picorv32_cp_const_0_0_cp_const is
+  signal pcpi_ready_i_1_n_0 : STD_LOGIC;
 begin
 \pcpi_rd_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -284,6 +286,22 @@ begin
       Q => pcpi_rd(9),
       R => '0'
     );
+pcpi_ready_i_1: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => pcpi_valid,
+      O => pcpi_ready_i_1_n_0
+    );
+pcpi_ready_reg: unisim.vcomponents.FDRE
+     port map (
+      C => clk,
+      CE => '1',
+      D => pcpi_ready_i_1_n_0,
+      Q => pcpi_ready,
+      R => '0'
+    );
 pcpi_wr_reg: unisim.vcomponents.FDRE
      port map (
       C => clk,
@@ -323,27 +341,22 @@ end picorv32_cp_const_0_0;
 
 architecture STRUCTURE of picorv32_cp_const_0_0 is
   signal \<const0>\ : STD_LOGIC;
-  signal \<const1>\ : STD_LOGIC;
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute X_INTERFACE_PARAMETER : string;
   attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, FREQ_HZ 50000000, PHASE 0.0, CLK_DOMAIN picorv32_subprocessorClk_0_clk_out1";
 begin
-  pcpi_ready <= \<const1>\;
   pcpi_wait <= \<const0>\;
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
-    );
-VCC: unisim.vcomponents.VCC
-     port map (
-      P => \<const1>\
     );
 inst: entity work.picorv32_cp_const_0_0_cp_const
      port map (
       clk => clk,
       pcpi_insn(31 downto 0) => pcpi_insn(31 downto 0),
       pcpi_rd(31 downto 0) => pcpi_rd(31 downto 0),
+      pcpi_ready => pcpi_ready,
       pcpi_valid => pcpi_valid,
       pcpi_wr => pcpi_wr
     );

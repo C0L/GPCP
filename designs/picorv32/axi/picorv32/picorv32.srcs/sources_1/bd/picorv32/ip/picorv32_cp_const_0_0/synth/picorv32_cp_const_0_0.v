@@ -48,7 +48,7 @@
 
 
 // IP VLNV: ucsd.edu:colindrewes:cp_const:1.0
-// IP Revision: 4
+// IP Revision: 6
 
 (* X_CORE_INFO = "cp_const,Vivado 2018.2" *)
 (* CHECK_LICENSE_TYPE = "picorv32_cp_const_0_0,cp_const,{}" *)
