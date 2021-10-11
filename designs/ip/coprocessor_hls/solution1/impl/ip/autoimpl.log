@@ -1,0 +1,14 @@
+
+****** Vivado v2018.2 (64-bit)
+  **** SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+  **** IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+Sourcing tcl script '/home/cdrewes/.Xilinx/Vivado/Vivado_init.tcl'
+no such variable
+    (read trace on "::env(HDK_SHELL_DIR)")
+    invoked from within
+"source $::env(HDK_SHELL_DIR)/hlx/hlx_setup.tcl"
+    (file "/home/cdrewes/.Xilinx/Vivado/Vivado_init.tcl" line 1)
+source run_ippack.tcl -notrace
+INFO: [Common 17-206] Exiting Vivado at Mon Sep 27 21:02:25 2021...

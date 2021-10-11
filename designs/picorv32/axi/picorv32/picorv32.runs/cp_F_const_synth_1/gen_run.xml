@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="cp_F_const_synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1633980914">
+  <File Type="VDS-TIMING-PB" Name="coprocessor_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="coprocessor_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="coprocessor.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="coprocessor_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="coprocessor_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="coprocessor_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="coprocessor.vds"/>
+  <File Type="REPORTS-TCL" Name="coprocessor_reports.tcl"/>
+  <File Type="PA-TCL" Name="coprocessor.tcl"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/coprocessor">
+    <File Path="$PPRDIR/../../../ip/cp_F_const/cp_F_const.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="coprocessor"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/coprocessor">
+    <File Path="$PPRDIR/../../../ip/cp_F_const/cp_F_const.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="coprocessor"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

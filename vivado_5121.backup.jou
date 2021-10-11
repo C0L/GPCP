@@ -1,0 +1,22 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Sep 27 19:20:05 2021
+# Process ID: 5121
+# Current directory: /data/cdrewes/GPCP
+# Command line: vivado
+# Log file: /data/cdrewes/GPCP/vivado.log
+# Journal file: /data/cdrewes/GPCP/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /data/cdrewes/GPCP/cp_F_const/cp_F_const.xpr
+update_compile_order -fileset sources_1
+add_files -norecurse /data/cdrewes/GPCP/designs/ip/cp_F_const/cp_F_const.v
+update_compile_order -fileset sources_1
+synth_design -rtl -name rtl_1
+launch_runs impl_1 -jobs 8
+wait_on_run impl_1
+close_design
+open_run impl_1
+write_project_tcl -use_bd_files {/data/cdrewes/GPCP/designs/ip/cp_F_const/cp_F_const.tcl}

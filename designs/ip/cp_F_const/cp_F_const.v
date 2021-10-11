@@ -1,4 +1,4 @@
-module cp_const(
+module coprocessor(
     input clk,
     input[31:0] pcpi_rs1,
     input[31:0] pcpi_rs2,
@@ -7,13 +7,14 @@ module cp_const(
     output reg[31:0] pcpi_rd,
     output reg pcpi_wr,
     output reg pcpi_ready,
-    output pcpi_wait
+    output reg pcpi_wait
 );
 
-assign pcpi_wait = 0;
+//assign pcpi_wait = 0;
 reg finish = 0;
 
 always @(posedge clk) begin
+    pcpi_wait <= 0;
     if (pcpi_valid) begin 
         pcpi_rd <= 32'hFFFFFFFF;
         finish <= 1;

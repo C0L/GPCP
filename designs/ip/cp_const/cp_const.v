@@ -1,4 +1,4 @@
-module cp_const(
+module coprocessor(
     input clk,
     input[31:0] pcpi_rs1,
     input[31:0] pcpi_rs2,

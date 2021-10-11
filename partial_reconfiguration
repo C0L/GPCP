@@ -1,3 +1,4 @@
+Search bar -- enable partial reconfiguration
 open post synth design -- this is the static region
 enable PR specific processing set_property HD.RECONFIGURABLE true [get_cells system_i/FILTER_ENGINE
 

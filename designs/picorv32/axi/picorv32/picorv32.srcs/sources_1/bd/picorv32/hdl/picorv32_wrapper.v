@@ -1,8 +1,8 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-//Date        : Sun Sep 26 23:16:16 2021
-//Host        : ZenBook running 64-bit Ubuntu 21.04
+//Date        : Mon Oct 11 12:19:55 2021
+//Host        : fabricant running 64-bit Linux Mint 18 Sarah
 //Command     : generate_target picorv32_wrapper.bd
 //Design      : picorv32_wrapper
 //Purpose     : IP block netlist
@@ -30,9 +30,7 @@ module picorv32_wrapper
     FIXED_IO_mio,
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
-    FIXED_IO_ps_srstb,
-    led_o,
-    pb_i);
+    FIXED_IO_ps_srstb);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -54,8 +52,6 @@ module picorv32_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  output [3:0]led_o;
-  input [3:0]pb_i;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -78,8 +74,15 @@ module picorv32_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire [3:0]led_o;
-  wire [3:0]pb_i;
+  wire clk_out1;
+  wire [31:0]ip_pcpi_1_pcpi_insn;
+  wire [31:0]ip_pcpi_1_pcpi_rd;
+  wire ip_pcpi_1_pcpi_ready;
+  wire [31:0]ip_pcpi_1_pcpi_rs1;
+  wire [31:0]ip_pcpi_1_pcpi_rs2;
+  wire ip_pcpi_1_pcpi_valid;
+  wire ip_pcpi_1_pcpi_wait;
+  wire ip_pcpi_1_pcpi_wr;
 
   picorv32 picorv32_i
        (.DDR_addr(DDR_addr),
@@ -103,6 +106,24 @@ module picorv32_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .led_o(led_o),
-        .pb_i(pb_i));
+        .clk_out1(clk_out1),
+        .ip_pcpi_1_pcpi_insn(ip_pcpi_1_pcpi_insn),
+        .ip_pcpi_1_pcpi_rd(ip_pcpi_1_pcpi_rd),
+        .ip_pcpi_1_pcpi_ready(ip_pcpi_1_pcpi_ready),
+        .ip_pcpi_1_pcpi_rs1(ip_pcpi_1_pcpi_rs1),
+        .ip_pcpi_1_pcpi_rs2(ip_pcpi_1_pcpi_rs2),
+        .ip_pcpi_1_pcpi_valid(ip_pcpi_1_pcpi_valid),
+        .ip_pcpi_1_pcpi_wait(ip_pcpi_1_pcpi_wait),
+        .ip_pcpi_1_pcpi_wr(ip_pcpi_1_pcpi_wr));
+        
+  coprocessor cp_F_const(.clk(clk_out1),
+                      .pcpi_rs1(ip_pcpi_1_pcpi_rs1),
+                      .pcpi_rs2(ip_pcpi_1_pcpi_rs2),
+                      .pcpi_insn(ip_pcpi_1_pcpi_insn),
+                      .pcpi_valid(ip_pcpi_1_pcpi_valid),
+                      .pcpi_rd(ip_pcpi_1_pcpi_rd),
+                      .pcpi_wr(ip_pcpi_1_pcpi_wr),
+                      .pcpi_ready(ip_pcpi_1_pcpi_ready),
+                      .pcpi_wait(ip_pcpi_1_pcpi_wait));
+
 endmodule

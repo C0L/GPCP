@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Sep 26 23:16:18 2021" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Oct 11 12:20:20 2021" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="picorv32" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -25,8 +25,19 @@
     <PORT DIR="IO" NAME="FIXED_IO_ps_srstb" SIGIS="undef"/>
     <PORT DIR="IO" NAME="FIXED_IO_ps_clk" SIGIS="undef"/>
     <PORT DIR="IO" NAME="FIXED_IO_ps_porb" SIGIS="undef"/>
-    <PORT DIR="O" LEFT="3" NAME="led_o" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="3" NAME="pb_i" RIGHT="0" SIGIS="undef"/>
+    <PORT CLKFREQUENCY="50000000" DIR="O" NAME="clk_out1" SIGIS="clk" SIGNAME="subprocessorClk_clk_out1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="subprocessorClk" PORT="clk_out1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="31" NAME="ip_pcpi_1_pcpi_rs1" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="O" LEFT="31" NAME="ip_pcpi_1_pcpi_rs2" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="O" LEFT="31" NAME="ip_pcpi_1_pcpi_insn" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="O" NAME="ip_pcpi_1_pcpi_valid" SIGIS="undef"/>
+    <PORT DIR="I" LEFT="31" NAME="ip_pcpi_1_pcpi_rd" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="I" NAME="ip_pcpi_1_pcpi_wr" SIGIS="undef"/>
+    <PORT DIR="I" NAME="ip_pcpi_1_pcpi_ready" SIGIS="undef"/>
+    <PORT DIR="I" NAME="ip_pcpi_1_pcpi_wait" SIGIS="undef"/>
   </EXTERNALPORTS>
 
   <EXTERNALINTERFACES>
@@ -73,18 +84,6 @@
         <PORTMAP LOGICAL="PS_CLK" PHYSICAL="FIXED_IO_ps_clk"/>
         <PORTMAP LOGICAL="PS_PORB" PHYSICAL="FIXED_IO_ps_porb"/>
       </PORTMAPS>
-    </BUSINTERFACE>
-    <BUSINTERFACE BUSNAME="__NOC__" NAME="arduino_gpio" TYPE="INITIATOR">
-      <PORTMAPS/>
-    </BUSINTERFACE>
-    <BUSINTERFACE BUSNAME="__NOC__" NAME="arduino_iic" TYPE="INITIATOR">
-      <PORTMAPS/>
-    </BUSINTERFACE>
-    <BUSINTERFACE BUSNAME="__NOC__" NAME="pmoda_gpio" TYPE="INITIATOR">
-      <PORTMAPS/>
-    </BUSINTERFACE>
-    <BUSINTERFACE BUSNAME="__NOC__" NAME="pmodb_gpio" TYPE="INITIATOR">
-      <PORTMAPS/>
     </BUSINTERFACE>
   </EXTERNALINTERFACES>
 
@@ -1960,61 +1959,6 @@
         <PERIPHERAL INSTANCE="psInterruptController"/>
       </PERIPHERALS>
     </MODULE>
-    <MODULE FULLNAME="/processor/cp_const" HWVERSION="1.0" INSTANCE="processor_cp_const" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="cp_const" VLNV="ucsd.edu:colindrewes:cp_const:1.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="picorv32_cp_const_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT CLKFREQUENCY="50000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="subprocessorClk_clk_out1">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="subprocessorClk" PORT="clk_out1"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_rs1" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_rs1">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_rs1"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_rs2" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_rs2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_rs2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_insn">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_insn"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="pcpi_valid" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_valid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_valid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef" SIGNAME="processor_cp_const_pcpi_rd">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_rd"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="pcpi_wr" SIGIS="undef" SIGNAME="processor_cp_const_pcpi_wr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_wr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="pcpi_ready" SIGIS="undef" SIGNAME="processor_cp_const_pcpi_ready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_ready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="pcpi_wait" SIGIS="undef" SIGNAME="processor_cp_const_pcpi_wait">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_wait"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
     <MODULE FULLNAME="/processor/picorv32" HWVERSION="1.0" INSTANCE="processor_picorv32" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="picorv32_axi" VLNV="cliffordwolf:ip:picorv32_axi:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
@@ -2147,46 +2091,14 @@
             <CONNECTION INSTANCE="processor_riscvInterconnect" PORT="S00_AXI_rdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="pcpi_valid" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_valid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_cp_const" PORT="pcpi_valid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_insn">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_cp_const" PORT="pcpi_insn"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="pcpi_rs1" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_rs1">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_cp_const" PORT="pcpi_rs1"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="pcpi_rs2" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_rs2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_cp_const" PORT="pcpi_rs2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="pcpi_wr" SIGIS="undef" SIGNAME="processor_cp_const_pcpi_wr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_cp_const" PORT="pcpi_wr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef" SIGNAME="processor_cp_const_pcpi_rd">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_cp_const" PORT="pcpi_rd"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="pcpi_wait" SIGIS="undef" SIGNAME="processor_cp_const_pcpi_wait">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_cp_const" PORT="pcpi_wait"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="pcpi_ready" SIGIS="undef" SIGNAME="processor_cp_const_pcpi_ready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="processor_cp_const" PORT="pcpi_ready"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="pcpi_valid" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="pcpi_rs1" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="pcpi_rs2" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="pcpi_wr" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="pcpi_wait" SIGIS="undef"/>
+        <PORT DIR="I" NAME="pcpi_ready" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="processor_picorv32_mem_axi" DATAWIDTH="32" NAME="mem_axi" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
@@ -7427,7 +7339,7 @@
             <CONNECTION INSTANCE="processor_riscvInterconnect" PORT="M00_ACLK"/>
             <CONNECTION INSTANCE="processor_riscvInterconnect" PORT="M01_ACLK"/>
             <CONNECTION INSTANCE="processor_riscvInterconnect" PORT="S00_ACLK"/>
-            <CONNECTION INSTANCE="processor_cp_const" PORT="clk"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk_out1"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="locked" SIGIS="undef"/>

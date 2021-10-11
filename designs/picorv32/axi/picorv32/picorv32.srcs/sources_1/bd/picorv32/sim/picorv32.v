@@ -1,8 +1,8 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-//Date        : Sun Sep 26 23:16:16 2021
-//Host        : ZenBook running 64-bit Ubuntu 21.04
+//Date        : Mon Oct 11 12:19:55 2021
+//Host        : fabricant running 64-bit Linux Mint 18 Sarah
 //Command     : generate_target picorv32.bd
 //Design      : picorv32
 //Purpose     : IP block netlist
@@ -1357,7 +1357,7 @@ module m02_couplers_imp_1KB0LNA
   assign m02_couplers_to_m02_couplers_WVALID = S_AXI_wvalid[0];
 endmodule
 
-(* CORE_GENERATION_INFO = "picorv32,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=picorv32,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=30,numReposBlks=20,numNonXlnxBlks=2,numHierBlks=10,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "picorv32.hwdef" *) 
+(* CORE_GENERATION_INFO = "picorv32,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=picorv32,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=29,numReposBlks=19,numNonXlnxBlks=1,numHierBlks=10,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "picorv32.hwdef" *) 
 module picorv32
    (DDR_addr,
     DDR_ba,
@@ -1380,8 +1380,15 @@ module picorv32
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    led_o,
-    pb_i);
+    clk_out1,
+    ip_pcpi_1_pcpi_insn,
+    ip_pcpi_1_pcpi_rd,
+    ip_pcpi_1_pcpi_ready,
+    ip_pcpi_1_pcpi_rs1,
+    ip_pcpi_1_pcpi_rs2,
+    ip_pcpi_1_pcpi_valid,
+    ip_pcpi_1_pcpi_wait,
+    ip_pcpi_1_pcpi_wr);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_addr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR BA" *) inout [2:0]DDR_ba;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CAS_N" *) inout DDR_cas_n;
@@ -1403,8 +1410,15 @@ module picorv32
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK" *) inout FIXED_IO_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
-  output [3:0]led_o;
-  input [3:0]pb_i;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_OUT1 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_OUT1, CLK_DOMAIN picorv32_subprocessorClk_0_clk_out1, FREQ_HZ 50000000, PHASE 0.0" *) output clk_out1;
+  output [31:0]ip_pcpi_1_pcpi_insn;
+  input [31:0]ip_pcpi_1_pcpi_rd;
+  input ip_pcpi_1_pcpi_ready;
+  output [31:0]ip_pcpi_1_pcpi_rs1;
+  output [31:0]ip_pcpi_1_pcpi_rs2;
+  output ip_pcpi_1_pcpi_valid;
+  input ip_pcpi_1_pcpi_wait;
+  input ip_pcpi_1_pcpi_wr;
 
   wire FCLK_CLK0;
   wire FCLK_CLK1;
@@ -1515,6 +1529,10 @@ module picorv32
   wire S_AXI_PSX_WREADY;
   wire [3:0]S_AXI_PSX_WSTRB;
   wire S_AXI_PSX_WVALID;
+  wire [31:0]ip_pcpi_1_pcpi_rd_1;
+  wire ip_pcpi_1_pcpi_ready_1;
+  wire ip_pcpi_1_pcpi_wait_1;
+  wire ip_pcpi_1_pcpi_wr_1;
   wire irq;
   wire m_axi_riscv_aclk;
   wire [0:0]porReset_interconnect_aresetn;
@@ -1541,6 +1559,10 @@ module picorv32
   wire processing_system7_0_FIXED_IO_PS_PORB;
   wire processing_system7_0_FIXED_IO_PS_SRSTB;
   wire [6:0]processing_system7_0_GPIO_O;
+  wire [31:0]processor_ip_pcpi_1_pcpi_insn;
+  wire [31:0]processor_ip_pcpi_1_pcpi_rs1;
+  wire [31:0]processor_ip_pcpi_1_pcpi_rs2;
+  wire processor_ip_pcpi_1_pcpi_valid;
   wire [31:0]psAxiInterconnect_M00_AXI_ARADDR;
   wire psAxiInterconnect_M00_AXI_ARREADY;
   wire psAxiInterconnect_M00_AXI_ARVALID;
@@ -1577,9 +1599,18 @@ module picorv32
   wire psAxiInterconnect_M01_AXI_WVALID;
   wire psirq;
   wire [0:0]riscv_resetn;
-  wire \^subprocessorClk ;
+  wire subprocessorClk_clk_out1;
   wire [0:0]xlconcat_0_dout;
 
+  assign clk_out1 = subprocessorClk_clk_out1;
+  assign ip_pcpi_1_pcpi_insn[31:0] = processor_ip_pcpi_1_pcpi_insn;
+  assign ip_pcpi_1_pcpi_rd_1 = ip_pcpi_1_pcpi_rd[31:0];
+  assign ip_pcpi_1_pcpi_ready_1 = ip_pcpi_1_pcpi_ready;
+  assign ip_pcpi_1_pcpi_rs1[31:0] = processor_ip_pcpi_1_pcpi_rs1;
+  assign ip_pcpi_1_pcpi_rs2[31:0] = processor_ip_pcpi_1_pcpi_rs2;
+  assign ip_pcpi_1_pcpi_valid = processor_ip_pcpi_1_pcpi_valid;
+  assign ip_pcpi_1_pcpi_wait_1 = ip_pcpi_1_pcpi_wait;
+  assign ip_pcpi_1_pcpi_wr_1 = ip_pcpi_1_pcpi_wr;
   picorv32_irqConcat_0 irqConcat
        (.In0(irq),
         .dout(xlconcat_0_dout));
@@ -1799,10 +1830,18 @@ module picorv32
         .S_AXI_MEM_wready(S_AXI_MEM_WREADY),
         .S_AXI_MEM_wstrb(S_AXI_MEM_WSTRB),
         .S_AXI_MEM_wvalid(S_AXI_MEM_WVALID),
+        .ip_pcpi_1_pcpi_insn(processor_ip_pcpi_1_pcpi_insn),
+        .ip_pcpi_1_pcpi_rd(ip_pcpi_1_pcpi_rd_1),
+        .ip_pcpi_1_pcpi_ready(ip_pcpi_1_pcpi_ready_1),
+        .ip_pcpi_1_pcpi_rs1(processor_ip_pcpi_1_pcpi_rs1),
+        .ip_pcpi_1_pcpi_rs2(processor_ip_pcpi_1_pcpi_rs2),
+        .ip_pcpi_1_pcpi_valid(processor_ip_pcpi_1_pcpi_valid),
+        .ip_pcpi_1_pcpi_wait(ip_pcpi_1_pcpi_wait_1),
+        .ip_pcpi_1_pcpi_wr(ip_pcpi_1_pcpi_wr_1),
         .irq(irq),
         .m_axi_riscv_aclk(m_axi_riscv_aclk),
         .por_resetn(por_resetn),
-        .riscv_clk(\^subprocessorClk ),
+        .riscv_clk(subprocessorClk_clk_out1),
         .riscv_resetn(riscv_resetn),
         .s_axi_aclk(FCLK_CLK0),
         .s_axi_aresetn(S00_ARESETN_1));
@@ -1951,7 +1990,7 @@ module picorv32
         .Dout(riscv_resetn));
   picorv32_subprocessorClk_0 subprocessorClk
        (.clk_in1(FCLK_CLK0),
-        .clk_out1(\^subprocessorClk ),
+        .clk_out1(subprocessorClk_clk_out1),
         .s_axi_aclk(FCLK_CLK0),
         .s_axi_araddr(psAxiInterconnect_M01_AXI_ARADDR[10:0]),
         .s_axi_aresetn(S00_ARESETN_1),
@@ -3573,6 +3612,14 @@ module processor_imp_JBIKNI
     S_AXI_MEM_wready,
     S_AXI_MEM_wstrb,
     S_AXI_MEM_wvalid,
+    ip_pcpi_1_pcpi_insn,
+    ip_pcpi_1_pcpi_rd,
+    ip_pcpi_1_pcpi_ready,
+    ip_pcpi_1_pcpi_rs1,
+    ip_pcpi_1_pcpi_rs2,
+    ip_pcpi_1_pcpi_valid,
+    ip_pcpi_1_pcpi_wait,
+    ip_pcpi_1_pcpi_wr,
     irq,
     m_axi_riscv_aclk,
     por_resetn,
@@ -3648,6 +3695,14 @@ module processor_imp_JBIKNI
   output [0:0]S_AXI_MEM_wready;
   input [3:0]S_AXI_MEM_wstrb;
   input [0:0]S_AXI_MEM_wvalid;
+  output [31:0]ip_pcpi_1_pcpi_insn;
+  input [31:0]ip_pcpi_1_pcpi_rd;
+  input ip_pcpi_1_pcpi_ready;
+  output [31:0]ip_pcpi_1_pcpi_rs1;
+  output [31:0]ip_pcpi_1_pcpi_rs2;
+  output ip_pcpi_1_pcpi_valid;
+  input ip_pcpi_1_pcpi_wait;
+  input ip_pcpi_1_pcpi_wr;
   output irq;
   output m_axi_riscv_aclk;
   input por_resetn;
@@ -3657,6 +3712,14 @@ module processor_imp_JBIKNI
   input s_axi_aresetn;
 
   wire [0:0]ARESETN_1;
+  wire [31:0]Conn1_pcpi_insn;
+  wire [31:0]Conn1_pcpi_rd;
+  wire Conn1_pcpi_ready;
+  wire [31:0]Conn1_pcpi_rs1;
+  wire [31:0]Conn1_pcpi_rs2;
+  wire Conn1_pcpi_valid;
+  wire Conn1_pcpi_wait;
+  wire Conn1_pcpi_wr;
   wire [31:0]Conn2_ARADDR;
   wire [1:0]Conn2_ARBURST;
   wire [3:0]Conn2_ARCACHE;
@@ -3746,10 +3809,6 @@ module processor_imp_JBIKNI
   wire [3:0]axi_interconnect_0_M01_AXI_WSTRB;
   wire axi_interconnect_0_M01_AXI_WVALID;
   wire clk_in1_1;
-  wire [31:0]cp_const_pcpi_rd;
-  wire cp_const_pcpi_ready;
-  wire cp_const_pcpi_wait;
-  wire cp_const_pcpi_wr;
   wire ext_reset_in_1;
   wire [31:0]picorv32_mem_axi_ARADDR;
   wire [2:0]picorv32_mem_axi_ARPROT;
@@ -3768,10 +3827,6 @@ module processor_imp_JBIKNI
   wire picorv32_mem_axi_WREADY;
   wire [3:0]picorv32_mem_axi_WSTRB;
   wire picorv32_mem_axi_WVALID;
-  wire [31:0]picorv32_pcpi_insn;
-  wire [31:0]picorv32_pcpi_rs1;
-  wire [31:0]picorv32_pcpi_rs2;
-  wire picorv32_pcpi_valid;
   wire picorv32_trap;
   wire [15:0]psBramController_BRAM_PORTA_ADDR;
   wire psBramController_BRAM_PORTA_CLK;
@@ -3791,6 +3846,10 @@ module processor_imp_JBIKNI
   wire s_axi_aresetn_1;
   wire subprocessorClk;
 
+  assign Conn1_pcpi_rd = ip_pcpi_1_pcpi_rd[31:0];
+  assign Conn1_pcpi_ready = ip_pcpi_1_pcpi_ready;
+  assign Conn1_pcpi_wait = ip_pcpi_1_pcpi_wait;
+  assign Conn1_pcpi_wr = ip_pcpi_1_pcpi_wr;
   assign Conn2_ARADDR = S_AXI_MEM_araddr[31:0];
   assign Conn2_ARBURST = S_AXI_MEM_arburst[1:0];
   assign Conn2_ARCACHE = S_AXI_MEM_arcache[3:0];
@@ -3862,20 +3921,14 @@ module processor_imp_JBIKNI
   assign aux_reset_in_1 = riscv_resetn;
   assign clk_in1_1 = s_axi_aclk;
   assign ext_reset_in_1 = por_resetn;
+  assign ip_pcpi_1_pcpi_insn[31:0] = Conn1_pcpi_insn;
+  assign ip_pcpi_1_pcpi_rs1[31:0] = Conn1_pcpi_rs1;
+  assign ip_pcpi_1_pcpi_rs2[31:0] = Conn1_pcpi_rs2;
+  assign ip_pcpi_1_pcpi_valid = Conn1_pcpi_valid;
   assign irq = picorv32_trap;
   assign m_axi_riscv_aclk = subprocessorClk;
   assign s_axi_aresetn_1 = s_axi_aresetn;
   assign subprocessorClk = riscv_clk;
-  picorv32_cp_const_0_0 cp_const
-       (.clk(subprocessorClk),
-        .pcpi_insn(picorv32_pcpi_insn),
-        .pcpi_rd(cp_const_pcpi_rd),
-        .pcpi_ready(cp_const_pcpi_ready),
-        .pcpi_rs1(picorv32_pcpi_rs1),
-        .pcpi_rs2(picorv32_pcpi_rs2),
-        .pcpi_valid(picorv32_pcpi_valid),
-        .pcpi_wait(cp_const_pcpi_wait),
-        .pcpi_wr(cp_const_pcpi_wr));
   picorv32_picorv32_0 picorv32
        (.clk(subprocessorClk),
         .mem_axi_araddr(picorv32_mem_axi_ARADDR),
@@ -3895,14 +3948,14 @@ module processor_imp_JBIKNI
         .mem_axi_wready(picorv32_mem_axi_WREADY),
         .mem_axi_wstrb(picorv32_mem_axi_WSTRB),
         .mem_axi_wvalid(picorv32_mem_axi_WVALID),
-        .pcpi_insn(picorv32_pcpi_insn),
-        .pcpi_rd(cp_const_pcpi_rd),
-        .pcpi_ready(cp_const_pcpi_ready),
-        .pcpi_rs1(picorv32_pcpi_rs1),
-        .pcpi_rs2(picorv32_pcpi_rs2),
-        .pcpi_valid(picorv32_pcpi_valid),
-        .pcpi_wait(cp_const_pcpi_wait),
-        .pcpi_wr(cp_const_pcpi_wr),
+        .pcpi_insn(Conn1_pcpi_insn),
+        .pcpi_rd(Conn1_pcpi_rd),
+        .pcpi_ready(Conn1_pcpi_ready),
+        .pcpi_rs1(Conn1_pcpi_rs1),
+        .pcpi_rs2(Conn1_pcpi_rs2),
+        .pcpi_valid(Conn1_pcpi_valid),
+        .pcpi_wait(Conn1_pcpi_wait),
+        .pcpi_wr(Conn1_pcpi_wr),
         .resetn(riscvReset_peripheral_aresetn),
         .trap(picorv32_trap));
   (* BMM_INFO_ADDRESS_SPACE = "byte  0x40010000 32 > picorv32 processor/riscvBram" *) 

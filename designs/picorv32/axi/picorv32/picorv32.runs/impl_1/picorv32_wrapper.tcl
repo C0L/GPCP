@@ -66,14 +66,16 @@ set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
   open_checkpoint picorv32_wrapper_routed.dcp
-  set_property webtalk.parent_dir /home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.cache/wt [current_project]
+  set_property webtalk.parent_dir /data/cdrewes/GPCP/designs/picorv32/axi/picorv32/picorv32.cache/wt [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
   catch { write_mem_info -force picorv32_wrapper.mmi }
   catch { write_bmm -force picorv32_wrapper_bd.bmm }
-  write_bitstream -force picorv32_wrapper.bit 
+  write_bitstream -force -no_partial_bitfile picorv32_wrapper.bit 
+  write_bitstream -force -cell cp_F_const cp_F_const_cp_F_const_partial.bit 
   catch { write_sysdef -hwdef picorv32_wrapper.hwdef -bitfile picorv32_wrapper.bit -meminfo picorv32_wrapper.mmi -file picorv32_wrapper.sysdef }
-  catch {write_debug_probes -quiet -force picorv32_wrapper}
+  catch {write_debug_probes -no_partial_ltxfile -quiet -force picorv32_wrapper}
   catch {file copy -force picorv32_wrapper.ltx debug_nets.ltx}
+  catch {write_debug_probes -quiet -force -cell cp_F_const -file cp_F_const_cp_F_const_partial.ltx}
   close_msg_db -file write_bitstream.pb
 } RESULT]
 if {$rc} {

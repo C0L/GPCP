@@ -1,0 +1,177 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Sep 27 20:33:53 2021
+# Process ID: 32471
+# Current directory: /data/cdrewes/GPCP
+# Command line: vivado
+# Log file: /data/cdrewes/GPCP/vivado.log
+# Journal file: /data/cdrewes/GPCP/vivado.jou
+#-----------------------------------------------------------
+Sourcing tcl script '/home/cdrewes/.Xilinx/Vivado/Vivado_init.tcl'
+no such variable
+    (read trace on "::env(HDK_SHELL_DIR)")
+    invoked from within
+"source $::env(HDK_SHELL_DIR)/hlx/hlx_setup.tcl"
+    (file "/home/cdrewes/.Xilinx/Vivado/Vivado_init.tcl" line 1)
+start_gui
+open_project /data/cdrewes/GPCP/cp_F_const/cp_F_const.xpr
+CRITICAL WARNING: [Project 1-19] Could not find the file '/data/cdrewes/GPCP/GPCP/designs/ip/cp_F_const/cp_F_const.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file '/data/cdrewes/GPCP/GPCP/designs/ip/cp_F_const/component.xml'.
+Scanning sources...
+Finished scanning sources
+WARNING: [filemgmt 56-3] IP Repository Path: Could not find the directory '/data/cdrewes/GPCP/GPCP/designs/ip/cp_F_const'.
+WARNING: [filemgmt 56-3] IPUserFilesDir: Could not find the directory '/data/cdrewes/GPCP/cp_F_const/cp_F_const.ip_user_files'.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/data/cdrewes/GPCP/GPCP/designs/ip/cp_F_const'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/data/opt/Xilinx/Vivado/2018.2/data/ip'.
+open_project: Time (s): cpu = 00:00:22 ; elapsed = 00:00:07 . Memory (MB): peak = 6288.254 ; gain = 108.648 ; free physical = 38353 ; free virtual = 396675
+update_compile_order -fileset sources_1
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7z020clg400-1
+Top: cp_const
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 6355.785 ; gain = 11.996 ; free physical = 38290 ; free virtual = 396611
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'cp_const' [/data/cdrewes/GPCP/designs/ip/cp_F_const/cp_F_const.v:1]
+INFO: [Synth 8-4471] merging register 'pcpi_wr_reg' into 'pcpi_ready_reg' [/data/cdrewes/GPCP/designs/ip/cp_F_const/cp_F_const.v:24]
+WARNING: [Synth 8-6014] Unused sequential element pcpi_wr_reg was removed.  [/data/cdrewes/GPCP/designs/ip/cp_F_const/cp_F_const.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'cp_const' (1#1) [/data/cdrewes/GPCP/designs/ip/cp_F_const/cp_F_const.v:1]
+WARNING: [Synth 8-3917] design cp_const has port pcpi_wait driven by constant 0
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[31]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[30]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[29]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[28]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[27]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[26]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[25]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[24]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[23]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[22]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[21]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[20]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[19]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[18]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[17]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[16]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[15]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[14]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[13]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[12]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[11]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[10]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[9]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[8]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[7]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[6]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[5]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[4]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[3]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[2]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[1]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs1[0]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[31]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[30]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[29]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[28]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[27]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[26]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[25]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[24]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[23]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[22]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[21]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[20]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[19]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[18]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[17]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[16]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[15]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[14]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[13]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[12]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[11]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[10]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[9]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[8]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[7]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[6]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[5]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[4]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[3]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[2]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[1]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_rs2[0]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[31]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[30]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[29]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[28]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[27]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[26]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[25]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[24]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[23]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[22]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[21]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[20]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[19]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[18]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[17]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[16]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[15]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[14]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[13]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[12]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[11]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[10]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[9]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[8]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[7]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[6]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[5]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[4]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[3]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[2]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[1]
+WARNING: [Synth 8-3331] design cp_const has unconnected port pcpi_insn[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 6384.910 ; gain = 41.121 ; free physical = 38311 ; free virtual = 396633
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 6384.910 ; gain = 41.121 ; free physical = 38306 ; free virtual = 396627
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 6384.910 ; gain = 41.121 ; free physical = 38306 ; free virtual = 396627
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-141] Inserted 1 OBUFs to IO ports without IO buffers.
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+RTL Elaboration Complete:  : Time (s): cpu = 00:00:39 ; elapsed = 00:01:59 . Memory (MB): peak = 6833.773 ; gain = 489.984 ; free physical = 38024 ; free virtual = 396346
+8 Infos, 98 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:01:59 . Memory (MB): peak = 6833.773 ; gain = 489.984 ; free physical = 38025 ; free virtual = 396347
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Sep 27 20:40:14 2021...

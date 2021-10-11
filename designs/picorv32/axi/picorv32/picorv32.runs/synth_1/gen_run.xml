@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1632723429">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1633980914">
   <File Type="VDS-TIMING-PB" Name="picorv32_wrapper_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="picorv32_wrapper_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="picorv32_wrapper.dcp"/>
@@ -25,6 +25,14 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../../ip/cp_F_const/cp_F_const.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="picorv32_wrapper"/>
@@ -32,33 +40,32 @@
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PPRDIR/../../../PYNQ-Z1.xdc">
+    <File Path="$PSRCDIR/constrs_1/imports/designs/PYNQ-Z1.xdc">
       <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../PYNQ-Z1.xdc"/>
+        <Attr Name="ImportTime" Val="1632779435"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
       </FileInfo>
     </File>
     <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/imports/designs/PYNQ-Z1.xdc"/>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_cp_const_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_riscvBram_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_psBramController_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_picorv32_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_xbar_1"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="picorv32_riscvBram_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="picorv32_xbar_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_resetSlice_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_psInterruptController_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_irqConcat_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_porReset_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="picorv32_processing_system7_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_riscvReset_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="picorv32_xbar_0"/>
   <BlockFileSet Type="BlockSrcs" Name="picorv32_subprocessorClk_0"/>
 </GenRun>

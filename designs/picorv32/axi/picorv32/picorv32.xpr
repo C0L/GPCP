@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="38" Path="/home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.xpr">
+<Project Version="7" Minor="38" Path="/data/cdrewes/GPCP/designs/picorv32/axi/picorv32/picorv32.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="b71c00af29974027abfdbd24329935a7"/>
@@ -21,6 +21,7 @@
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
+    <Option Name="PRFlow" Val="TRUE"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../../../ip"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
     <Option Name="IPCachePermission" Val="read"/>
@@ -39,13 +40,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="9"/>
-    <Option Name="WTModelSimExportSim" Val="9"/>
-    <Option Name="WTQuestaExportSim" Val="9"/>
-    <Option Name="WTIesExportSim" Val="9"/>
-    <Option Name="WTVcsExportSim" Val="9"/>
-    <Option Name="WTRivieraExportSim" Val="9"/>
-    <Option Name="WTActivehdlExportSim" Val="9"/>
+    <Option Name="WTXSimExportSim" Val="11"/>
+    <Option Name="WTModelSimExportSim" Val="11"/>
+    <Option Name="WTQuestaExportSim" Val="11"/>
+    <Option Name="WTIesExportSim" Val="11"/>
+    <Option Name="WTVcsExportSim" Val="11"/>
+    <Option Name="WTRivieraExportSim" Val="11"/>
+    <Option Name="WTActivehdlExportSim" Val="11"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -66,32 +67,29 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_xbar_0/picorv32_xbar_0.xci">
-          <Proxy FileSetName="picorv32_xbar_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_riscvReset_0/picorv32_riscvReset_0.xci">
-          <Proxy FileSetName="picorv32_riscvReset_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_irqConcat_0/picorv32_irqConcat_0.xci">
-          <Proxy FileSetName="picorv32_irqConcat_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_porReset_0/picorv32_porReset_0.xci">
           <Proxy FileSetName="picorv32_porReset_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_processing_system7_0_0/picorv32_processing_system7_0_0.xci">
           <Proxy FileSetName="picorv32_processing_system7_0_0"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_riscvReset_0/picorv32_riscvReset_0.xci">
+          <Proxy FileSetName="picorv32_riscvReset_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_xbar_0/picorv32_xbar_0.xci">
+          <Proxy FileSetName="picorv32_xbar_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_subprocessorClk_0/picorv32_subprocessorClk_0.xci">
           <Proxy FileSetName="picorv32_subprocessorClk_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_psInterruptController_0/picorv32_psInterruptController_0.xci">
-          <Proxy FileSetName="picorv32_psInterruptController_0"/>
+        <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_xbar_1/picorv32_xbar_1.xci">
+          <Proxy FileSetName="picorv32_xbar_1"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_resetSlice_0/picorv32_resetSlice_0.xci">
           <Proxy FileSetName="picorv32_resetSlice_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_xbar_1/picorv32_xbar_1.xci">
-          <Proxy FileSetName="picorv32_xbar_1"/>
+        <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_psInterruptController_0/picorv32_psInterruptController_0.xci">
+          <Proxy FileSetName="picorv32_psInterruptController_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_picorv32_0/picorv32_picorv32_0.xci">
           <Proxy FileSetName="picorv32_picorv32_0"/>
@@ -102,12 +100,17 @@
         <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_riscvBram_0/picorv32_riscvBram_0.xci">
           <Proxy FileSetName="picorv32_riscvBram_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="picorv32.bd" FileRelPathName="ip/picorv32_cp_const_0_0/picorv32_cp_const_0_0.xci">
-          <Proxy FileSetName="picorv32_cp_const_0_0"/>
-        </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/bd/picorv32/hdl/picorv32_wrapper.v">
         <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../ip/cp_F_const/cp_F_const.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -120,13 +123,16 @@
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
       <Filter Type="Constrs"/>
-      <File Path="$PPRDIR/../../../PYNQ-Z1.xdc">
+      <File Path="$PSRCDIR/constrs_1/imports/designs/PYNQ-Z1.xdc">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../PYNQ-Z1.xdc"/>
+          <Attr Name="ImportTime" Val="1632779435"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
       </File>
       <Config>
+        <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/imports/designs/PYNQ-Z1.xdc"/>
         <Option Name="ConstrsType" Val="XDC"/>
       </Config>
     </FileSet>
@@ -214,9 +220,31 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="picorv32_cp_const_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/picorv32_cp_const_0_0">
+    <FileSet Name="cp_F_const" Type="BlockSrcs" RelSrcDir="$PSRCDIR/coprocessor">
+      <File Path="$PPRDIR/../../../ip/cp_F_const/cp_F_const.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
-        <Option Name="TopModule" Val="picorv32_cp_const_0_0"/>
+        <Option Name="TopModule" Val="coprocessor"/>
+        <Option Name="TopAutoSet" Val="TRUE"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cp_0_const" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cp_0_const">
+      <File Path="$PPRDIR/../../../ip/cp_0_const/cp_0_const.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <Config>
+        <Option Name="TopModule" Val="coprocessor"/>
+        <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -248,9 +276,7 @@
   <Runs Version="1" Minor="10">
     <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -276,15 +302,6 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="picorv32_porReset_0_synth_1" Type="Ft3:Synth" SrcSet="picorv32_porReset_0" Part="xc7z020clg400-1" ConstrsSet="picorv32_porReset_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/picorv32_porReset_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="picorv32_irqConcat_0_synth_1" Type="Ft3:Synth" SrcSet="picorv32_irqConcat_0" Part="xc7z020clg400-1" ConstrsSet="picorv32_irqConcat_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/picorv32_irqConcat_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
         <Step Id="synth_design"/>
@@ -365,7 +382,7 @@
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="picorv32_cp_const_0_0_synth_1" Type="Ft3:Synth" SrcSet="picorv32_cp_const_0_0" Part="xc7z020clg400-1" ConstrsSet="picorv32_cp_const_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/picorv32_cp_const_0_0_synth_1" IncludeInArchive="true">
+    <Run Id="cp_F_const_synth_1" Type="Ft3:Synth" SrcSet="cp_F_const" Part="xc7z020clg400-1" ConstrsSet="cp_F_const" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cp_F_const_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -376,11 +393,20 @@
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true" GenFullBitstream="true">
+    <Run Id="cp_0_const_synth_1" Type="Ft3:Synth" SrcSet="cp_0_const" Part="xc7z020clg400-1" ConstrsSet="cp_0_const" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cp_0_const_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
-          <Desc>Default settings for Implementation.</Desc>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
         </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true" PRConfiguration="config_1" ConfigurationChanged="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -428,22 +454,6 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="picorv32_porReset_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="picorv32_porReset_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="picorv32_porReset_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="picorv32_irqConcat_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="picorv32_irqConcat_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="picorv32_irqConcat_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
         <Step Id="init_design"/>
@@ -587,7 +597,7 @@
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="picorv32_cp_const_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="picorv32_cp_const_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="picorv32_cp_const_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="cp_F_const_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cp_F_const" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="cp_F_const_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
           <Desc>Default settings for Implementation.</Desc>
@@ -605,6 +615,59 @@
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
+    <Run Id="cp_0_const_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cp_0_const" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="cp_0_const_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="child_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." WriteIncrSynthDcp="false" Dir="$PRUNDIR/child_0_impl_1" SynthRun="impl_1" IncludeInArchive="true" PRConfiguration="config_2" ConfigurationChanged="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
   </Runs>
   <Board/>
+  <PRFlow Version="1" Minor="0">
+    <PartitionDefs>
+      <PartitionDef Name="cp" DefaultRM="cp_F_const" ModuleName="coprocessor" LibraryName="xil_defaultlib">
+        <ReconfigModule Name="cp_0_const" Top="coprocessor" SrcSet="cp_0_const" SynthRun="cp_0_const_synth_1" ImplRun="cp_0_const_impl_1"/>
+        <ReconfigModule Name="cp_F_const" Top="coprocessor" SrcSet="cp_F_const" SynthRun="cp_F_const_synth_1" ImplRun="cp_F_const_impl_1"/>
+      </PartitionDef>
+    </PartitionDefs>
+    <PRConfigurations>
+      <PRConfiguration Name="config_1" Active="true">
+        <PartitionInstMap PartitionInst="cp_F_const" RM="cp_F_const"/>
+      </PRConfiguration>
+      <PRConfiguration Name="config_2">
+        <PartitionInstMap PartitionInst="cp_F_const" RM="cp_0_const"/>
+      </PRConfiguration>
+    </PRConfigurations>
+  </PRFlow>
 </Project>

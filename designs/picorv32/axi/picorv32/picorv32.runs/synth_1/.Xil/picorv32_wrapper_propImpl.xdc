@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:/home/colindrewes/dev/GPCP/designs/PYNQ-Z1.xdc rfile:../../../../../../PYNQ-Z1.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:/data/cdrewes/GPCP/designs/picorv32/axi/picorv32/picorv32.srcs/constrs_1/imports/designs/PYNQ-Z1.xdc rfile:../../../picorv32.srcs/constrs_1/imports/designs/PYNQ-Z1.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:37 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN D19 IOSTANDARD LVCMOS33} [get_ports {pb_i[0]}]
 set_property src_info {type:XDC file:1 line:38 export:INPUT save:INPUT read:READ} [current_design]
@@ -113,3 +113,19 @@ set_property src_info {type:XDC file:1 line:103 export:INPUT save:INPUT read:REA
 set_property PULLUP true [get_ports {pmodJB_gpio_tri_io[6]}]
 set_property src_info {type:XDC file:1 line:104 export:INPUT save:INPUT read:READ} [current_design]
 set_property PULLUP true [get_ports {pmodJB_gpio_tri_io[7]}]
+set_property src_info {type:XDC file:1 line:106 export:INPUT save:INPUT read:READ} [current_design]
+create_pblock pblock_cp_0_const
+set_property CONTAIN_ROUTING 1 [get_pblocks pblock_cp_0_const]
+set_property EXCLUDE_PLACEMENT 1 [get_pblocks pblock_cp_0_const]
+set_property src_info {type:XDC file:1 line:109 export:INPUT save:INPUT read:READ} [current_design]
+create_pblock pblock_cp_const
+set_property CONTAIN_ROUTING 1 [get_pblocks pblock_cp_const]
+set_property EXCLUDE_PLACEMENT 1 [get_pblocks pblock_cp_const]
+set_property src_info {type:XDC file:1 line:112 export:INPUT save:INPUT read:READ} [current_design]
+create_pblock pblock_cp_F_const
+set_property CONTAIN_ROUTING 1 [get_pblocks pblock_cp_F_const]
+set_property EXCLUDE_PLACEMENT 1 [get_pblocks pblock_cp_F_const]
+set_property src_info {type:XDC file:1 line:117 export:INPUT save:INPUT read:READ} [current_design]
+create_pblock coprocessor
+add_cells_to_pblock [get_pblocks coprocessor] [get_cells -quiet [list cp_F_const]]
+resize_pblock [get_pblocks coprocessor] -add {CLOCKREGION_X1Y0:CLOCKREGION_X1Y2}

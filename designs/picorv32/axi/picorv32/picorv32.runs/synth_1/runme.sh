@@ -7,20 +7,20 @@
 # 
 
 if [ -z "$PATH" ]; then
-  PATH=/home/colindrewes/SDK/2018.2/bin:/home/colindrewes/Vivado/2018.2/ids_lite/ISE/bin/lin64:/home/colindrewes/Vivado/2018.2/bin
+  PATH=/data/opt/Xilinx/SDK/2018.2/bin:/data/opt/Xilinx/Vivado/2018.2/ids_lite/ISE/bin/lin64:/data/opt/Xilinx/Vivado/2018.2/bin
 else
-  PATH=/home/colindrewes/SDK/2018.2/bin:/home/colindrewes/Vivado/2018.2/ids_lite/ISE/bin/lin64:/home/colindrewes/Vivado/2018.2/bin:$PATH
+  PATH=/data/opt/Xilinx/SDK/2018.2/bin:/data/opt/Xilinx/Vivado/2018.2/ids_lite/ISE/bin/lin64:/data/opt/Xilinx/Vivado/2018.2/bin:$PATH
 fi
 export PATH
 
 if [ -z "$LD_LIBRARY_PATH" ]; then
-  LD_LIBRARY_PATH=/home/colindrewes/Vivado/2018.2/ids_lite/ISE/lib/lin64
+  LD_LIBRARY_PATH=/data/opt/Xilinx/Vivado/2018.2/ids_lite/ISE/lib/lin64
 else
-  LD_LIBRARY_PATH=/home/colindrewes/Vivado/2018.2/ids_lite/ISE/lib/lin64:$LD_LIBRARY_PATH
+  LD_LIBRARY_PATH=/data/opt/Xilinx/Vivado/2018.2/ids_lite/ISE/lib/lin64:$LD_LIBRARY_PATH
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/colindrewes/dev/GPCP/designs/picorv32/axi/picorv32/picorv32.runs/synth_1'
+HD_PWD='/data/cdrewes/GPCP/designs/picorv32/axi/picorv32/picorv32.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
