@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x0" bd:device="xc7z020clg400-1" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="design_1" bd:version="1.00.a">
+
+  <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram</spirit:library>
+    <spirit:name>design_1</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:parameters>
+      <spirit:parameter>
+        <spirit:name>isTop</spirit:name>
+        <spirit:value spirit:format="bool" spirit:resolve="immediate">true</spirit:value>
+      </spirit:parameter>
+    </spirit:parameters>
+    <spirit:busInterfaces>
+      <spirit:busInterface>
+        <spirit:name>CLK.CLK</spirit:name>
+        <spirit:displayName>Clk</spirit:displayName>
+        <spirit:description>Clock</spirit:description>
+        <spirit:busType spirit:library="signal" spirit:name="clock" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="signal" spirit:name="clock_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:slave/>
+        <spirit:portMaps>
+          <spirit:portMap>
+            <spirit:logicalPort>
+              <spirit:name>CLK</spirit:name>
+            </spirit:logicalPort>
+            <spirit:physicalPort>
+              <spirit:name>clk</spirit:name>
+            </spirit:physicalPort>
+          </spirit:portMap>
+        </spirit:portMaps>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>FREQ_HZ</spirit:name>
+            <spirit:value>100000000</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:busInterface>
+    </spirit:busInterfaces>
+    <spirit:model>
+      <spirit:views>
+        <spirit:view>
+          <spirit:name>BlockDiagram</spirit:name>
+          <spirit:envIdentifier>:vivado.xilinx.com:</spirit:envIdentifier>
+          <spirit:hierarchyRef spirit:library="BlockDiagram" spirit:name="design_1_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+        </spirit:view>
+      </spirit:views>
+      <spirit:ports>
+        <spirit:port>
+          <spirit:name>clk</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>pcpi_insn</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>31</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>pcpi_rd</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>31</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>pcpi_ready</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>pcpi_rs1</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>31</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>pcpi_rs2</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+            <spirit:vector>
+              <spirit:left>31</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>pcpi_valid</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>pcpi_wait</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>pcpi_wr</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+      </spirit:ports>
+    </spirit:model>
+  </spirit:component>
+
+  <spirit:design xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram</spirit:library>
+    <spirit:name>design_1_imp</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:componentInstances>
+      <spirit:componentInstance>
+        <spirit:instanceName>coprocessor_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="coprocessor" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_coprocessor_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">coprocessor</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+    </spirit:componentInstances>
+    <spirit:adHocConnections>
+      <spirit:adHocConnection>
+        <spirit:name>clk_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="clk"/>
+        <spirit:internalPortReference spirit:componentRef="coprocessor_0" spirit:portRef="clk"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>coprocessor_0_pcpi_rd</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="coprocessor_0" spirit:portRef="pcpi_rd"/>
+        <spirit:externalPortReference spirit:portRef="pcpi_rd"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>coprocessor_0_pcpi_ready</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="coprocessor_0" spirit:portRef="pcpi_ready"/>
+        <spirit:externalPortReference spirit:portRef="pcpi_ready"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>coprocessor_0_pcpi_wait</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="coprocessor_0" spirit:portRef="pcpi_wait"/>
+        <spirit:externalPortReference spirit:portRef="pcpi_wait"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>coprocessor_0_pcpi_wr</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="coprocessor_0" spirit:portRef="pcpi_wr"/>
+        <spirit:externalPortReference spirit:portRef="pcpi_wr"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>pcpi_insn_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="pcpi_insn"/>
+        <spirit:internalPortReference spirit:componentRef="coprocessor_0" spirit:portRef="pcpi_insn"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>pcpi_rs1_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="pcpi_rs1"/>
+        <spirit:internalPortReference spirit:componentRef="coprocessor_0" spirit:portRef="pcpi_rs1"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>pcpi_rs2_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="pcpi_rs2"/>
+        <spirit:internalPortReference spirit:componentRef="coprocessor_0" spirit:portRef="pcpi_rs2"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>pcpi_valid_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="pcpi_valid"/>
+        <spirit:internalPortReference spirit:componentRef="coprocessor_0" spirit:portRef="pcpi_valid"/>
+      </spirit:adHocConnection>
+    </spirit:adHocConnections>
+  </spirit:design>
+
+</bd:repository>

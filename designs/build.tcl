@@ -50,7 +50,7 @@ set target ""
 set part ""
 set board ""
 set board_dir "../../"
-set ip_dirs ""
+set ip_dirs "./ip/"
 if { $argc != 0 } {
     if { $argc <= 4 } {
 	puts ""
@@ -128,47 +128,5 @@ update_compile_order -fileset sources_1
 add_files -fileset constrs_1 -norecurse $board_xdc
 update_compile_order -fileset sources_1
 
-# If $run_type is "sweep" run a simple binary search by modifying the
-# Clock Wizard IP to change the target clock frequency. The script
-# expects the IP name to match the value in clk_name.
-if { ${run_type} eq "sweep" } {
-    set clk_name subprocessorClk
-    set min 0 
-    set max 400
-    set pass 0
-    while {($max - $min) > .5} {
-        set tgt [ expr {double($max + $min)/2} ]
-        puts "Testing Target Frequency: $tgt"
-        set_property CONFIG.CLKOUT1_REQUESTED_OUT_FREQ $tgt [get_bd_cells $clk_name]
-        reset_run synth_1
-        launch_runs impl_1 -jobs 4 -quiet
-        wait_on_run impl_1
-        open_run impl_1
-	set mult [ get_property CONFIG.MMCM_CLKFBOUT_MULT_F [get_bd_cells $clk_name]]
-	set div [ get_property CONFIG.MMCM_CLKOUT0_DIVIDE_F [get_bd_cells $clk_name]]
-	set clkin [ get_property CONFIG.PRIM_IN_FREQ [get_bd_cells $clk_name]]
-	set actual_freq [ expr $clkin * $mult / $div ]
-        set slack [ get_property SLACK [get_timing_paths]]
-        puts "Timing Slack @ $actual_freq: $slack"
-        if {$slack > 0} {
-            set min $tgt
-	    set pass $actual_freq
-	    write_bitstream -force $target.bit
-        } else {
-            set max $tgt
-        }
-        close_design
-    }
-    archive_project
-    puts "Maximum frequency: $pass"
-} elseif { ${run_type} eq "synth" } {
-    launch_runs synth_1 -jobs 4
-    wait_on_run synth_1
-} else {
-    launch_runs impl_1 -to_step write_bitstream -jobs 4
-    wait_on_run impl_1
-    file copy -force ./$target/$target.runs/impl_1/$target\_wrapper.bit $target.bit
-}
-
-
-
+#launch_runs impl_1 -to_step write_bitstream -jobs 4
+#wait_on_run impl_1
