@@ -1,4 +1,0 @@
-NumberHits:0
-Timestamp: Mon Sep 20 07:25:01 UTC 2021
-VLNV: cliffordwolf:ip:picorv32_axi:1.0
-SynthRuntime: 103

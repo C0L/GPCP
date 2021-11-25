@@ -1,4 +1,0 @@
-NumberHits:0
-Timestamp: Mon Sep 20 07:20:36 UTC 2021
-VLNV: xilinx.com:ip:xlslice:1.0
-SynthRuntime: 78

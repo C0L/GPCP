@@ -5,27 +5,16 @@ set design_name "picorv32"
 #variable pr_array
 array set pr_array {
   0 pr_0
-#  1 pr_1
-#  2 pr_2
-#  3 pr_3
-#  4 pr_4
-#  5 pr_5
 }
 
 array set pd_array {
-  0 pd_pr_0
-#  1 pd_pr_1
-#  2 pd_pr_2
-#  3 pd_pr_3
-#  4 pd_pr_4
-#  5 pd_pr_5
+  0 pd_0
 }
 
 # as many of these as we have sub designs
 array set rm_array {
-  0 uart
-  1 gpio
-  2 led_pattern
+  0 cp_reflect
+  1 cp_F_const
 }
 
 # open project and block design

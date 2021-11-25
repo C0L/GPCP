@@ -1,4 +1,0 @@
-NumberHits:0
-Timestamp: Sat Sep 25 02:26:04 UTC 2021
-VLNV: ucsd.edu:colindrewes:cp_const:1.0
-SynthRuntime: 63

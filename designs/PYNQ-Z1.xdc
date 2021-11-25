@@ -102,3 +102,4 @@ set_property PULLUP true [get_ports {pmodJB_gpio_tri_io[2]}]
 set_property PULLUP true [get_ports {pmodJB_gpio_tri_io[3]}]
 set_property PULLUP true [get_ports {pmodJB_gpio_tri_io[6]}]
 set_property PULLUP true [get_ports {pmodJB_gpio_tri_io[7]}]
+

@@ -5,8 +5,9 @@ set design_name "picorv32"
 # as many of these as we have sub designs
 array set rm_array {
   0 cp_reflect
+  1 cp_F_const
 }
-
+# 1 cp_F
 # function to add reconfigurable module
 proc add_rm {pd_name rm_name} {
   create_bd_design "rm_${rm_name}_${pd_name}"

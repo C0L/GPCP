@@ -10,7 +10,6 @@ module coprocessor(
     output reg pcpi_wait
 );
 
-//assign pcpi_wait = 0;
 reg finish = 0;
 
 always @(posedge clk) begin

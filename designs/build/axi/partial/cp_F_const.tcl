@@ -1,6 +1,6 @@
 
 ################################################################
-# This is a generated script based on design: cp_reflect
+# This is a generated script based on design: cp_F_const
 #
 # Though there are limitations about the generated script,
 # the main purpose of this utility is to make learning
@@ -35,7 +35,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 ################################################################
 
 # To test this script, run the following commands from Vivado Tcl console:
-# source cp_reflect_script.tcl
+# source cp_F_const_script.tcl
 
 # If there is no project opened, this script will create a
 # project, but make sure you do not have an existing project
@@ -49,7 +49,7 @@ if { $list_projs eq "" } {
 
 # CHANGE DESIGN NAME HERE
 variable design_name
-set design_name cp_reflect
+set design_name cp_F_const
 
 # If you do not already have an existing IP Integrator design open,
 # you can create a design using the following command:
@@ -123,7 +123,7 @@ set bCheckIPsPassed 1
 set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
-colindrewes.com:colindrewes:cp_reflect:1.0\
+colindrewes.com:colindrewes:cp_F_const:1.0\
 "
 
    set list_ips_missing ""
@@ -202,19 +202,19 @@ proc create_root_design { parentCell } {
   set pcpi_wait [ create_bd_port -dir O pcpi_wait ]
   set pcpi_wr [ create_bd_port -dir O pcpi_wr ]
 
-  # Create instance: cp_reflect, and set properties
-  set cp_reflect [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_reflect:1.0 cp_reflect ]
+  # Create instance: cp_F_const, and set properties
+  set cp_F_const [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_F_const:1.0 cp_F_const ]
 
   # Create port connections
-  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins cp_reflect/clk]
-  connect_bd_net -net cp_reflect_0_pcpi_rd [get_bd_ports pcpi_rd] [get_bd_pins cp_reflect/pcpi_rd]
-  connect_bd_net -net cp_reflect_0_pcpi_ready [get_bd_ports pcpi_ready] [get_bd_pins cp_reflect/pcpi_ready]
-  connect_bd_net -net cp_reflect_0_pcpi_wait [get_bd_ports pcpi_wait] [get_bd_pins cp_reflect/pcpi_wait]
-  connect_bd_net -net cp_reflect_0_pcpi_wr [get_bd_ports pcpi_wr] [get_bd_pins cp_reflect/pcpi_wr]
-  connect_bd_net -net pcpi_insn_1 [get_bd_ports pcpi_insn] [get_bd_pins cp_reflect/pcpi_insn]
-  connect_bd_net -net pcpi_rs1_1 [get_bd_ports pcpi_rs1] [get_bd_pins cp_reflect/pcpi_rs1]
-  connect_bd_net -net pcpi_rs2_1 [get_bd_ports pcpi_rs2] [get_bd_pins cp_reflect/pcpi_rs2]
-  connect_bd_net -net pcpi_valid_1 [get_bd_ports pcpi_valid] [get_bd_pins cp_reflect/pcpi_valid]
+  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins cp_F_const/clk]
+  connect_bd_net -net cp_F_const_pcpi_rd [get_bd_ports pcpi_rd] [get_bd_pins cp_F_const/pcpi_rd]
+  connect_bd_net -net cp_F_const_pcpi_ready [get_bd_ports pcpi_ready] [get_bd_pins cp_F_const/pcpi_ready]
+  connect_bd_net -net cp_F_const_pcpi_wait [get_bd_ports pcpi_wait] [get_bd_pins cp_F_const/pcpi_wait]
+  connect_bd_net -net cp_F_const_pcpi_wr [get_bd_ports pcpi_wr] [get_bd_pins cp_F_const/pcpi_wr]
+  connect_bd_net -net pcpi_insn_1 [get_bd_ports pcpi_insn] [get_bd_pins cp_F_const/pcpi_insn]
+  connect_bd_net -net pcpi_rs1_1 [get_bd_ports pcpi_rs1] [get_bd_pins cp_F_const/pcpi_rs1]
+  connect_bd_net -net pcpi_rs2_1 [get_bd_ports pcpi_rs2] [get_bd_pins cp_F_const/pcpi_rs2]
+  connect_bd_net -net pcpi_valid_1 [get_bd_ports pcpi_valid] [get_bd_pins cp_F_const/pcpi_valid]
 
   # Create address segments
 

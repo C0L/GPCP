@@ -9,7 +9,7 @@ IPS=picorv32_axi
 overlay_name := picorv32
 design_name := picorv32
 
-all: ip static #dynamic bitstream check_timing
+all: ip static dynamic bitstream #check_timing
 	@echo
 	@tput setaf 2 ; echo "Built $(overlay_name) successfully!"; tput sgr0;
 	@echo
@@ -18,9 +18,6 @@ ip:
 	$(foreach IP,$(IPS), PART=$(PART) $(MAKE) -C $(IP_PATH)/$(IP);)
 
 static: $(BUILD_PATH)/$(BOARD).xdc $(DESIGN).tcl
-	#$(MAKE) -C $(BUILD_PATH)/build.mk
-	#vivado -mode batch -source $(overlay_name).tcl -notrace
-	#cd $(BUILD_PATH)
 	vivado -mode batch -source $(BUILD_PATH)/build.tcl -tclargs $(DESIGN) \
 		single $(PART) $(BOARD) $(IP_PATH)
 	vivado -mode batch -source create_design.tcl -notrace
