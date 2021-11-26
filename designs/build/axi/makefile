@@ -8,8 +8,8 @@ IPS=picorv32_axi
 
 overlay_name := picorv32
 design_name := picorv32
-
-all: ip static dynamic bitstream #check_timing
+#all: ip static dynamic bitstream #check_timing
+all: ip static bitstream #check_timing
 	@echo
 	@tput setaf 2 ; echo "Built $(overlay_name) successfully!"; tput sgr0;
 	@echo
