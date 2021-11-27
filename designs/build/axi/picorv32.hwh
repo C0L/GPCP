@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Nov 25 20:01:12 2021" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Nov 27 12:11:34 2021" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="picorv32" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -184,10 +184,9 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE FULLNAME="/pr_0/cp_reflect_0" HWVERSION="1.0" INSTANCE="pr_0_cp_reflect_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="cp_reflect" VLNV="colindrewes.com:colindrewes:cp_reflect:1.0">
+    <MODULE BD="cp_reflect_pd_0" BDTYPE="RBD" DRIVERMODE="SUBCORE" FULLNAME="/pr_0" HWVERSION="1.0" INSTANCE="pr_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="pd_0" VLNV="xilinx.com:module_ref:pd_0:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="picorv32_cp_reflect_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
@@ -196,14 +195,14 @@
             <CONNECTION INSTANCE="subprocessorClk" PORT="clk_out1"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="pcpi_ready" SIGIS="undef"/>
         <PORT DIR="I" LEFT="31" NAME="pcpi_rs1" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="31" NAME="pcpi_rs2" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" NAME="pcpi_valid" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" NAME="pcpi_wr" SIGIS="undef"/>
-        <PORT DIR="O" NAME="pcpi_ready" SIGIS="undef"/>
         <PORT DIR="O" NAME="pcpi_wait" SIGIS="undef"/>
+        <PORT DIR="O" NAME="pcpi_wr" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -7341,7 +7340,7 @@
         </PORT>
         <PORT CLKFREQUENCY="50000000" DIR="O" NAME="clk_out1" SIGIS="clk" SIGNAME="subprocessorClk_clk_out1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="pr_0_cp_reflect_0" PORT="clk"/>
+            <CONNECTION INSTANCE="pr_0" PORT="clk"/>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP0_ACLK"/>
             <CONNECTION INSTANCE="processor_picorv32" PORT="clk"/>
             <CONNECTION INSTANCE="processor_riscvBramController" PORT="s_axi_aclk"/>
