@@ -188,6 +188,7 @@ proc create_root_design { parentCell } {
 
 
   # Create interface ports
+  set GPIO [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 GPIO ]
   set S_AXI [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S_AXI ]
   set_property -dict [ list \
    CONFIG.ADDR_WIDTH {9} \
@@ -225,6 +226,7 @@ proc create_root_design { parentCell } {
    CONFIG.CLK_DOMAIN {cp_reflect_clk} \
    CONFIG.FREQ_HZ {100000000} \
  ] $clk
+  set ip2intc_irpt [ create_bd_port -dir O -type intr ip2intc_irpt ]
   set pcpi_insn [ create_bd_port -dir I -from 31 -to 0 pcpi_insn ]
   set pcpi_rd [ create_bd_port -dir O -from 31 -to 0 pcpi_rd ]
   set pcpi_ready [ create_bd_port -dir O pcpi_ready ]
@@ -241,14 +243,19 @@ proc create_root_design { parentCell } {
 
   # Create instance: axi_gpio_0, and set properties
   set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0 ]
+  set_property -dict [ list \
+   CONFIG.C_INTERRUPT_PRESENT {1} \
+ ] $axi_gpio_0
 
   # Create instance: cp_reflect_0, and set properties
   set cp_reflect_0 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_reflect:1.0 cp_reflect_0 ]
 
   # Create interface connections
   connect_bd_intf_net -intf_net S_AXI_1 [get_bd_intf_ports S_AXI] [get_bd_intf_pins axi_gpio_0/S_AXI]
+  connect_bd_intf_net -intf_net axi_gpio_0_GPIO [get_bd_intf_ports GPIO] [get_bd_intf_pins axi_gpio_0/GPIO]
 
   # Create port connections
+  connect_bd_net -net axi_gpio_0_ip2intc_irpt [get_bd_ports ip2intc_irpt] [get_bd_pins axi_gpio_0/ip2intc_irpt]
   connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins cp_reflect_0/clk]
   connect_bd_net -net cp_reflect_0_pcpi_rd [get_bd_ports pcpi_rd] [get_bd_pins cp_reflect_0/pcpi_rd]
   connect_bd_net -net cp_reflect_0_pcpi_ready [get_bd_ports pcpi_ready] [get_bd_pins cp_reflect_0/pcpi_ready]
