@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov 28 18:32:30 2021" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov 28 19:29:09 2021" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="picorv32" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -199,14 +199,46 @@
             <CONNECTION INSTANCE="subprocessorClk" PORT="clk_out1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" NAME="pcpi_ready" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_rs1" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_rs2" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" NAME="pcpi_valid" SIGIS="undef"/>
-        <PORT DIR="O" NAME="pcpi_wait" SIGIS="undef"/>
-        <PORT DIR="O" NAME="pcpi_wr" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef" SIGNAME="pr_decoupler_1_s_intf_0_pcpi_insn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_decoupler_1" PORT="s_intf_0_pcpi_insn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef" SIGNAME="pr_0_pcpi_rd">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_decoupler_1" PORT="s_intf_0_pcpi_rd"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="pcpi_ready" SIGIS="undef" SIGNAME="pr_0_pcpi_ready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_decoupler_1" PORT="s_intf_0_pcpi_ready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="pcpi_rs1" RIGHT="0" SIGIS="undef" SIGNAME="pr_decoupler_1_s_intf_0_pcpi_rs1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_decoupler_1" PORT="s_intf_0_pcpi_rs1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="pcpi_rs2" RIGHT="0" SIGIS="undef" SIGNAME="pr_decoupler_1_s_intf_0_pcpi_rs2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_decoupler_1" PORT="s_intf_0_pcpi_rs2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="pcpi_valid" SIGIS="undef" SIGNAME="pr_decoupler_1_s_intf_0_pcpi_valid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_decoupler_1" PORT="s_intf_0_pcpi_valid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="pcpi_wait" SIGIS="undef" SIGNAME="pr_0_pcpi_wait">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_decoupler_1" PORT="s_intf_0_pcpi_wait"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="pcpi_wr" SIGIS="undef" SIGNAME="pr_0_pcpi_wr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_decoupler_1" PORT="s_intf_0_pcpi_wr"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="I" NAME="s_axi_aclk" SIGIS="undef" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
@@ -797,6 +829,202 @@
             <PORTMAP LOGICAL="ARQOS" PHYSICAL="rp_intf_0_ARQOS"/>
             <PORTMAP LOGICAL="RDATA" PHYSICAL="rp_intf_0_RDATA"/>
             <PORTMAP LOGICAL="RRESP" PHYSICAL="rp_intf_0_RRESP"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/pr_decoupler_1" HWVERSION="1.0" INSTANCE="pr_decoupler_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="pr_decoupler" VLNV="xilinx.com:ip:pr_decoupler:1.0">
+      <DOCUMENTS>
+        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=pr_decoupler;v=v1_0;d=pg227-pr-decoupler.pdf"/>
+      </DOCUMENTS>
+      <PARAMETERS>
+        <PARAMETER NAME="C_XDEVICEFAMILY" VALUE="zynq"/>
+        <PARAMETER NAME="ALL_PARAMS" VALUE="INTF {intf_0 {ID 0 VLNV cliffordwolf:ip:pcpi_rtl:1.0 SIGNALS {pcpi_rs1 {PRESENT 1} pcpi_rs2 {PRESENT 1} pcpi_insn {PRESENT 1} pcpi_valid {PRESENT 1} pcpi_rd {PRESENT 1 WIDTH 32} pcpi_wr {PRESENT 1 WIDTH 1} pcpi_ready {PRESENT 1 WIDTH 1} pcpi_wait {PRESENT 1 WIDTH 1}}}} IPI_PROP_COUNT 0"/>
+        <PARAMETER NAME="IPI_ALL_PARAMS" VALUE="INTF {intf_0 {ID 0 VLNV cliffordwolf:ip:pcpi_rtl:1.0 SIGNALS {pcpi_rs1 {PRESENT 1} pcpi_rs2 {PRESENT 1} pcpi_insn {PRESENT 1} pcpi_valid {PRESENT 1} pcpi_rd {PRESENT 1 WIDTH 32} pcpi_wr {PRESENT 1 WIDTH 1} pcpi_ready {PRESENT 1 WIDTH 1} pcpi_wait {PRESENT 1 WIDTH 1}}}} IPI_PROP_COUNT 0"/>
+        <PARAMETER NAME="Component_Name" VALUE="picorv32_pr_decoupler_1_0"/>
+        <PARAMETER NAME="GUI_HAS_AXI_LITE" VALUE="0"/>
+        <PARAMETER NAME="GUI_HAS_AXIS_CONTROL" VALUE="0"/>
+        <PARAMETER NAME="GUI_HAS_AXIS_STATUS" VALUE="0"/>
+        <PARAMETER NAME="GUI_HAS_SIGNAL_CONTROL" VALUE="1"/>
+        <PARAMETER NAME="GUI_HAS_SIGNAL_STATUS" VALUE="1"/>
+        <PARAMETER NAME="GUI_SELECT_INTERFACE" VALUE="0"/>
+        <PARAMETER NAME="GUI_INTERFACE_NAME" VALUE="intf_0"/>
+        <PARAMETER NAME="GUI_SELECT_VLNV" VALUE="cliffordwolf:ip:pcpi_rtl:1.0"/>
+        <PARAMETER NAME="GUI_INTERFACE_PROTOCOL" VALUE="none"/>
+        <PARAMETER NAME="GUI_SELECT_MODE" VALUE="master"/>
+        <PARAMETER NAME="GUI_SELECT_CDC_STAGES" VALUE="0"/>
+        <PARAMETER NAME="GUI_SIGNAL_SELECT_0" VALUE="pcpi_rs1"/>
+        <PARAMETER NAME="GUI_SIGNAL_SELECT_1" VALUE="pcpi_rs2"/>
+        <PARAMETER NAME="GUI_SIGNAL_SELECT_2" VALUE="pcpi_insn"/>
+        <PARAMETER NAME="GUI_SIGNAL_SELECT_3" VALUE="pcpi_valid"/>
+        <PARAMETER NAME="GUI_SIGNAL_SELECT_4" VALUE="pcpi_rd"/>
+        <PARAMETER NAME="GUI_SIGNAL_SELECT_5" VALUE="pcpi_wr"/>
+        <PARAMETER NAME="GUI_SIGNAL_SELECT_6" VALUE="pcpi_ready"/>
+        <PARAMETER NAME="GUI_SIGNAL_SELECT_7" VALUE="pcpi_wait"/>
+        <PARAMETER NAME="GUI_SIGNAL_SELECT_8" VALUE="-1"/>
+        <PARAMETER NAME="GUI_SIGNAL_SELECT_9" VALUE="-1"/>
+        <PARAMETER NAME="GUI_NEW_SIGNAL_NAME"/>
+        <PARAMETER NAME="GUI_SIGNAL_DIRECTION_0" VALUE="s"/>
+        <PARAMETER NAME="GUI_SIGNAL_DIRECTION_1" VALUE="s"/>
+        <PARAMETER NAME="GUI_SIGNAL_DIRECTION_2" VALUE="s"/>
+        <PARAMETER NAME="GUI_SIGNAL_DIRECTION_3" VALUE="s"/>
+        <PARAMETER NAME="GUI_SIGNAL_DIRECTION_4" VALUE="s"/>
+        <PARAMETER NAME="GUI_SIGNAL_DIRECTION_5" VALUE="s"/>
+        <PARAMETER NAME="GUI_SIGNAL_DIRECTION_6" VALUE="s"/>
+        <PARAMETER NAME="GUI_SIGNAL_DIRECTION_7" VALUE="s"/>
+        <PARAMETER NAME="GUI_SIGNAL_DIRECTION_8" VALUE="s"/>
+        <PARAMETER NAME="GUI_SIGNAL_DIRECTION_9" VALUE="s"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_0" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_1" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_2" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_3" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_4" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_5" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_6" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_7" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_8" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_9" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DELETE_0" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DELETE_1" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DELETE_2" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DELETE_3" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DELETE_4" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DELETE_5" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DELETE_6" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DELETE_7" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DELETE_8" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_DELETE_9" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_PRESENT_0" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_PRESENT_1" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_PRESENT_2" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_PRESENT_3" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_PRESENT_4" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_PRESENT_5" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_PRESENT_6" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_PRESENT_7" VALUE="true"/>
+        <PARAMETER NAME="GUI_SIGNAL_PRESENT_8" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_PRESENT_9" VALUE="false"/>
+        <PARAMETER NAME="GUI_SIGNAL_WIDTH_0" VALUE="32"/>
+        <PARAMETER NAME="GUI_SIGNAL_WIDTH_1" VALUE="32"/>
+        <PARAMETER NAME="GUI_SIGNAL_WIDTH_2" VALUE="32"/>
+        <PARAMETER NAME="GUI_SIGNAL_WIDTH_3" VALUE="1"/>
+        <PARAMETER NAME="GUI_SIGNAL_WIDTH_4" VALUE="32"/>
+        <PARAMETER NAME="GUI_SIGNAL_WIDTH_5" VALUE="1"/>
+        <PARAMETER NAME="GUI_SIGNAL_WIDTH_6" VALUE="1"/>
+        <PARAMETER NAME="GUI_SIGNAL_WIDTH_7" VALUE="1"/>
+        <PARAMETER NAME="GUI_SIGNAL_WIDTH_8" VALUE="1"/>
+        <PARAMETER NAME="GUI_SIGNAL_WIDTH_9" VALUE="1"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_VALUE_0" VALUE="0x0"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_VALUE_1" VALUE="0x0"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_VALUE_2" VALUE="0x0"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_VALUE_3" VALUE="0x0"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_VALUE_4" VALUE="0x0"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_VALUE_5" VALUE="0x0"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_VALUE_6" VALUE="0x0"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_VALUE_7" VALUE="0x0"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_VALUE_8" VALUE="0x0"/>
+        <PARAMETER NAME="GUI_SIGNAL_DECOUPLED_VALUE_9" VALUE="0x0"/>
+        <PARAMETER NAME="GUI_SIGNAL_MANAGEMENT_0" VALUE="auto"/>
+        <PARAMETER NAME="GUI_SIGNAL_MANAGEMENT_1" VALUE="auto"/>
+        <PARAMETER NAME="GUI_SIGNAL_MANAGEMENT_2" VALUE="auto"/>
+        <PARAMETER NAME="GUI_SIGNAL_MANAGEMENT_3" VALUE="auto"/>
+        <PARAMETER NAME="GUI_SIGNAL_MANAGEMENT_4" VALUE="auto"/>
+        <PARAMETER NAME="GUI_SIGNAL_MANAGEMENT_5" VALUE="auto"/>
+        <PARAMETER NAME="GUI_SIGNAL_MANAGEMENT_6" VALUE="auto"/>
+        <PARAMETER NAME="GUI_SIGNAL_MANAGEMENT_7" VALUE="auto"/>
+        <PARAMETER NAME="GUI_SIGNAL_MANAGEMENT_8" VALUE="auto"/>
+        <PARAMETER NAME="GUI_SIGNAL_MANAGEMENT_9" VALUE="auto"/>
+        <PARAMETER NAME="GUI_SIGNAL_RESOURCE_0" VALUE="infer"/>
+        <PARAMETER NAME="GUI_SIGNAL_RESOURCE_1" VALUE="infer"/>
+        <PARAMETER NAME="GUI_SIGNAL_RESOURCE_2" VALUE="infer"/>
+        <PARAMETER NAME="GUI_SIGNAL_RESOURCE_3" VALUE="infer"/>
+        <PARAMETER NAME="GUI_SIGNAL_RESOURCE_4" VALUE="infer"/>
+        <PARAMETER NAME="GUI_SIGNAL_RESOURCE_5" VALUE="infer"/>
+        <PARAMETER NAME="GUI_SIGNAL_RESOURCE_6" VALUE="infer"/>
+        <PARAMETER NAME="GUI_SIGNAL_RESOURCE_7" VALUE="infer"/>
+        <PARAMETER NAME="GUI_SIGNAL_RESOURCE_8" VALUE="infer"/>
+        <PARAMETER NAME="GUI_SIGNAL_RESOURCE_9" VALUE="infer"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="31" NAME="s_intf_0_pcpi_rs1" RIGHT="0" SIGIS="undef" SIGNAME="pr_decoupler_1_s_intf_0_pcpi_rs1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_0" PORT="pcpi_rs1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="rp_intf_0_pcpi_rs1" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="s_intf_0_pcpi_rs2" RIGHT="0" SIGIS="undef" SIGNAME="pr_decoupler_1_s_intf_0_pcpi_rs2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_0" PORT="pcpi_rs2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="rp_intf_0_pcpi_rs2" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="s_intf_0_pcpi_insn" RIGHT="0" SIGIS="undef" SIGNAME="pr_decoupler_1_s_intf_0_pcpi_insn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_0" PORT="pcpi_insn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="rp_intf_0_pcpi_insn" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="s_intf_0_pcpi_valid" SIGIS="undef" SIGNAME="pr_decoupler_1_s_intf_0_pcpi_valid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_0" PORT="pcpi_valid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rp_intf_0_pcpi_valid" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="31" NAME="s_intf_0_pcpi_rd" RIGHT="0" SIGIS="undef" SIGNAME="pr_0_pcpi_rd">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_0" PORT="pcpi_rd"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="rp_intf_0_pcpi_rd" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="s_intf_0_pcpi_wr" SIGIS="undef" SIGNAME="pr_0_pcpi_wr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_0" PORT="pcpi_wr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="rp_intf_0_pcpi_wr" SIGIS="undef"/>
+        <PORT DIR="I" NAME="s_intf_0_pcpi_ready" SIGIS="undef" SIGNAME="pr_0_pcpi_ready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_0" PORT="pcpi_ready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="rp_intf_0_pcpi_ready" SIGIS="undef"/>
+        <PORT DIR="I" NAME="s_intf_0_pcpi_wait" SIGIS="undef" SIGNAME="pr_0_pcpi_wait">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="pr_0" PORT="pcpi_wait"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="rp_intf_0_pcpi_wait" SIGIS="undef"/>
+        <PORT DIR="I" NAME="decouple" SIGIS="undef" SIGNAME="xlslice_0_Dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlslice_0" PORT="Dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="decouple_status" SIGIS="undef"/>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="s_intf_0" TYPE="INITIATOR" VLNV="cliffordwolf:ip:pcpi:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="pcpi_rs1" PHYSICAL="s_intf_0_pcpi_rs1"/>
+            <PORTMAP LOGICAL="pcpi_rs2" PHYSICAL="s_intf_0_pcpi_rs2"/>
+            <PORTMAP LOGICAL="pcpi_insn" PHYSICAL="s_intf_0_pcpi_insn"/>
+            <PORTMAP LOGICAL="pcpi_valid" PHYSICAL="s_intf_0_pcpi_valid"/>
+            <PORTMAP LOGICAL="pcpi_rd" PHYSICAL="s_intf_0_pcpi_rd"/>
+            <PORTMAP LOGICAL="pcpi_wr" PHYSICAL="s_intf_0_pcpi_wr"/>
+            <PORTMAP LOGICAL="pcpi_ready" PHYSICAL="s_intf_0_pcpi_ready"/>
+            <PORTMAP LOGICAL="pcpi_wait" PHYSICAL="s_intf_0_pcpi_wait"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="rp_intf_0" TYPE="TARGET" VLNV="cliffordwolf:ip:pcpi:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="pcpi_rs1" PHYSICAL="rp_intf_0_pcpi_rs1"/>
+            <PORTMAP LOGICAL="pcpi_rs2" PHYSICAL="rp_intf_0_pcpi_rs2"/>
+            <PORTMAP LOGICAL="pcpi_insn" PHYSICAL="rp_intf_0_pcpi_insn"/>
+            <PORTMAP LOGICAL="pcpi_valid" PHYSICAL="rp_intf_0_pcpi_valid"/>
+            <PORTMAP LOGICAL="pcpi_rd" PHYSICAL="rp_intf_0_pcpi_rd"/>
+            <PORTMAP LOGICAL="pcpi_wr" PHYSICAL="rp_intf_0_pcpi_wr"/>
+            <PORTMAP LOGICAL="pcpi_ready" PHYSICAL="rp_intf_0_pcpi_ready"/>
+            <PORTMAP LOGICAL="pcpi_wait" PHYSICAL="rp_intf_0_pcpi_wait"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>
@@ -8228,6 +8456,7 @@
         <PORT DIR="O" LEFT="0" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="xlslice_0_Dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="pr_decoupler_0" PORT="decouple"/>
+            <CONNECTION INSTANCE="pr_decoupler_1" PORT="decouple"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
