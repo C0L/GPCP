@@ -17,10 +17,10 @@ all: ip static dynamic bitstream #check_timing
 ip:
 	$(foreach IP,$(IPS), PART=$(PART) $(MAKE) -C $(IP_PATH)/$(IP);)
 
-static: $(BUILD_PATH)/$(BOARD).xdc $(DESIGN).tcl
+static: #$(BUILD_PATH)/$(BOARD).xdc $(DESIGN).tcl
 	vivado -mode batch -source $(BUILD_PATH)/build.tcl -tclargs $(DESIGN) \
 		single $(PART) $(BOARD) $(IP_PATH)
-	vivado -mode batch -source create_design.tcl -notrace
+#	vivado -mode batch -source create_design.tcl -notrace
 
 dynamic:
 	vivado -mode batch -source create_pr.tcl -notrace

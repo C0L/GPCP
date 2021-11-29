@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="cp_reflect_pd_pr_0_synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1638212567">
+  <File Type="VDS-TIMING-PB" Name="cp_reflect_pd_pr_0_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="cp_reflect_pd_pr_0_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="cp_reflect_pd_pr_0.dcp"/>
+  <File Type="PA-TCL" Name="cp_reflect_pd_pr_0.tcl"/>
+  <File Type="REPORTS-TCL" Name="cp_reflect_pd_pr_0_reports.tcl"/>
+  <File Type="RDS-RDS" Name="cp_reflect_pd_pr_0.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="cp_reflect_pd_pr_0_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="cp_reflect_pd_pr_0_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="cp_reflect_pd_pr_0_utilization_synth.pb"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cp_reflect_pd_pr_0">
+    <File Path="$PSRCDIR/sources_1/bd/cp_reflect_pd_pr_0/cp_reflect_pd_pr_0.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="cp_reflect_pd_pr_0"/>
+      <Option Name="TopRTLFile" Val="$PSRCDIR/sources_1/bd/cp_reflect_pd_pr_0/cp_reflect_pd_pr_0.bd"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cp_reflect_pd_pr_0">
+    <File Path="$PSRCDIR/sources_1/bd/cp_reflect_pd_pr_0/cp_reflect_pd_pr_0.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="cp_reflect_pd_pr_0"/>
+      <Option Name="TopRTLFile" Val="$PSRCDIR/sources_1/bd/cp_reflect_pd_pr_0/cp_reflect_pd_pr_0.bd"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

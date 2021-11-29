@@ -8,15 +8,13 @@ array set pr_array {
 }
 
 array set pd_array {
-  0 pd_0
+  0 pd_pr_0
 }
 
 # as many of these as we have sub designs
 array set rm_array {
   0 cp_reflect
 }
-
- #1 cp_F_const
 
 # open project and block design
 open_project -quiet ./${overlay_name}/${overlay_name}.xpr

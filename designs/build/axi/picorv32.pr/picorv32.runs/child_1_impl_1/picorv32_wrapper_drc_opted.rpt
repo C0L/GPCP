@@ -1,0 +1,73 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
+| Date         : Mon Nov 29 11:25:24 2021
+| Host         : fabricant running 64-bit Linux Mint 18 Sarah
+| Command      : report_drc -file picorv32_wrapper_drc_opted.rpt -pb picorv32_wrapper_drc_opted.pb -rpx picorv32_wrapper_drc_opted.rpx
+| Design       : picorv32_wrapper
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 7
++----------+------------------+----------------------------+------------+
+| Rule     | Severity         | Description                | Violations |
++----------+------------------+----------------------------+------------+
+| RTSTAT-3 | Critical Warning | Unplaced terminals on nets | 1          |
+| DPOP-1   | Warning          | PREG Output pipelining     | 2          |
+| DPOP-2   | Warning          | MREG Output pipelining     | 4          |
++----------+------------------+----------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+RTSTAT-3#1 Critical Warning
+Unplaced terminals on nets  
+727 net(s) have unplaced terminals. The problem bus(es) and/or net(s) are picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg, picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_i_1_n_0, picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/D[31:0], picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/E[0], picorv32_i/processing_system7_0/inst/FCLK_CLK0, picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_onehot_state[0]_i_1_n_0, picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_onehot_state[1]_i_1_n_0, picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_onehot_state[2]_i_1_n_0, picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_onehot_state[3]_i_1_n_0, picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_onehot_state_reg_n_0_[0], picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_onehot_state_reg_n_0_[3], picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_BKEND_CE_REGISTERS[0].ce_out_i_reg, picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_BKEND_CE_REGISTERS[1].ce_out_i_reg, picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg, picorv32_i/pr_0/axi_gpio_0/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_BKEND_CE_REGISTERS[3].ce_out_i_reg (the first 15 of 340 listed), GLOBAL_LOGIC0, GLOBAL_LOGIC1.
+Related violations: <none>
+
+DPOP-1#1 Warning
+PREG Output pipelining  
+DSP picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd0 output picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#2 Warning
+PREG Output pipelining  
+DSP picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd0__0 output picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd0__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-2#1 Warning
+MREG Output pipelining  
+DSP picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd0 multiplier stage picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#2 Warning
+MREG Output pipelining  
+DSP picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd0__0 multiplier stage picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#3 Warning
+MREG Output pipelining  
+DSP picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd_reg__0 multiplier stage picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd_reg__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#4 Warning
+MREG Output pipelining  
+DSP picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd_reg__2 multiplier stage picorv32_i/processor/picorv32/inst/picorv32_core/pcpi_mul/rd_reg__2/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+

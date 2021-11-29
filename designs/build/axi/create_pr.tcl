@@ -2,12 +2,22 @@
 set overlay_name "picorv32"
 set design_name "picorv32"
 
+# six of each of these
+#variable pr_array
+array set pr_array {
+  0 pr_0
+}
+
+array set pd_array {
+  0 pd_pr_0
+}
+
 # as many of these as we have sub designs
 array set rm_array {
   0 cp_reflect
 }
 
-#  1 cp_F_const
+
 # function to add reconfigurable module
 proc add_rm {pd_name rm_name} {
   create_bd_design "rm_${rm_name}_${pd_name}"
@@ -22,7 +32,7 @@ proc add_region {pr_name pd_name rm_names} {
   upvar $rm_names rm
 
   # add constraints file into project
-  import_files -force -fileset constrs_1 -norecurse ./vivado/constraints/${pr_name}.xdc
+  import_files -fileset constrs_1 -norecurse ./vivado/constraints/${pr_name}.xdc
   update_compile_order -fileset sources_1
 
   # add partition definition and default reconfigurable module
@@ -47,11 +57,13 @@ proc add_region {pr_name pd_name rm_names} {
 
   # add each rm
   foreach n [array names rm] {
-    puts "Adding rm"
     add_rm ${pd_name} $rm($n)
   }
   current_bd_design $curdesign
+
+
 }
+
 
 #START OF FLOW
 # open project and block design
@@ -62,10 +74,11 @@ set_param bitstream.enablePR 2341
 set_param hd.enablePR 1234
 
 # add constraints file into project
-import_files -force -fileset constrs_1 -norecurse ./vivado/constraints/${overlay_name}.xdc
+import_files -fileset constrs_1 -norecurse ./vivado/constraints/${overlay_name}.xdc
 update_compile_order -fileset sources_1
-puts "Adding pr region"
+
+
 # add pr regions and the designs for each region
-#foreach i [array names pr_array] {
-add_region pr_0 pd_0 rm_array
-#}
+foreach i [array names pr_array] {
+  add_region $pr_array($i) $pd_array($i) rm_array
+}

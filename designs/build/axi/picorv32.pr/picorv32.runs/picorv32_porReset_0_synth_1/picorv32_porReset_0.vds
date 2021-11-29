@@ -1,0 +1,20 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Nov 29 11:11:18 2021
+# Process ID: 25638
+# Current directory: /data/cdrewes/GPCP/designs/build/axi/picorv32/picorv32.runs/picorv32_porReset_0_synth_1
+# Command line: vivado -log picorv32_porReset_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source picorv32_porReset_0.tcl
+# Log file: /data/cdrewes/GPCP/designs/build/axi/picorv32/picorv32.runs/picorv32_porReset_0_synth_1/picorv32_porReset_0.vds
+# Journal file: /data/cdrewes/GPCP/designs/build/axi/picorv32/picorv32.runs/picorv32_porReset_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+Sourcing tcl script '/home/cdrewes/.Xilinx/Vivado/Vivado_init.tcl'
+no such variable
+    (read trace on "::env(HDK_SHELL_DIR)")
+    invoked from within
+"source $::env(HDK_SHELL_DIR)/hlx/hlx_setup.tcl"
+    (file "/home/cdrewes/.Xilinx/Vivado/Vivado_init.tcl" line 1)
+source picorv32_porReset_0.tcl -notrace
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP picorv32_porReset_0, cache-ID = 27b690ccee398167.
+INFO: [Common 17-206] Exiting Vivado at Mon Nov 29 11:11:27 2021...
