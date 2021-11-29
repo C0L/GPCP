@@ -123,6 +123,7 @@ set bCheckIPsPassed 1
 set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
+xilinx.com:ip:axi_gpio:2.0\
 colindrewes.com:colindrewes:cp_reflect:1.0\
 "
 
@@ -187,10 +188,41 @@ proc create_root_design { parentCell } {
 
 
   # Create interface ports
+  set S_AXI [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S_AXI ]
+  set_property -dict [ list \
+   CONFIG.ADDR_WIDTH {9} \
+   CONFIG.ARUSER_WIDTH {0} \
+   CONFIG.AWUSER_WIDTH {0} \
+   CONFIG.BUSER_WIDTH {0} \
+   CONFIG.DATA_WIDTH {32} \
+   CONFIG.HAS_BRESP {1} \
+   CONFIG.HAS_BURST {0} \
+   CONFIG.HAS_CACHE {0} \
+   CONFIG.HAS_LOCK {0} \
+   CONFIG.HAS_PROT {0} \
+   CONFIG.HAS_QOS {0} \
+   CONFIG.HAS_REGION {0} \
+   CONFIG.HAS_RRESP {1} \
+   CONFIG.HAS_WSTRB {1} \
+   CONFIG.ID_WIDTH {0} \
+   CONFIG.MAX_BURST_LENGTH {1} \
+   CONFIG.NUM_READ_OUTSTANDING {1} \
+   CONFIG.NUM_READ_THREADS {1} \
+   CONFIG.NUM_WRITE_OUTSTANDING {1} \
+   CONFIG.NUM_WRITE_THREADS {1} \
+   CONFIG.PROTOCOL {AXI4LITE} \
+   CONFIG.READ_WRITE_MODE {READ_WRITE} \
+   CONFIG.RUSER_BITS_PER_BYTE {0} \
+   CONFIG.RUSER_WIDTH {0} \
+   CONFIG.SUPPORTS_NARROW_BURST {0} \
+   CONFIG.WUSER_BITS_PER_BYTE {0} \
+   CONFIG.WUSER_WIDTH {0} \
+   ] $S_AXI
 
   # Create ports
   set clk [ create_bd_port -dir I -type clk clk ]
   set_property -dict [ list \
+   CONFIG.CLK_DOMAIN {cp_reflect_clk} \
    CONFIG.FREQ_HZ {100000000} \
  ] $clk
   set pcpi_insn [ create_bd_port -dir I -from 31 -to 0 pcpi_insn ]
@@ -201,22 +233,36 @@ proc create_root_design { parentCell } {
   set pcpi_valid [ create_bd_port -dir I pcpi_valid ]
   set pcpi_wait [ create_bd_port -dir O pcpi_wait ]
   set pcpi_wr [ create_bd_port -dir O pcpi_wr ]
+  set s_axi_aclk [ create_bd_port -dir I -type clk s_axi_aclk ]
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {100000000} \
+ ] $s_axi_aclk
+  set s_axi_aresetn [ create_bd_port -dir I -type rst s_axi_aresetn ]
 
-  # Create instance: cp_reflect, and set properties
-  set cp_reflect [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_reflect:1.0 cp_reflect ]
+  # Create instance: axi_gpio_0, and set properties
+  set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0 ]
+
+  # Create instance: cp_reflect_0, and set properties
+  set cp_reflect_0 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_reflect:1.0 cp_reflect_0 ]
+
+  # Create interface connections
+  connect_bd_intf_net -intf_net S_AXI_1 [get_bd_intf_ports S_AXI] [get_bd_intf_pins axi_gpio_0/S_AXI]
 
   # Create port connections
-  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins cp_reflect/clk]
-  connect_bd_net -net cp_reflect_0_pcpi_rd [get_bd_ports pcpi_rd] [get_bd_pins cp_reflect/pcpi_rd]
-  connect_bd_net -net cp_reflect_0_pcpi_ready [get_bd_ports pcpi_ready] [get_bd_pins cp_reflect/pcpi_ready]
-  connect_bd_net -net cp_reflect_0_pcpi_wait [get_bd_ports pcpi_wait] [get_bd_pins cp_reflect/pcpi_wait]
-  connect_bd_net -net cp_reflect_0_pcpi_wr [get_bd_ports pcpi_wr] [get_bd_pins cp_reflect/pcpi_wr]
-  connect_bd_net -net pcpi_insn_1 [get_bd_ports pcpi_insn] [get_bd_pins cp_reflect/pcpi_insn]
-  connect_bd_net -net pcpi_rs1_1 [get_bd_ports pcpi_rs1] [get_bd_pins cp_reflect/pcpi_rs1]
-  connect_bd_net -net pcpi_rs2_1 [get_bd_ports pcpi_rs2] [get_bd_pins cp_reflect/pcpi_rs2]
-  connect_bd_net -net pcpi_valid_1 [get_bd_ports pcpi_valid] [get_bd_pins cp_reflect/pcpi_valid]
+  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins cp_reflect_0/clk]
+  connect_bd_net -net cp_reflect_0_pcpi_rd [get_bd_ports pcpi_rd] [get_bd_pins cp_reflect_0/pcpi_rd]
+  connect_bd_net -net cp_reflect_0_pcpi_ready [get_bd_ports pcpi_ready] [get_bd_pins cp_reflect_0/pcpi_ready]
+  connect_bd_net -net cp_reflect_0_pcpi_wait [get_bd_ports pcpi_wait] [get_bd_pins cp_reflect_0/pcpi_wait]
+  connect_bd_net -net cp_reflect_0_pcpi_wr [get_bd_ports pcpi_wr] [get_bd_pins cp_reflect_0/pcpi_wr]
+  connect_bd_net -net pcpi_insn_1 [get_bd_ports pcpi_insn] [get_bd_pins cp_reflect_0/pcpi_insn]
+  connect_bd_net -net pcpi_rs1_1 [get_bd_ports pcpi_rs1] [get_bd_pins cp_reflect_0/pcpi_rs1]
+  connect_bd_net -net pcpi_rs2_1 [get_bd_ports pcpi_rs2] [get_bd_pins cp_reflect_0/pcpi_rs2]
+  connect_bd_net -net pcpi_valid_1 [get_bd_ports pcpi_valid] [get_bd_pins cp_reflect_0/pcpi_valid]
+  connect_bd_net -net s_axi_aclk_1 [get_bd_ports s_axi_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk]
+  connect_bd_net -net s_axi_aresetn_1 [get_bd_ports s_axi_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn]
 
   # Create address segments
+  create_bd_addr_seg -range 0x00001000 -offset 0x00000000 [get_bd_addr_spaces S_AXI] [get_bd_addr_segs axi_gpio_0/S_AXI/Reg] SEG_axi_gpio_0_Reg
 
 
   # Restore current instance

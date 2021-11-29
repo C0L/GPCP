@@ -187,34 +187,90 @@ proc create_root_design { parentCell } {
 
 
   # Create interface ports
+  set M00_AXI_0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M00_AXI_0 ]
+  set_property -dict [ list \
+   CONFIG.ADDR_WIDTH {32} \
+   CONFIG.DATA_WIDTH {32} \
+   CONFIG.PROTOCOL {AXI4} \
+   ] $M00_AXI_0
+  set S00_AXI_0 [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S00_AXI_0 ]
+  set_property -dict [ list \
+   CONFIG.ADDR_WIDTH {32} \
+   CONFIG.ARUSER_WIDTH {0} \
+   CONFIG.AWUSER_WIDTH {0} \
+   CONFIG.BUSER_WIDTH {0} \
+   CONFIG.DATA_WIDTH {32} \
+   CONFIG.HAS_BRESP {1} \
+   CONFIG.HAS_BURST {1} \
+   CONFIG.HAS_CACHE {1} \
+   CONFIG.HAS_LOCK {1} \
+   CONFIG.HAS_PROT {1} \
+   CONFIG.HAS_QOS {1} \
+   CONFIG.HAS_REGION {1} \
+   CONFIG.HAS_RRESP {1} \
+   CONFIG.HAS_WSTRB {1} \
+   CONFIG.ID_WIDTH {0} \
+   CONFIG.MAX_BURST_LENGTH {256} \
+   CONFIG.NUM_READ_OUTSTANDING {1} \
+   CONFIG.NUM_READ_THREADS {1} \
+   CONFIG.NUM_WRITE_OUTSTANDING {1} \
+   CONFIG.NUM_WRITE_THREADS {1} \
+   CONFIG.PROTOCOL {AXI4} \
+   CONFIG.READ_WRITE_MODE {READ_WRITE} \
+   CONFIG.RUSER_BITS_PER_BYTE {0} \
+   CONFIG.RUSER_WIDTH {0} \
+   CONFIG.SUPPORTS_NARROW_BURST {1} \
+   CONFIG.WUSER_BITS_PER_BYTE {0} \
+   CONFIG.WUSER_WIDTH {0} \
+   ] $S00_AXI_0
 
   # Create ports
-  set clk [ create_bd_port -dir I -type clk clk ]
+  set ACLK_0 [ create_bd_port -dir I -type clk ACLK_0 ]
+  set ARESETN_0 [ create_bd_port -dir I -type rst ARESETN_0 ]
+  set M00_ACLK_0 [ create_bd_port -dir I -type clk M00_ACLK_0 ]
+  set M00_ARESETN_0 [ create_bd_port -dir I -type rst M00_ARESETN_0 ]
+  set S00_ACLK_0 [ create_bd_port -dir I -type clk S00_ACLK_0 ]
+  set S00_ARESETN_0 [ create_bd_port -dir I -type rst S00_ARESETN_0 ]
+  set clk_0 [ create_bd_port -dir I -type clk clk_0 ]
+  set pcpi_insn_0 [ create_bd_port -dir I -from 31 -to 0 pcpi_insn_0 ]
+  set pcpi_rd_0 [ create_bd_port -dir O -from 31 -to 0 pcpi_rd_0 ]
+  set pcpi_ready_0 [ create_bd_port -dir O pcpi_ready_0 ]
+  set pcpi_rs1_0 [ create_bd_port -dir I -from 31 -to 0 pcpi_rs1_0 ]
+  set pcpi_rs2_0 [ create_bd_port -dir I -from 31 -to 0 pcpi_rs2_0 ]
+  set pcpi_valid_0 [ create_bd_port -dir I pcpi_valid_0 ]
+  set pcpi_wait_0 [ create_bd_port -dir O pcpi_wait_0 ]
+  set pcpi_wr_0 [ create_bd_port -dir O pcpi_wr_0 ]
+
+  # Create instance: axi_interconnect_0, and set properties
+  set axi_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_0 ]
   set_property -dict [ list \
-   CONFIG.FREQ_HZ {100000000} \
- ] $clk
-  set pcpi_insn [ create_bd_port -dir I -from 31 -to 0 pcpi_insn ]
-  set pcpi_rd [ create_bd_port -dir O -from 31 -to 0 pcpi_rd ]
-  set pcpi_ready [ create_bd_port -dir O pcpi_ready ]
-  set pcpi_rs1 [ create_bd_port -dir I -from 31 -to 0 pcpi_rs1 ]
-  set pcpi_rs2 [ create_bd_port -dir I -from 31 -to 0 pcpi_rs2 ]
-  set pcpi_valid [ create_bd_port -dir I pcpi_valid ]
-  set pcpi_wait [ create_bd_port -dir O pcpi_wait ]
-  set pcpi_wr [ create_bd_port -dir O pcpi_wr ]
+   CONFIG.ENABLE_ADVANCED_OPTIONS {0} \
+   CONFIG.NUM_MI {1} \
+ ] $axi_interconnect_0
 
   # Create instance: cp_F_const, and set properties
   set cp_F_const [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_F_const:1.0 cp_F_const ]
 
+  # Create interface connections
+  connect_bd_intf_net -intf_net S00_AXI_0_1 [get_bd_intf_ports S00_AXI_0] [get_bd_intf_pins axi_interconnect_0/S00_AXI]
+  connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_ports M00_AXI_0] [get_bd_intf_pins axi_interconnect_0/M00_AXI]
+
   # Create port connections
-  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins cp_F_const/clk]
-  connect_bd_net -net cp_F_const_pcpi_rd [get_bd_ports pcpi_rd] [get_bd_pins cp_F_const/pcpi_rd]
-  connect_bd_net -net cp_F_const_pcpi_ready [get_bd_ports pcpi_ready] [get_bd_pins cp_F_const/pcpi_ready]
-  connect_bd_net -net cp_F_const_pcpi_wait [get_bd_ports pcpi_wait] [get_bd_pins cp_F_const/pcpi_wait]
-  connect_bd_net -net cp_F_const_pcpi_wr [get_bd_ports pcpi_wr] [get_bd_pins cp_F_const/pcpi_wr]
-  connect_bd_net -net pcpi_insn_1 [get_bd_ports pcpi_insn] [get_bd_pins cp_F_const/pcpi_insn]
-  connect_bd_net -net pcpi_rs1_1 [get_bd_ports pcpi_rs1] [get_bd_pins cp_F_const/pcpi_rs1]
-  connect_bd_net -net pcpi_rs2_1 [get_bd_ports pcpi_rs2] [get_bd_pins cp_F_const/pcpi_rs2]
-  connect_bd_net -net pcpi_valid_1 [get_bd_ports pcpi_valid] [get_bd_pins cp_F_const/pcpi_valid]
+  connect_bd_net -net ACLK_0_1 [get_bd_ports ACLK_0] [get_bd_pins axi_interconnect_0/ACLK]
+  connect_bd_net -net ARESETN_0_1 [get_bd_ports ARESETN_0] [get_bd_pins axi_interconnect_0/ARESETN]
+  connect_bd_net -net M00_ACLK_0_1 [get_bd_ports M00_ACLK_0] [get_bd_pins axi_interconnect_0/M00_ACLK]
+  connect_bd_net -net M00_ARESETN_0_1 [get_bd_ports M00_ARESETN_0] [get_bd_pins axi_interconnect_0/M00_ARESETN]
+  connect_bd_net -net S00_ACLK_0_1 [get_bd_ports S00_ACLK_0] [get_bd_pins axi_interconnect_0/S00_ACLK]
+  connect_bd_net -net S00_ARESETN_0_1 [get_bd_ports S00_ARESETN_0] [get_bd_pins axi_interconnect_0/S00_ARESETN]
+  connect_bd_net -net clk_0_1 [get_bd_ports clk_0] [get_bd_pins cp_F_const/clk]
+  connect_bd_net -net cp_F_const_pcpi_rd [get_bd_ports pcpi_rd_0] [get_bd_pins cp_F_const/pcpi_rd]
+  connect_bd_net -net cp_F_const_pcpi_ready [get_bd_ports pcpi_ready_0] [get_bd_pins cp_F_const/pcpi_ready]
+  connect_bd_net -net cp_F_const_pcpi_wait [get_bd_ports pcpi_wait_0] [get_bd_pins cp_F_const/pcpi_wait]
+  connect_bd_net -net cp_F_const_pcpi_wr [get_bd_ports pcpi_wr_0] [get_bd_pins cp_F_const/pcpi_wr]
+  connect_bd_net -net pcpi_insn_0_1 [get_bd_ports pcpi_insn_0] [get_bd_pins cp_F_const/pcpi_insn]
+  connect_bd_net -net pcpi_rs1_0_1 [get_bd_ports pcpi_rs1_0] [get_bd_pins cp_F_const/pcpi_rs1]
+  connect_bd_net -net pcpi_rs2_0_1 [get_bd_ports pcpi_rs2_0] [get_bd_pins cp_F_const/pcpi_rs2]
+  connect_bd_net -net pcpi_valid_0_1 [get_bd_ports pcpi_valid_0] [get_bd_pins cp_F_const/pcpi_valid]
 
   # Create address segments
 
