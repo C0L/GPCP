@@ -30,7 +30,7 @@ always @(posedge clk) begin
     // We recieve an instruction
     if (pcpi_valid_i && !ex_running && !pr_running) begin
         // Stall the pico pipeline
-        pcpi_wait_i <= 1;
+        //pcpi_wait_i <= 1;
         // Exit the ready state
         pcpi_ready_i <= 0;
 
