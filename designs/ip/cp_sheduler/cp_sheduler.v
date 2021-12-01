@@ -54,24 +54,22 @@ always @(posedge clk) begin
             // Start co-processor running
             reconfigure <= 1;
         end
-    end
-
-    // We are currently executing
-    if (ex_running) begin
+        // We are currently executing
+    end else if (ex_running) begin
         // The core has completed
         if (done_o) begin 
             // Execution is complete
             ex_running <= 0;
-            
+            // Write value back to register
+            pcpi_wr_i    <= 1;
+            // Value to write to register
+            pcpi_rd_i    <= pcpi_rd_o;
+            // The core is ready again
+            pcpi_ready_i <= 1;
             // Unstall pipeline  
             pcpi_wait_i <= 0;
         end
-    end else begin
-        trigger <= 0;
-    end
-    
-    // We are currently executing
-    if (pr_running) begin
+    end else if (pr_running) begin
         // The core has completed
         // Triggered for two cycles after reconfiguration complete?
         if (done_o) begin 
@@ -80,14 +78,9 @@ always @(posedge clk) begin
             
             // Unstall pipeline  
             pcpi_wait_i  <= 0;
-            // Write value back to register
-            pcpi_wr_i    <= 1;
-            // Value to write to register
-            pcpi_rd_i    <= pcpi_rd_o;
-            // The core is ready again
-            pcpi_ready_i <= 1;
         end
     end else begin
+        trigger     <= 0;
         reconfigure <= 0;
     end
 end

@@ -8,7 +8,7 @@ module coprocessor(
 );
 
 always @(posedge clk) begin
-    done <= 0;
+    done <= 1;
     if (trigger) begin
         pcpi_rd <= 32'hFFFFFFFF;
         done <= 1;
