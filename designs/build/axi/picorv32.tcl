@@ -51,6 +51,7 @@ xilinx.com:ip:processing_system7:5.5\
 xilinx.com:ip:axi_intc:4.1\
 xilinx.com:ip:xlslice:1.0\
 xilinx.com:ip:clk_wiz:6.0\
+xilinx.com:ip:xlconstant:1.1\
 xilinx.com:ip:axi_gpio:2.0\
 colindrewes.com:colindrewes:cp_F_const:1.0\
 cliffordwolf:ip:picorv32_axi:1.0\
@@ -1272,6 +1273,9 @@ proc create_root_design { parentCell } {
   # Create instance: xlconcat_0, and set properties
   set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
 
+  # Create instance: xlconstant_0, and set properties
+  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
+
   # Create interface connections
   connect_bd_intf_net -intf_net S_AXI_1 [get_bd_intf_pins pr_0/S_AXI] [get_bd_intf_pins psAxiInterconnect/M03_AXI]
   connect_bd_intf_net -intf_net S_AXI_MEM [get_bd_intf_pins processor/S_AXI_MEM] [get_bd_intf_pins psAxiInterconnect/M02_AXI]
@@ -1298,7 +1302,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net pcpi_rs2_1 [get_bd_pins cp_sheduler_1/pcpi_rs2_o] [get_bd_pins pr_0/pcpi_rs2]
   connect_bd_net -net porReset_interconnect_aresetn [get_bd_pins porReset/interconnect_aresetn] [get_bd_pins psAxiInterconnect/ARESETN]
   connect_bd_net -net por_resetn [get_bd_pins porReset/ext_reset_in] [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins processor/por_resetn]
-  connect_bd_net -net pr_0_done [get_bd_pins cp_sheduler_1/done_o] [get_bd_pins pr_0/done]
   connect_bd_net -net pr_0_pcpi_rd [get_bd_pins cp_sheduler_1/pcpi_rd_o] [get_bd_pins pr_0/pcpi_rd]
   connect_bd_net -net processing_system7_0_GPIO_O [get_bd_pins processing_system7_0/GPIO_O] [get_bd_pins resetSlice/Din]
   connect_bd_net -net processor_ip_pcpi_1_pcpi_rs2 [get_bd_pins cp_sheduler_1/pcpi_rs2_i] [get_bd_pins processor/ip_pcpi_1_pcpi_rs2]
@@ -1309,6 +1312,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net trigger_1 [get_bd_pins cp_sheduler_1/trigger] [get_bd_pins pr_0/trigger]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins irqConcat/dout] [get_bd_pins xlconcat_0/In0]
   connect_bd_net -net xlconcat_0_dout1 [get_bd_pins psInterruptController/intr] [get_bd_pins xlconcat_0/dout]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins cp_sheduler_1/done_o] [get_bd_pins xlconstant_0/dout]
 
   # Create address segments
   create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs pr_0/axi_gpio_0/S_AXI/Reg] SEG_axi_gpio_0_Reg

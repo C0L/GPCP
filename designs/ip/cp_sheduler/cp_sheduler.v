@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module cp_sheduler(
         input clk,
         input[31:0] pcpi_rs1_i,
@@ -59,7 +57,7 @@ always @(posedge clk) begin
         // The core has completed
         if (done_o) begin 
             // Execution is complete
-            ex_running <= 0;
+            ex_running   <= 0;
             // Write value back to register
             pcpi_wr_i    <= 1;
             // Value to write to register
