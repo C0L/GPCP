@@ -41,18 +41,18 @@ always @(posedge clk) begin
         if (pcpi_insn_i[31:25] == 7'b1101010) begin
             // Execute instruction running
             ex_running <= 1; 
-            reconfigure <= 1;
-
-        // Reconfigure instruction 
-        end else if (pcpi_insn_i[31:25] == 7'b1101000) begin
+            
             // Forward Data
             pcpi_rs1_o <= pcpi_rs1_i;
             pcpi_rs2_o <= pcpi_rs2_i;
-            
-            // PR instruction running
-            pr_running <= 1;
-            // Start co-processor running
             trigger    <= 1;
+
+        // Reconfigure instruction 
+        end else if (pcpi_insn_i[31:25] == 7'b1101000) begin
+            // PR instruction running
+            pr_running  <= 1;
+            // Start co-processor running
+            reconfigure <= 1;
         end
     end
 

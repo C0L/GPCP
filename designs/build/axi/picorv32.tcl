@@ -1311,6 +1311,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net xlconcat_0_dout1 [get_bd_pins psInterruptController/intr] [get_bd_pins xlconcat_0/dout]
 
   # Create address segments
+  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs pr_0/axi_gpio_0/S_AXI/Reg] SEG_axi_gpio_0_Reg
   create_bd_addr_seg -range 0x00040000 -offset 0x40000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs processor/psBramController/S_AXI/Mem0] SEG_psBramController_Mem0
   create_bd_addr_seg -range 0x00010000 -offset 0x40040000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs psInterruptController/S_AXI/Reg] SEG_psInterruptController_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x43C00000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs subprocessorClk/s_axi_lite/Reg] SEG_subprocessorClk_Reg
