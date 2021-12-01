@@ -44,15 +44,15 @@ set bCheckIPsPassed 1
 set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
+colindrewes.com:colindrewes:cp_sheduler:1.0\
 xilinx.com:ip:xlconcat:2.1\
 xilinx.com:ip:proc_sys_reset:5.0\
-xilinx.com:ip:pr_decoupler:1.0\
 xilinx.com:ip:processing_system7:5.5\
 xilinx.com:ip:axi_intc:4.1\
 xilinx.com:ip:xlslice:1.0\
 xilinx.com:ip:clk_wiz:6.0\
 xilinx.com:ip:axi_gpio:2.0\
-colindrewes.com:colindrewes:cp_reflect:1.0\
+colindrewes.com:colindrewes:cp_F_const:1.0\
 cliffordwolf:ip:picorv32_axi:1.0\
 xilinx.com:ip:axi_bram_ctrl:4.0\
 xilinx.com:ip:blk_mem_gen:8.4\
@@ -265,17 +265,14 @@ proc create_hier_cell_pr_0 { parentCell nameHier } {
 
   # Create pins
   create_bd_pin -dir I -type clk clk
-  create_bd_pin -dir O ip2intc_irpt
-  create_bd_pin -dir I -from 31 -to 0 pcpi_insn
+  create_bd_pin -dir O done
+  create_bd_pin -dir O -type intr ip2intc_irpt
   create_bd_pin -dir O -from 31 -to 0 pcpi_rd
-  create_bd_pin -dir O pcpi_ready
   create_bd_pin -dir I -from 31 -to 0 pcpi_rs1
   create_bd_pin -dir I -from 31 -to 0 pcpi_rs2
-  create_bd_pin -dir I pcpi_valid
-  create_bd_pin -dir O pcpi_wait
-  create_bd_pin -dir O pcpi_wr
-  create_bd_pin -dir I s_axi_aclk
-  create_bd_pin -dir I s_axi_aresetn
+  create_bd_pin -dir I -type clk s_axi_aclk
+  create_bd_pin -dir I -type rst s_axi_aresetn
+  create_bd_pin -dir I trigger
 
   # Create instance: axi_gpio_0, and set properties
   set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0 ]
@@ -283,8 +280,8 @@ proc create_hier_cell_pr_0 { parentCell nameHier } {
    CONFIG.C_INTERRUPT_PRESENT {1} \
  ] $axi_gpio_0
 
-  # Create instance: cp_reflect_0, and set properties
-  set cp_reflect_0 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_reflect:1.0 cp_reflect_0 ]
+  # Create instance: cp_F_const_0, and set properties
+  set cp_F_const_0 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_F_const:1.0 cp_F_const_0 ]
 
   # Create interface connections
   connect_bd_intf_net -intf_net S_AXI_1 [get_bd_intf_pins S_AXI] [get_bd_intf_pins axi_gpio_0/S_AXI]
@@ -292,17 +289,14 @@ proc create_hier_cell_pr_0 { parentCell nameHier } {
 
   # Create port connections
   connect_bd_net -net axi_gpio_0_ip2intc_irpt [get_bd_pins ip2intc_irpt] [get_bd_pins axi_gpio_0/ip2intc_irpt]
-  connect_bd_net -net clk_1 [get_bd_pins clk] [get_bd_pins cp_reflect_0/clk]
-  connect_bd_net -net cp_reflect_0_pcpi_rd [get_bd_pins pcpi_rd] [get_bd_pins cp_reflect_0/pcpi_rd]
-  connect_bd_net -net cp_reflect_0_pcpi_ready [get_bd_pins pcpi_ready] [get_bd_pins cp_reflect_0/pcpi_ready]
-  connect_bd_net -net cp_reflect_0_pcpi_wait [get_bd_pins pcpi_wait] [get_bd_pins cp_reflect_0/pcpi_wait]
-  connect_bd_net -net cp_reflect_0_pcpi_wr [get_bd_pins pcpi_wr] [get_bd_pins cp_reflect_0/pcpi_wr]
-  connect_bd_net -net pcpi_insn_1 [get_bd_pins pcpi_insn] [get_bd_pins cp_reflect_0/pcpi_insn]
-  connect_bd_net -net pcpi_rs1_1 [get_bd_pins pcpi_rs1] [get_bd_pins cp_reflect_0/pcpi_rs1]
-  connect_bd_net -net pcpi_rs2_1 [get_bd_pins pcpi_rs2] [get_bd_pins cp_reflect_0/pcpi_rs2]
-  connect_bd_net -net pcpi_valid_1 [get_bd_pins pcpi_valid] [get_bd_pins cp_reflect_0/pcpi_valid]
+  connect_bd_net -net clk_1 [get_bd_pins clk] [get_bd_pins cp_F_const_0/clk]
+  connect_bd_net -net cp_F_const_0_done [get_bd_pins done] [get_bd_pins cp_F_const_0/done]
+  connect_bd_net -net cp_F_const_0_pcpi_rd [get_bd_pins pcpi_rd] [get_bd_pins cp_F_const_0/pcpi_rd]
+  connect_bd_net -net pcpi_rs1_1 [get_bd_pins pcpi_rs1] [get_bd_pins cp_F_const_0/pcpi_rs1]
+  connect_bd_net -net pcpi_rs2_1 [get_bd_pins pcpi_rs2] [get_bd_pins cp_F_const_0/pcpi_rs2]
   connect_bd_net -net s_axi_aclk_1 [get_bd_pins s_axi_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk]
   connect_bd_net -net s_axi_aresetn_1 [get_bd_pins s_axi_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn]
+  connect_bd_net -net trigger_1 [get_bd_pins trigger] [get_bd_pins cp_F_const_0/trigger]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -346,6 +340,9 @@ proc create_root_design { parentCell } {
 
   # Create ports
 
+  # Create instance: cp_sheduler_1, and set properties
+  set cp_sheduler_1 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_sheduler:1.0 cp_sheduler_1 ]
+
   # Create instance: irqConcat, and set properties
   set irqConcat [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 irqConcat ]
   set_property -dict [ list \
@@ -361,83 +358,6 @@ proc create_root_design { parentCell } {
 
   # Create instance: pr_0
   create_hier_cell_pr_0 [current_bd_instance .] pr_0
-
-  # Create instance: pr_decoupler_0, and set properties
-  set pr_decoupler_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:pr_decoupler:1.0 pr_decoupler_0 ]
-  set_property -dict [ list \
-   CONFIG.ALL_PARAMS {INTF {intf_0 {ID 0 VLNV xilinx.com:interface:aximm_rtl:1.0 PROTOCOL axi4lite SIGNALS {ARVALID {PRESENT 1 WIDTH 1} ARREADY {PRESENT 1 WIDTH 1} AWVALID {PRESENT 1 WIDTH 1} AWREADY {PRESENT 1 WIDTH 1} BVALID {PRESENT 1 WIDTH 1} BREADY {PRESENT 1 WIDTH 1} RVALID {PRESENT 1 WIDTH 1} RREADY {PRESENT 1 WIDTH 1} WVALID {PRESENT 1 WIDTH 1} WREADY {PRESENT 1 WIDTH 1} AWADDR {PRESENT 1 WIDTH 32} AWLEN {PRESENT 0 WIDTH 8} AWSIZE {PRESENT 0 WIDTH 3} AWBURST {PRESENT 0 WIDTH 2} AWLOCK {PRESENT 0 WIDTH 1} AWCACHE {PRESENT 0 WIDTH 4} AWPROT {PRESENT 1 WIDTH 3} WDATA {PRESENT 1 WIDTH 32} WSTRB {PRESENT 1 WIDTH 4} WLAST {PRESENT 0 WIDTH 1} BRESP {PRESENT 1 WIDTH 2} ARADDR {PRESENT 1 WIDTH 32} ARLEN {PRESENT 0 WIDTH 8} ARSIZE {PRESENT 0 WIDTH 3} ARBURST {PRESENT 0 WIDTH 2} ARLOCK {PRESENT 0 WIDTH 1} ARCACHE {PRESENT 0 WIDTH 4} ARPROT {PRESENT 1 WIDTH 3} RDATA {PRESENT 1 WIDTH 32} RRESP {PRESENT 1 WIDTH 2} RLAST {PRESENT 0 WIDTH 1} AWID {PRESENT 0 WIDTH 0} AWREGION {PRESENT 1 WIDTH 4} AWQOS {PRESENT 1 WIDTH 4} AWUSER {PRESENT 0 WIDTH 0} WID {PRESENT 0 WIDTH 0} WUSER {PRESENT 0 WIDTH 0} BID {PRESENT 0 WIDTH 0} BUSER {PRESENT 0 WIDTH 0} ARID {PRESENT 0 WIDTH 0} ARREGION {PRESENT 1 WIDTH 4} ARQOS {PRESENT 1 WIDTH 4} ARUSER {PRESENT 0 WIDTH 0} RID {PRESENT 0 WIDTH 0} RUSER {PRESENT 0 WIDTH 0}}}} IPI_PROP_COUNT 3} \
-   CONFIG.GUI_INTERFACE_NAME {intf_0} \
-   CONFIG.GUI_INTERFACE_PROTOCOL {axi4lite} \
-   CONFIG.GUI_SELECT_INTERFACE {0} \
-   CONFIG.GUI_SELECT_VLNV {xilinx.com:interface:aximm_rtl:1.0} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_0 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_1 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_2 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_3 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_4 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_5 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_6 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_7 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_8 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_9 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_0 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_1 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_2 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_3 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_4 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_5 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_6 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_7 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_8 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_9 {true} \
-   CONFIG.GUI_SIGNAL_SELECT_0 {ARVALID} \
-   CONFIG.GUI_SIGNAL_SELECT_1 {ARREADY} \
-   CONFIG.GUI_SIGNAL_SELECT_2 {AWVALID} \
-   CONFIG.GUI_SIGNAL_SELECT_3 {AWREADY} \
-   CONFIG.GUI_SIGNAL_SELECT_4 {BVALID} \
-   CONFIG.GUI_SIGNAL_SELECT_5 {BREADY} \
-   CONFIG.GUI_SIGNAL_SELECT_6 {RVALID} \
-   CONFIG.GUI_SIGNAL_SELECT_7 {RREADY} \
-   CONFIG.GUI_SIGNAL_SELECT_8 {WVALID} \
-   CONFIG.GUI_SIGNAL_SELECT_9 {WREADY} \
- ] $pr_decoupler_0
-
-  # Create instance: pr_decoupler_1, and set properties
-  set pr_decoupler_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:pr_decoupler:1.0 pr_decoupler_1 ]
-  set_property -dict [ list \
-   CONFIG.ALL_PARAMS {INTF {intf_0 {ID 0 VLNV cliffordwolf:ip:pcpi_rtl:1.0 SIGNALS {pcpi_rs1 {PRESENT 1} pcpi_rs2 {PRESENT 1} pcpi_insn {PRESENT 1} pcpi_valid {PRESENT 1} pcpi_rd {PRESENT 1 WIDTH 32} pcpi_wr {PRESENT 1 WIDTH 1} pcpi_ready {PRESENT 1 WIDTH 1} pcpi_wait {PRESENT 1 WIDTH 1}}}} IPI_PROP_COUNT 0} \
-   CONFIG.GUI_INTERFACE_NAME {intf_0} \
-   CONFIG.GUI_SELECT_INTERFACE {0} \
-   CONFIG.GUI_SELECT_VLNV {cliffordwolf:ip:pcpi_rtl:1.0} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_0 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_1 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_2 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_3 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_4 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_5 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_6 {true} \
-   CONFIG.GUI_SIGNAL_DECOUPLED_7 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_0 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_1 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_2 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_3 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_4 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_5 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_6 {true} \
-   CONFIG.GUI_SIGNAL_PRESENT_7 {true} \
-   CONFIG.GUI_SIGNAL_SELECT_0 {pcpi_rs1} \
-   CONFIG.GUI_SIGNAL_SELECT_1 {pcpi_rs2} \
-   CONFIG.GUI_SIGNAL_SELECT_2 {pcpi_insn} \
-   CONFIG.GUI_SIGNAL_SELECT_3 {pcpi_valid} \
-   CONFIG.GUI_SIGNAL_SELECT_4 {pcpi_rd} \
-   CONFIG.GUI_SIGNAL_SELECT_5 {pcpi_wr} \
-   CONFIG.GUI_SIGNAL_SELECT_6 {pcpi_ready} \
-   CONFIG.GUI_SIGNAL_SELECT_7 {pcpi_wait} \
-   CONFIG.GUI_SIGNAL_WIDTH_0 {32} \
-   CONFIG.GUI_SIGNAL_WIDTH_1 {32} \
-   CONFIG.GUI_SIGNAL_WIDTH_2 {32} \
-   CONFIG.GUI_SIGNAL_WIDTH_4 {32} \
- ] $pr_decoupler_1
 
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
@@ -1352,17 +1272,8 @@ proc create_root_design { parentCell } {
   # Create instance: xlconcat_0, and set properties
   set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
 
-  # Create instance: xlslice_0, and set properties
-  set xlslice_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 xlslice_0 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {1} \
-   CONFIG.DIN_TO {1} \
-   CONFIG.DIN_WIDTH {7} \
-   CONFIG.DOUT_WIDTH {1} \
- ] $xlslice_0
-
   # Create interface connections
-  connect_bd_intf_net -intf_net S_AXI_1 [get_bd_intf_pins pr_0/S_AXI] [get_bd_intf_pins pr_decoupler_0/s_intf_0]
+  connect_bd_intf_net -intf_net S_AXI_1 [get_bd_intf_pins pr_0/S_AXI] [get_bd_intf_pins psAxiInterconnect/M03_AXI]
   connect_bd_intf_net -intf_net S_AXI_MEM [get_bd_intf_pins processor/S_AXI_MEM] [get_bd_intf_pins psAxiInterconnect/M02_AXI]
   connect_bd_intf_net -intf_net S_AXI_PSX [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins psAxiInterconnect/S00_AXI]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
@@ -1370,42 +1281,36 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net processor_M_AXI_RISCV [get_bd_intf_pins processing_system7_0/S_AXI_HP0] [get_bd_intf_pins processor/M_AXI_RISCV]
   connect_bd_intf_net -intf_net psAxiInterconnect_M00_AXI [get_bd_intf_pins psAxiInterconnect/M00_AXI] [get_bd_intf_pins psInterruptController/s_axi]
   connect_bd_intf_net -intf_net psAxiInterconnect_M01_AXI [get_bd_intf_pins psAxiInterconnect/M01_AXI] [get_bd_intf_pins subprocessorClk/s_axi_lite]
-  connect_bd_intf_net -intf_net psAxiInterconnect_M03_AXI [get_bd_intf_pins pr_decoupler_0/rp_intf_0] [get_bd_intf_pins psAxiInterconnect/M03_AXI]
 
   # Create port connections
   connect_bd_net -net FCLK_CLK0 [get_bd_pins porReset/slowest_sync_clk] [get_bd_pins pr_0/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processor/s_axi_aclk] [get_bd_pins psAxiInterconnect/ACLK] [get_bd_pins psAxiInterconnect/M00_ACLK] [get_bd_pins psAxiInterconnect/M01_ACLK] [get_bd_pins psAxiInterconnect/M02_ACLK] [get_bd_pins psAxiInterconnect/M03_ACLK] [get_bd_pins psAxiInterconnect/S00_ACLK] [get_bd_pins psInterruptController/s_axi_aclk] [get_bd_pins subprocessorClk/clk_in1] [get_bd_pins subprocessorClk/s_axi_aclk]
   connect_bd_net -net S00_ARESETN_1 [get_bd_pins porReset/peripheral_aresetn] [get_bd_pins pr_0/s_axi_aresetn] [get_bd_pins processor/s_axi_aresetn] [get_bd_pins psAxiInterconnect/M00_ARESETN] [get_bd_pins psAxiInterconnect/M01_ARESETN] [get_bd_pins psAxiInterconnect/M02_ARESETN] [get_bd_pins psAxiInterconnect/M03_ARESETN] [get_bd_pins psAxiInterconnect/S00_ARESETN] [get_bd_pins psInterruptController/s_axi_aresetn] [get_bd_pins subprocessorClk/s_axi_aresetn]
-  connect_bd_net -net ip_pcpi_1_pcpi_rd_1 [get_bd_pins pr_decoupler_1/rp_intf_0_pcpi_rd] [get_bd_pins processor/ip_pcpi_1_pcpi_rd]
+  connect_bd_net -net cp_sheduler_1_pcpi_rs1_o [get_bd_pins cp_sheduler_1/pcpi_rs1_o] [get_bd_pins pr_0/pcpi_rs1]
+  connect_bd_net -net cp_sheduler_1_pcpi_wait_i [get_bd_pins cp_sheduler_1/pcpi_wait_i] [get_bd_pins processor/ip_pcpi_1_pcpi_wait]
+  connect_bd_net -net cp_sheduler_1_reconfigure [get_bd_pins cp_sheduler_1/reconfigure] [get_bd_pins xlconcat_0/In1]
+  connect_bd_net -net ip_pcpi_1_pcpi_rd_1 [get_bd_pins cp_sheduler_1/pcpi_rd_i] [get_bd_pins processor/ip_pcpi_1_pcpi_rd]
+  connect_bd_net -net ip_pcpi_1_pcpi_ready_1 [get_bd_pins cp_sheduler_1/pcpi_ready_i] [get_bd_pins processor/ip_pcpi_1_pcpi_ready]
+  connect_bd_net -net ip_pcpi_1_pcpi_wr_1 [get_bd_pins cp_sheduler_1/pcpi_wr_i] [get_bd_pins processor/ip_pcpi_1_pcpi_wr]
   connect_bd_net -net irq [get_bd_pins irqConcat/In0] [get_bd_pins processor/irq]
   connect_bd_net -net m_axi_riscv_aclk [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP2_ACLK] [get_bd_pins processor/m_axi_riscv_aclk]
-  connect_bd_net -net pcpi_insn_1 [get_bd_pins pr_0/pcpi_insn] [get_bd_pins pr_decoupler_1/s_intf_0_pcpi_insn]
-  connect_bd_net -net pcpi_rs1_1 [get_bd_pins pr_0/pcpi_rs1] [get_bd_pins pr_decoupler_1/s_intf_0_pcpi_rs1]
-  connect_bd_net -net pcpi_rs2_1 [get_bd_pins pr_0/pcpi_rs2] [get_bd_pins pr_decoupler_1/s_intf_0_pcpi_rs2]
-  connect_bd_net -net pcpi_valid_1 [get_bd_pins pr_0/pcpi_valid] [get_bd_pins pr_decoupler_1/s_intf_0_pcpi_valid]
+  connect_bd_net -net pcpi_insn_1 [get_bd_pins cp_sheduler_1/pcpi_insn_i] [get_bd_pins processor/ip_pcpi_1_pcpi_insn]
+  connect_bd_net -net pcpi_rs1_1 [get_bd_pins cp_sheduler_1/pcpi_rs1_i] [get_bd_pins processor/ip_pcpi_1_pcpi_rs1]
+  connect_bd_net -net pcpi_rs2_1 [get_bd_pins cp_sheduler_1/pcpi_rs2_o] [get_bd_pins pr_0/pcpi_rs2]
   connect_bd_net -net porReset_interconnect_aresetn [get_bd_pins porReset/interconnect_aresetn] [get_bd_pins psAxiInterconnect/ARESETN]
   connect_bd_net -net por_resetn [get_bd_pins porReset/ext_reset_in] [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins processor/por_resetn]
-  connect_bd_net -net pr_0_ip2intc_irpt [get_bd_pins pr_0/ip2intc_irpt] [get_bd_pins xlconcat_0/In1]
-  connect_bd_net -net pr_0_pcpi_rd [get_bd_pins pr_0/pcpi_rd] [get_bd_pins pr_decoupler_1/s_intf_0_pcpi_rd]
-  connect_bd_net -net pr_0_pcpi_ready [get_bd_pins pr_0/pcpi_ready] [get_bd_pins pr_decoupler_1/s_intf_0_pcpi_ready]
-  connect_bd_net -net pr_0_pcpi_wait [get_bd_pins pr_0/pcpi_wait] [get_bd_pins pr_decoupler_1/s_intf_0_pcpi_wait]
-  connect_bd_net -net pr_0_pcpi_wr [get_bd_pins pr_0/pcpi_wr] [get_bd_pins pr_decoupler_1/s_intf_0_pcpi_wr]
-  connect_bd_net -net pr_decoupler_1_rp_intf_0_pcpi_ready [get_bd_pins pr_decoupler_1/rp_intf_0_pcpi_ready] [get_bd_pins processor/ip_pcpi_1_pcpi_ready]
-  connect_bd_net -net pr_decoupler_1_rp_intf_0_pcpi_wait [get_bd_pins pr_decoupler_1/rp_intf_0_pcpi_wait] [get_bd_pins processor/ip_pcpi_1_pcpi_wait]
-  connect_bd_net -net pr_decoupler_1_rp_intf_0_pcpi_wr [get_bd_pins pr_decoupler_1/rp_intf_0_pcpi_wr] [get_bd_pins processor/ip_pcpi_1_pcpi_wr]
-  connect_bd_net -net processing_system7_0_GPIO_O [get_bd_pins processing_system7_0/GPIO_O] [get_bd_pins resetSlice/Din] [get_bd_pins xlslice_0/Din]
-  connect_bd_net -net processor_ip_pcpi_1_pcpi_insn [get_bd_pins pr_decoupler_1/rp_intf_0_pcpi_insn] [get_bd_pins processor/ip_pcpi_1_pcpi_insn]
-  connect_bd_net -net processor_ip_pcpi_1_pcpi_rs1 [get_bd_pins pr_decoupler_1/rp_intf_0_pcpi_rs1] [get_bd_pins processor/ip_pcpi_1_pcpi_rs1]
-  connect_bd_net -net processor_ip_pcpi_1_pcpi_rs2 [get_bd_pins pr_decoupler_1/rp_intf_0_pcpi_rs2] [get_bd_pins processor/ip_pcpi_1_pcpi_rs2]
-  connect_bd_net -net processor_ip_pcpi_1_pcpi_valid [get_bd_pins pr_decoupler_1/rp_intf_0_pcpi_valid] [get_bd_pins processor/ip_pcpi_1_pcpi_valid]
+  connect_bd_net -net pr_0_done [get_bd_pins cp_sheduler_1/done_o] [get_bd_pins pr_0/done]
+  connect_bd_net -net pr_0_pcpi_rd [get_bd_pins cp_sheduler_1/pcpi_rd_o] [get_bd_pins pr_0/pcpi_rd]
+  connect_bd_net -net processing_system7_0_GPIO_O [get_bd_pins processing_system7_0/GPIO_O] [get_bd_pins resetSlice/Din]
+  connect_bd_net -net processor_ip_pcpi_1_pcpi_rs2 [get_bd_pins cp_sheduler_1/pcpi_rs2_i] [get_bd_pins processor/ip_pcpi_1_pcpi_rs2]
+  connect_bd_net -net processor_ip_pcpi_1_pcpi_valid [get_bd_pins cp_sheduler_1/pcpi_valid_i] [get_bd_pins processor/ip_pcpi_1_pcpi_valid]
   connect_bd_net -net psirq [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins psInterruptController/irq]
   connect_bd_net -net riscv_resetn [get_bd_pins processor/riscv_resetn] [get_bd_pins resetSlice/Dout]
-  connect_bd_net -net subprocessorClk_clk_out1 [get_bd_pins pr_0/clk] [get_bd_pins processor/riscv_clk] [get_bd_pins subprocessorClk/clk_out1]
+  connect_bd_net -net subprocessorClk_clk_out1 [get_bd_pins cp_sheduler_1/clk] [get_bd_pins pr_0/clk] [get_bd_pins processor/riscv_clk] [get_bd_pins subprocessorClk/clk_out1]
+  connect_bd_net -net trigger_1 [get_bd_pins cp_sheduler_1/trigger] [get_bd_pins pr_0/trigger]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins irqConcat/dout] [get_bd_pins xlconcat_0/In0]
   connect_bd_net -net xlconcat_0_dout1 [get_bd_pins psInterruptController/intr] [get_bd_pins xlconcat_0/dout]
-  connect_bd_net -net xlslice_0_Dout [get_bd_pins pr_decoupler_0/decouple] [get_bd_pins pr_decoupler_1/decouple] [get_bd_pins xlslice_0/Dout]
 
   # Create address segments
-  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs pr_0/axi_gpio_0/S_AXI/Reg] SEG_axi_gpio_0_Reg
   create_bd_addr_seg -range 0x00040000 -offset 0x40000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs processor/psBramController/S_AXI/Mem0] SEG_psBramController_Mem0
   create_bd_addr_seg -range 0x00010000 -offset 0x40040000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs psInterruptController/S_AXI/Reg] SEG_psInterruptController_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x43C00000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs subprocessorClk/s_axi_lite/Reg] SEG_subprocessorClk_Reg

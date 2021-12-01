@@ -124,7 +124,7 @@ set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
 xilinx.com:ip:axi_gpio:2.0\
-colindrewes.com:colindrewes:cp_reflect:1.0\
+colindrewes.com:colindrewes:cp_F_const:1.0\
 "
 
    set list_ips_missing ""
@@ -223,23 +223,19 @@ proc create_root_design { parentCell } {
   # Create ports
   set clk [ create_bd_port -dir I -type clk clk ]
   set_property -dict [ list \
-   CONFIG.CLK_DOMAIN {cp_reflect_clk} \
-   CONFIG.FREQ_HZ {100000000} \
+   CONFIG.FREQ_HZ {50000000} \
  ] $clk
+  set done [ create_bd_port -dir O done ]
   set ip2intc_irpt [ create_bd_port -dir O -type intr ip2intc_irpt ]
-  set pcpi_insn [ create_bd_port -dir I -from 31 -to 0 pcpi_insn ]
   set pcpi_rd [ create_bd_port -dir O -from 31 -to 0 pcpi_rd ]
-  set pcpi_ready [ create_bd_port -dir O pcpi_ready ]
   set pcpi_rs1 [ create_bd_port -dir I -from 31 -to 0 pcpi_rs1 ]
   set pcpi_rs2 [ create_bd_port -dir I -from 31 -to 0 pcpi_rs2 ]
-  set pcpi_valid [ create_bd_port -dir I pcpi_valid ]
-  set pcpi_wait [ create_bd_port -dir O pcpi_wait ]
-  set pcpi_wr [ create_bd_port -dir O pcpi_wr ]
   set s_axi_aclk [ create_bd_port -dir I -type clk s_axi_aclk ]
   set_property -dict [ list \
    CONFIG.FREQ_HZ {100000000} \
  ] $s_axi_aclk
   set s_axi_aresetn [ create_bd_port -dir I -type rst s_axi_aresetn ]
+  set trigger [ create_bd_port -dir I trigger ]
 
   # Create instance: axi_gpio_0, and set properties
   set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0 ]
@@ -247,8 +243,8 @@ proc create_root_design { parentCell } {
    CONFIG.C_INTERRUPT_PRESENT {1} \
  ] $axi_gpio_0
 
-  # Create instance: cp_reflect_0, and set properties
-  set cp_reflect_0 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_reflect:1.0 cp_reflect_0 ]
+  # Create instance: cp_F_const_0, and set properties
+  set cp_F_const_0 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_F_const:1.0 cp_F_const_0 ]
 
   # Create interface connections
   connect_bd_intf_net -intf_net S_AXI_1 [get_bd_intf_ports S_AXI] [get_bd_intf_pins axi_gpio_0/S_AXI]
@@ -256,17 +252,14 @@ proc create_root_design { parentCell } {
 
   # Create port connections
   connect_bd_net -net axi_gpio_0_ip2intc_irpt [get_bd_ports ip2intc_irpt] [get_bd_pins axi_gpio_0/ip2intc_irpt]
-  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins cp_reflect_0/clk]
-  connect_bd_net -net cp_reflect_0_pcpi_rd [get_bd_ports pcpi_rd] [get_bd_pins cp_reflect_0/pcpi_rd]
-  connect_bd_net -net cp_reflect_0_pcpi_ready [get_bd_ports pcpi_ready] [get_bd_pins cp_reflect_0/pcpi_ready]
-  connect_bd_net -net cp_reflect_0_pcpi_wait [get_bd_ports pcpi_wait] [get_bd_pins cp_reflect_0/pcpi_wait]
-  connect_bd_net -net cp_reflect_0_pcpi_wr [get_bd_ports pcpi_wr] [get_bd_pins cp_reflect_0/pcpi_wr]
-  connect_bd_net -net pcpi_insn_1 [get_bd_ports pcpi_insn] [get_bd_pins cp_reflect_0/pcpi_insn]
-  connect_bd_net -net pcpi_rs1_1 [get_bd_ports pcpi_rs1] [get_bd_pins cp_reflect_0/pcpi_rs1]
-  connect_bd_net -net pcpi_rs2_1 [get_bd_ports pcpi_rs2] [get_bd_pins cp_reflect_0/pcpi_rs2]
-  connect_bd_net -net pcpi_valid_1 [get_bd_ports pcpi_valid] [get_bd_pins cp_reflect_0/pcpi_valid]
+  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins cp_F_const_0/clk]
+  connect_bd_net -net cp_F_const_0_done [get_bd_ports done] [get_bd_pins cp_F_const_0/done]
+  connect_bd_net -net cp_F_const_0_pcpi_rd [get_bd_ports pcpi_rd] [get_bd_pins cp_F_const_0/pcpi_rd]
+  connect_bd_net -net pcpi_rs1_1 [get_bd_ports pcpi_rs1] [get_bd_pins cp_F_const_0/pcpi_rs1]
+  connect_bd_net -net pcpi_rs2_1 [get_bd_ports pcpi_rs2] [get_bd_pins cp_F_const_0/pcpi_rs2]
   connect_bd_net -net s_axi_aclk_1 [get_bd_ports s_axi_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk]
   connect_bd_net -net s_axi_aresetn_1 [get_bd_ports s_axi_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn]
+  connect_bd_net -net trigger_1 [get_bd_ports trigger] [get_bd_pins cp_F_const_0/trigger]
 
   # Create address segments
   create_bd_addr_seg -range 0x00001000 -offset 0x00000000 [get_bd_addr_spaces S_AXI] [get_bd_addr_segs axi_gpio_0/S_AXI/Reg] SEG_axi_gpio_0_Reg
