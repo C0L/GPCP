@@ -7,8 +7,8 @@ module cp_sheduler(
              
         output reg[31:0] pcpi_rd_i,
         output reg pcpi_wr_i,
-        output reg pcpi_ready_i,
-        output reg pcpi_wait_i,
+        output reg pcpi_ready_i = 0,
+        output reg pcpi_wait_i = 0,
      
         output reg[31:0] pcpi_rs1_o,
         output reg[31:0] pcpi_rs2_o,
@@ -24,13 +24,12 @@ reg ex_running = 0;
 reg pr_running = 0;
 
 always @(posedge clk) begin
-
     // We recieve an instruction
     if (pcpi_valid_i && !ex_running && !pr_running) begin
         // Stall the pico pipeline
         //pcpi_wait_i <= 1;
         // Exit the ready state
-        pcpi_ready_i <= 0;
+        //pcpi_ready_i <= 0;
 
         // Write back disable
         pcpi_wr_i <= 0;
@@ -81,6 +80,7 @@ always @(posedge clk) begin
        // TODO NEED RESET
        // trigger     <= 0;
        // reconfigure <= 0;
+       pcpi_ready_i <= 0;
     end
 end
 
