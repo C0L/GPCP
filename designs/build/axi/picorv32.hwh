@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Dec  1 23:32:04 2021" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Dec  2 01:23:09 2021" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="picorv32" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -87,14 +87,46 @@
             <CONNECTION INSTANCE="subprocessorClk" PORT="clk_out1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_rs1" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_rs2" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" NAME="pcpi_valid" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" NAME="pcpi_wr" SIGIS="undef"/>
-        <PORT DIR="O" NAME="pcpi_ready" SIGIS="undef"/>
-        <PORT DIR="O" NAME="pcpi_wait" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="31" NAME="pcpi_rs1" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_rs1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_rs1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="pcpi_rs2" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_rs2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_rs2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_insn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_insn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="pcpi_valid" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_valid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_valid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef" SIGNAME="cp_F_const_0_pcpi_rd">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_rd"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="pcpi_wr" SIGIS="undef" SIGNAME="cp_F_const_0_pcpi_wr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_wr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="pcpi_ready" SIGIS="undef" SIGNAME="cp_F_const_0_pcpi_ready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_ready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="pcpi_wait" SIGIS="undef" SIGNAME="cp_F_const_0_pcpi_wait">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="processor_picorv32" PORT="pcpi_wait"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -128,16 +160,8 @@
             <CONNECTION INSTANCE="pr_0" PORT="pcpi_rs2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="trigger" SIGIS="undef" SIGNAME="cp_sheduler_1_trigger">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="pr_0" PORT="trigger"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="reconfigure" SIGIS="undef" SIGNAME="cp_sheduler_1_reconfigure">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="xlconcat_0" PORT="In1"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="trigger" SIGIS="undef"/>
+        <PORT DIR="O" NAME="reconfigure" SIGIS="undef"/>
         <PORT DIR="I" LEFT="31" NAME="pcpi_rd_o" RIGHT="0" SIGIS="undef" SIGNAME="pr_0_pcpi_rd">
           <CONNECTIONS>
             <CONNECTION INSTANCE="pr_0" PORT="pcpi_rd"/>
@@ -302,11 +326,7 @@
             <CONNECTION INSTANCE="porReset" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="trigger" SIGIS="undef" SIGNAME="cp_sheduler_1_trigger">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="cp_sheduler_1" PORT="trigger"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="I" NAME="trigger" SIGIS="undef"/>
         <PORT DIR="I" LEFT="8" NAME="S_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="pr_0_S_AXI_araddr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="psAxiInterconnect" PORT="M03_AXI_araddr"/>
@@ -2350,14 +2370,46 @@
             <CONNECTION INSTANCE="processor_riscvInterconnect" PORT="S00_AXI_rdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="pcpi_valid" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="31" NAME="pcpi_rs1" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="31" NAME="pcpi_rs2" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" NAME="pcpi_wr" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" NAME="pcpi_wait" SIGIS="undef"/>
-        <PORT DIR="I" NAME="pcpi_ready" SIGIS="undef"/>
+        <PORT DIR="O" NAME="pcpi_valid" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_valid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="cp_F_const_0" PORT="pcpi_valid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="pcpi_insn" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_insn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="cp_F_const_0" PORT="pcpi_insn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="pcpi_rs1" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_rs1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="cp_F_const_0" PORT="pcpi_rs1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="pcpi_rs2" RIGHT="0" SIGIS="undef" SIGNAME="processor_picorv32_pcpi_rs2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="cp_F_const_0" PORT="pcpi_rs2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="pcpi_wr" SIGIS="undef" SIGNAME="cp_F_const_0_pcpi_wr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="cp_F_const_0" PORT="pcpi_wr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="pcpi_rd" RIGHT="0" SIGIS="undef" SIGNAME="cp_F_const_0_pcpi_rd">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="cp_F_const_0" PORT="pcpi_rd"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="pcpi_wait" SIGIS="undef" SIGNAME="cp_F_const_0_pcpi_wait">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="cp_F_const_0" PORT="pcpi_wait"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="pcpi_ready" SIGIS="undef" SIGNAME="cp_F_const_0_pcpi_ready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="cp_F_const_0" PORT="pcpi_ready"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="processor_picorv32_mem_axi" DATAWIDTH="32" NAME="mem_axi" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
@@ -6006,7 +6058,7 @@
             <REGISTER NAME="ISR">
               <PROPERTY NAME="DESCRIPTION" VALUE="Interrupt Status Register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x0"/>
-              <PROPERTY NAME="SIZE" VALUE="2"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -6019,14 +6071,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="2"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="IPR">
               <PROPERTY NAME="DESCRIPTION" VALUE="Interrupt Pending Register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x4"/>
-              <PROPERTY NAME="SIZE" VALUE="2"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -6039,14 +6091,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="2"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="IER">
               <PROPERTY NAME="DESCRIPTION" VALUE="Interrupt Enable Register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x8"/>
-              <PROPERTY NAME="SIZE" VALUE="2"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -6059,14 +6111,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="2"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="IAR">
               <PROPERTY NAME="DESCRIPTION" VALUE="Interrupt Acknowledge Register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0xC"/>
-              <PROPERTY NAME="SIZE" VALUE="2"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -6079,14 +6131,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="2"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="SIE">
               <PROPERTY NAME="DESCRIPTION" VALUE="Set Interrupt Enables"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x10"/>
-              <PROPERTY NAME="SIZE" VALUE="2"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -6099,14 +6151,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="2"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="CIE">
               <PROPERTY NAME="DESCRIPTION" VALUE="Clear Interrupt Enables"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x14"/>
-              <PROPERTY NAME="SIZE" VALUE="2"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -6119,7 +6171,7 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="2"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
@@ -6176,7 +6228,7 @@
             <REGISTER NAME="IMR">
               <PROPERTY NAME="DESCRIPTION" VALUE="Interrupt Mode Register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x20"/>
-              <PROPERTY NAME="SIZE" VALUE="2"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="false"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -6189,7 +6241,7 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="2"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
@@ -6861,7 +6913,7 @@
         <PARAMETER NAME="C_INSTANCE" VALUE="picorv32_psInterruptController_0"/>
         <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
         <PARAMETER NAME="C_S_AXI_DATA_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="C_NUM_INTR_INPUTS" VALUE="2"/>
+        <PARAMETER NAME="C_NUM_INTR_INPUTS" VALUE="1"/>
         <PARAMETER NAME="C_NUM_SW_INTR" VALUE="0"/>
         <PARAMETER NAME="C_KIND_OF_INTR" VALUE="0xFFFFFFFF"/>
         <PARAMETER NAME="C_KIND_OF_EDGE" VALUE="0xFFFFFFFF"/>
@@ -6989,7 +7041,7 @@
             <CONNECTION INSTANCE="psAxiInterconnect" PORT="M00_AXI_rready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="intr" RIGHT="0" SENSITIVITY="LEVEL_HIGH" SIGIS="INTERRUPT" SIGNAME="xlconcat_0_dout">
+        <PORT DIR="I" LEFT="0" NAME="intr" RIGHT="0" SENSITIVITY="LEVEL_HIGH" SIGIS="INTERRUPT" SIGNAME="xlconcat_0_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xlconcat_0" PORT="dout"/>
           </CONNECTIONS>
@@ -7865,8 +7917,8 @@
         <PARAMETER NAME="IN29_WIDTH" VALUE="1"/>
         <PARAMETER NAME="IN30_WIDTH" VALUE="1"/>
         <PARAMETER NAME="IN31_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="dout_width" VALUE="2"/>
-        <PARAMETER NAME="NUM_PORTS" VALUE="2"/>
+        <PARAMETER NAME="dout_width" VALUE="1"/>
+        <PARAMETER NAME="NUM_PORTS" VALUE="1"/>
         <PARAMETER NAME="Component_Name" VALUE="picorv32_xlconcat_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -7876,12 +7928,7 @@
             <CONNECTION INSTANCE="irqConcat" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="In1" RIGHT="0" SIGIS="undef" SIGNAME="cp_sheduler_1_reconfigure">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="cp_sheduler_1" PORT="reconfigure"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconcat_0_dout">
+        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconcat_0_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="psInterruptController" PORT="intr"/>
           </CONNECTIONS>
