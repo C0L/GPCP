@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Dec  1 18:09:54 2021" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Dec  1 23:32:04 2021" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="picorv32" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -75,10 +75,10 @@
   </EXTERNALINTERFACES>
 
   <MODULES>
-    <MODULE FULLNAME="/cp_0_const_0" HWVERSION="1.0" INSTANCE="cp_0_const_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="cp_0_const" VLNV="colindrewes.com:colindrewes:cp_0_const:1.0">
+    <MODULE FULLNAME="/cp_F_const_0" HWVERSION="1.0" INSTANCE="cp_F_const_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="cp_F_const" VLNV="colindrewes.com:colindrewes:cp_F_const:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="picorv32_cp_0_const_0_0"/>
+        <PARAMETER NAME="Component_Name" VALUE="picorv32_cp_F_const_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
@@ -7759,7 +7759,7 @@
         </PORT>
         <PORT CLKFREQUENCY="50000000" DIR="O" NAME="clk_out1" SIGIS="clk" SIGNAME="subprocessorClk_clk_out1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="cp_0_const_0" PORT="clk"/>
+            <CONNECTION INSTANCE="cp_F_const_0" PORT="clk"/>
             <CONNECTION INSTANCE="cp_sheduler_1" PORT="clk"/>
             <CONNECTION INSTANCE="pr_0" PORT="clk"/>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP0_ACLK"/>

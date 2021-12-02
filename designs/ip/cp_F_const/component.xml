@@ -29,14 +29,14 @@
         <spirit:displayName>Synthesis</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>Verilog</spirit:language>
-        <spirit:modelName>coprocessor</spirit:modelName>
+        <spirit:modelName>cp_F_const</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1dfcf440</spirit:value>
+            <spirit:value>4e0b04e0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -45,14 +45,14 @@
         <spirit:displayName>Simulation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>Verilog</spirit:language>
-        <spirit:modelName>coprocessor</spirit:modelName>
+        <spirit:modelName>cp_F_const</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1dfcf440</spirit:value>
+            <spirit:value>4e0b04e0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -120,6 +120,36 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
+        <spirit:name>pcpi_insn</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>pcpi_valid</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
         <spirit:name>pcpi_rd</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
@@ -137,12 +167,12 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>trigger</spirit:name>
+        <spirit:name>pcpi_wr</spirit:name>
         <spirit:wire>
-          <spirit:direction>in</spirit:direction>
+          <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:typeName>reg</spirit:typeName>
               <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -150,12 +180,25 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>done</spirit:name>
+        <spirit:name>pcpi_ready</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>reg</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>pcpi_wait</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -170,7 +213,7 @@
       <spirit:file>
         <spirit:name>cp_F_const.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_1dfcf440</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_4e0b04e0</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -194,7 +237,7 @@
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">coprocessor_v1_0</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">cp_F_const_v1_0</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -227,20 +270,19 @@
       <xilinx:displayName>cp_F_const</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:coreRevision>3</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-12-01T09:53:57Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2021-12-02T07:19:43Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
-        <xilinx:tag xilinx:name="user.org:user:coprocessor:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_F_const</xilinx:tag>
-        <xilinx:tag xilinx:name="colindrewes.com:user:coprocessor:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_F_const</xilinx:tag>
-        <xilinx:tag xilinx:name="colindrewes.com:colindrewes:coprocessor:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_F_const</xilinx:tag>
+        <xilinx:tag xilinx:name="user.org:user:cp_F_const:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_F_const</xilinx:tag>
+        <xilinx:tag xilinx:name="colindrewes.com:user:cp_F_const:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_F_const</xilinx:tag>
         <xilinx:tag xilinx:name="colindrewes.com:colindrewes:cp_F_const:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_F_const</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2018.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="a88d4390"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="51a5cce8"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="c2c0e8c2"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="0ad4b818"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="dbde13c6"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="2d59e878"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="0f9ad38e"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
