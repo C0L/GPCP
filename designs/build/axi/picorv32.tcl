@@ -44,6 +44,7 @@ set bCheckIPsPassed 1
 set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
+colindrewes.com:colindrewes:cp_0_const:1.0\
 colindrewes.com:colindrewes:cp_sheduler:1.0\
 xilinx.com:ip:xlconcat:2.1\
 xilinx.com:ip:proc_sys_reset:5.0\
@@ -340,6 +341,9 @@ proc create_root_design { parentCell } {
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
 
   # Create ports
+
+  # Create instance: cp_0_const_0, and set properties
+  set cp_0_const_0 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_0_const:1.0 cp_0_const_0 ]
 
   # Create instance: cp_sheduler_1, and set properties
   set cp_sheduler_1 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_sheduler:1.0 cp_sheduler_1 ]
@@ -1289,26 +1293,26 @@ proc create_root_design { parentCell } {
   # Create port connections
   connect_bd_net -net FCLK_CLK0 [get_bd_pins porReset/slowest_sync_clk] [get_bd_pins pr_0/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processor/s_axi_aclk] [get_bd_pins psAxiInterconnect/ACLK] [get_bd_pins psAxiInterconnect/M00_ACLK] [get_bd_pins psAxiInterconnect/M01_ACLK] [get_bd_pins psAxiInterconnect/M02_ACLK] [get_bd_pins psAxiInterconnect/M03_ACLK] [get_bd_pins psAxiInterconnect/S00_ACLK] [get_bd_pins psInterruptController/s_axi_aclk] [get_bd_pins subprocessorClk/clk_in1] [get_bd_pins subprocessorClk/s_axi_aclk]
   connect_bd_net -net S00_ARESETN_1 [get_bd_pins porReset/peripheral_aresetn] [get_bd_pins pr_0/s_axi_aresetn] [get_bd_pins processor/s_axi_aresetn] [get_bd_pins psAxiInterconnect/M00_ARESETN] [get_bd_pins psAxiInterconnect/M01_ARESETN] [get_bd_pins psAxiInterconnect/M02_ARESETN] [get_bd_pins psAxiInterconnect/M03_ARESETN] [get_bd_pins psAxiInterconnect/S00_ARESETN] [get_bd_pins psInterruptController/s_axi_aresetn] [get_bd_pins subprocessorClk/s_axi_aresetn]
+  connect_bd_net -net cp_0_const_0_pcpi_wait [get_bd_pins cp_0_const_0/pcpi_wait] [get_bd_pins processor/ip_pcpi_1_pcpi_wait]
+  connect_bd_net -net cp_0_const_0_pcpi_wr [get_bd_pins cp_0_const_0/pcpi_wr] [get_bd_pins processor/ip_pcpi_1_pcpi_wr]
   connect_bd_net -net cp_sheduler_1_pcpi_rs1_o [get_bd_pins cp_sheduler_1/pcpi_rs1_o] [get_bd_pins pr_0/pcpi_rs1]
-  connect_bd_net -net cp_sheduler_1_pcpi_wait_i [get_bd_pins cp_sheduler_1/pcpi_wait_i] [get_bd_pins processor/ip_pcpi_1_pcpi_wait]
   connect_bd_net -net cp_sheduler_1_reconfigure [get_bd_pins cp_sheduler_1/reconfigure] [get_bd_pins xlconcat_0/In1]
-  connect_bd_net -net ip_pcpi_1_pcpi_rd_1 [get_bd_pins cp_sheduler_1/pcpi_rd_i] [get_bd_pins processor/ip_pcpi_1_pcpi_rd]
-  connect_bd_net -net ip_pcpi_1_pcpi_ready_1 [get_bd_pins cp_sheduler_1/pcpi_ready_i] [get_bd_pins processor/ip_pcpi_1_pcpi_ready]
-  connect_bd_net -net ip_pcpi_1_pcpi_wr_1 [get_bd_pins cp_sheduler_1/pcpi_wr_i] [get_bd_pins processor/ip_pcpi_1_pcpi_wr]
+  connect_bd_net -net ip_pcpi_1_pcpi_rd_1 [get_bd_pins cp_0_const_0/pcpi_rd] [get_bd_pins processor/ip_pcpi_1_pcpi_rd]
+  connect_bd_net -net ip_pcpi_1_pcpi_ready_1 [get_bd_pins cp_0_const_0/pcpi_ready] [get_bd_pins processor/ip_pcpi_1_pcpi_ready]
   connect_bd_net -net irq [get_bd_pins irqConcat/In0] [get_bd_pins processor/irq]
   connect_bd_net -net m_axi_riscv_aclk [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP2_ACLK] [get_bd_pins processor/m_axi_riscv_aclk]
-  connect_bd_net -net pcpi_insn_1 [get_bd_pins cp_sheduler_1/pcpi_insn_i] [get_bd_pins processor/ip_pcpi_1_pcpi_insn]
-  connect_bd_net -net pcpi_rs1_1 [get_bd_pins cp_sheduler_1/pcpi_rs1_i] [get_bd_pins processor/ip_pcpi_1_pcpi_rs1]
   connect_bd_net -net pcpi_rs2_1 [get_bd_pins cp_sheduler_1/pcpi_rs2_o] [get_bd_pins pr_0/pcpi_rs2]
   connect_bd_net -net porReset_interconnect_aresetn [get_bd_pins porReset/interconnect_aresetn] [get_bd_pins psAxiInterconnect/ARESETN]
   connect_bd_net -net por_resetn [get_bd_pins porReset/ext_reset_in] [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins processor/por_resetn]
   connect_bd_net -net pr_0_pcpi_rd [get_bd_pins cp_sheduler_1/pcpi_rd_o] [get_bd_pins pr_0/pcpi_rd]
   connect_bd_net -net processing_system7_0_GPIO_O [get_bd_pins processing_system7_0/GPIO_O] [get_bd_pins resetSlice/Din]
-  connect_bd_net -net processor_ip_pcpi_1_pcpi_rs2 [get_bd_pins cp_sheduler_1/pcpi_rs2_i] [get_bd_pins processor/ip_pcpi_1_pcpi_rs2]
-  connect_bd_net -net processor_ip_pcpi_1_pcpi_valid [get_bd_pins cp_sheduler_1/pcpi_valid_i] [get_bd_pins processor/ip_pcpi_1_pcpi_valid]
+  connect_bd_net -net processor_ip_pcpi_1_pcpi_insn [get_bd_pins cp_0_const_0/pcpi_insn] [get_bd_pins processor/ip_pcpi_1_pcpi_insn]
+  connect_bd_net -net processor_ip_pcpi_1_pcpi_rs1 [get_bd_pins cp_0_const_0/pcpi_rs1] [get_bd_pins processor/ip_pcpi_1_pcpi_rs1]
+  connect_bd_net -net processor_ip_pcpi_1_pcpi_rs2 [get_bd_pins cp_0_const_0/pcpi_rs2] [get_bd_pins processor/ip_pcpi_1_pcpi_rs2]
+  connect_bd_net -net processor_ip_pcpi_1_pcpi_valid [get_bd_pins cp_0_const_0/pcpi_valid] [get_bd_pins processor/ip_pcpi_1_pcpi_valid]
   connect_bd_net -net psirq [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins psInterruptController/irq]
   connect_bd_net -net riscv_resetn [get_bd_pins processor/riscv_resetn] [get_bd_pins resetSlice/Dout]
-  connect_bd_net -net subprocessorClk_clk_out1 [get_bd_pins cp_sheduler_1/clk] [get_bd_pins pr_0/clk] [get_bd_pins processor/riscv_clk] [get_bd_pins subprocessorClk/clk_out1]
+  connect_bd_net -net subprocessorClk_clk_out1 [get_bd_pins cp_0_const_0/clk] [get_bd_pins cp_sheduler_1/clk] [get_bd_pins pr_0/clk] [get_bd_pins processor/riscv_clk] [get_bd_pins subprocessorClk/clk_out1]
   connect_bd_net -net trigger_1 [get_bd_pins cp_sheduler_1/trigger] [get_bd_pins pr_0/trigger]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins irqConcat/dout] [get_bd_pins xlconcat_0/In0]
   connect_bd_net -net xlconcat_0_dout1 [get_bd_pins psInterruptController/intr] [get_bd_pins xlconcat_0/dout]

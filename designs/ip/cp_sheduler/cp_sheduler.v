@@ -24,6 +24,8 @@ reg ex_running = 0;
 reg pr_running = 0;
 
 always @(posedge clk) begin
+    pcpi_ready_i <= 0;
+    pcpi_wr_i    <= 0;
     // We recieve an instruction
     if (pcpi_valid_i && !ex_running && !pr_running) begin
         // Stall the pico pipeline
@@ -80,8 +82,7 @@ always @(posedge clk) begin
        // TODO NEED RESET
        // trigger     <= 0;
        // reconfigure <= 0;
-       pcpi_ready_i <= 0;
-       pcpi_wr_i    <= 0;
+
     end
 end
 

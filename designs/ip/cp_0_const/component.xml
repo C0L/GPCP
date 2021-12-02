@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <spirit:vendor>interstice.com</spirit:vendor>
-  <spirit:library>cdrewes</spirit:library>
-  <spirit:name>cp_const_0</spirit:name>
+  <spirit:vendor>colindrewes.com</spirit:vendor>
+  <spirit:library>colindrewes</spirit:library>
+  <spirit:name>cp_0_const</spirit:name>
   <spirit:version>1.0</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
@@ -29,14 +29,14 @@
         <spirit:displayName>Synthesis</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>Verilog</spirit:language>
-        <spirit:modelName>cp_const</spirit:modelName>
+        <spirit:modelName>coprocessor</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>929eb23b</spirit:value>
+            <spirit:value>ca380d75</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -45,14 +45,14 @@
         <spirit:displayName>Simulation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>Verilog</spirit:language>
-        <spirit:modelName>cp_const</spirit:modelName>
+        <spirit:modelName>coprocessor</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>929eb23b</spirit:value>
+            <spirit:value>ca380d75</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -198,7 +198,7 @@
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:typeName>reg</spirit:typeName>
               <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -213,7 +213,7 @@
       <spirit:file>
         <spirit:name>cp_0_const.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_929eb23b</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_ca380d75</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -226,18 +226,18 @@
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xgui/cp_const_0_v1_0.tcl</spirit:name>
+        <spirit:name>xgui/cp_0_const_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_f92e9879</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
-  <spirit:description>cp_const_0</spirit:description>
+  <spirit:description>cp_0_const</spirit:description>
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">cp_const_v1_0</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">coprocessor_v1_0</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -267,27 +267,23 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>cp_const_0</xilinx:displayName>
+      <xilinx:displayName>cp_0_const</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:upgrades>
-        <xilinx:canUpgradeFrom>user.org:user:cp_const:1.0</xilinx:canUpgradeFrom>
-      </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2021-09-28T00:44:12Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-12-02T01:55:24Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
-        <xilinx:tag xilinx:name="user.org:user:cp_const:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_0_const</xilinx:tag>
-        <xilinx:tag xilinx:name="ucsd.edu:user:cp_const:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_0_const</xilinx:tag>
-        <xilinx:tag xilinx:name="ucsd.edu:cdrewes:cp_const:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_0_const</xilinx:tag>
-        <xilinx:tag xilinx:name="interstice.com:cdrewes:cp_const:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_0_const</xilinx:tag>
-        <xilinx:tag xilinx:name="interstice.com:cdrewes:cp_const_0:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_0_const</xilinx:tag>
+        <xilinx:tag xilinx:name="user.org:user:coprocessor:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_0_const</xilinx:tag>
+        <xilinx:tag xilinx:name="colindrewes.com:user:coprocessor:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_0_const</xilinx:tag>
+        <xilinx:tag xilinx:name="colindrewes.com:colindrewes:coprocessor:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_0_const</xilinx:tag>
+        <xilinx:tag xilinx:name="colindrewes.com:colindrewes:cp_0_const:1.0_ARCHIVE_LOCATION">/data/cdrewes/GPCP/designs/ip/cp_0_const</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2018.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="a88d4390"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d5530d61"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="2d59e878"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="ed562036"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="afe634dc"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="87a3fde6"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="0ad4b818"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
