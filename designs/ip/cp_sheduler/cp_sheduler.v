@@ -6,14 +6,14 @@ module cp_sheduler(
         input pcpi_valid_i, 
              
         output reg[31:0] pcpi_rd_i,
-        output reg pcpi_wr_i,
+        output reg pcpi_wr_i = 0,
         output reg pcpi_ready_i = 0,
         output reg pcpi_wait_i = 0,
      
         output reg[31:0] pcpi_rs1_o,
         output reg[31:0] pcpi_rs2_o,
-        output reg trigger,
-        output reg reconfigure,
+        output reg trigger = 0,
+        output reg reconfigure = 0,
 
         input[31:0] pcpi_rd_o,
         
@@ -32,7 +32,7 @@ always @(posedge clk) begin
         //pcpi_ready_i <= 0;
 
         // Write back disable
-        pcpi_wr_i <= 0;
+        //pcpi_wr_i <= 0; default state
         
         // Execute instruction 
         //if (pcpi_insn_i[6:0] == 7'b1101010) begin should be upper order bits??
@@ -81,6 +81,7 @@ always @(posedge clk) begin
        // trigger     <= 0;
        // reconfigure <= 0;
        pcpi_ready_i <= 0;
+       pcpi_wr_i    <= 0;
     end
 end
 
