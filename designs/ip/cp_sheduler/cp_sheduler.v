@@ -24,17 +24,16 @@ reg ex_running = 0;
 reg pr_running = 0;
 
 always @(posedge clk) begin
-    pcpi_ready_i <= 0;
-    pcpi_wr_i    <= 0;
+
     // We recieve an instruction
     if (pcpi_valid_i && !ex_running && !pr_running) begin
         // Stall the pico pipeline
-        //pcpi_wait_i <= 1;
+        pcpi_wait_i <= 1;
         // Exit the ready state
-        //pcpi_ready_i <= 0;
+        pcpi_ready_i <= 0;
 
         // Write back disable
-        //pcpi_wr_i <= 0; default state
+        pcpi_wr_i <= 0;
         
         // Execute instruction 
         //if (pcpi_insn_i[6:0] == 7'b1101010) begin should be upper order bits??
@@ -80,9 +79,8 @@ always @(posedge clk) begin
         end
     end else begin
        // TODO NEED RESET
-       // trigger     <= 0;
+        trigger     <= 0;
        // reconfigure <= 0;
-
     end
 end
 
