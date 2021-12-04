@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: riscvonpynq
+Version: 0.1
+Summary: A simple package describing how to create a RISC-V FPGA bitstream            and package it as a PYNQ overlay
+Home-page: https://github.com/drichmond/RISC-V-On-PYNQ/
+Author: Dustin Richmond
+Author-email: drichmond@eng.ucsd.edu
+License: BSD-3
+Description: UNKNOWN
+Platform: UNKNOWN

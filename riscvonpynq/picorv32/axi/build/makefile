@@ -1,4 +1,4 @@
-STKPTR ?= 0x10000
+STKPTR = 0x10000
 all: $(TARGET).bin
 
 init.o: init.S
