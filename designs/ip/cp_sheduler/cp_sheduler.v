@@ -36,7 +36,7 @@ always @(posedge clk) begin
         pcpi_wr_i <= 0;
         
         // Execute instruction 
-        //if (pcpi_insn_i[6:0] == 7'b1101010) begin should be upper order bits??
+        if (pcpi_insn_i[6:0] == 7'b1101010) begin
             // Execute instruction running
             ex_running <= 1; 
             
@@ -46,7 +46,7 @@ always @(posedge clk) begin
             trigger    <= 1;
 
         // Reconfigure instruction 
-        //end else if (pcpi_insn_i[6:0] == 7'b1101000) begin
+        end// else if (pcpi_insn_i[6:0] == 7'b1101000) begin
             // PR instruction running
         //    pr_running  <= 1;
             // Start co-processor running

@@ -13,7 +13,8 @@ array set pd_array {
 
 # as many of these as we have sub designs
 array set rm_array {
-  0 cp_reflect
+  0 cp_F_const
+  1 cp_0_const
 }
 
 # open project and block design

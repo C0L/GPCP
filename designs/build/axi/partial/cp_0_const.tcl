@@ -1,6 +1,6 @@
 
 ################################################################
-# This is a generated script based on design: pr_cp_F_const
+# This is a generated script based on design: pr_cp_0_const
 #
 # Though there are limitations about the generated script,
 # the main purpose of this utility is to make learning
@@ -35,7 +35,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 ################################################################
 
 # To test this script, run the following commands from Vivado Tcl console:
-# source pr_cp_F_const_script.tcl
+# source pr_cp_0_const_script.tcl
 
 # If there is no project opened, this script will create a
 # project, but make sure you do not have an existing project
@@ -49,7 +49,7 @@ if { $list_projs eq "" } {
 
 # CHANGE DESIGN NAME HERE
 variable design_name
-set design_name pr_cp_F_const
+set design_name pr_cp_0_const
 
 # If you do not already have an existing IP Integrator design open,
 # you can create a design using the following command:
@@ -124,7 +124,7 @@ set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
 xilinx.com:ip:axi_gpio:2.0\
-colindrewes.com:colindrewes:cp_F_const:1.0\
+colindrewes.com:colindrewes:cp_0_const:1.0\
 "
 
    set list_ips_missing ""
@@ -243,8 +243,8 @@ proc create_root_design { parentCell } {
    CONFIG.C_INTERRUPT_PRESENT {1} \
  ] $axi_gpio_0
 
-  # Create instance: cp_F_const_0, and set properties
-  set cp_F_const_0 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_F_const:1.0 cp_F_const_0 ]
+  # Create instance: cp_0_const_0, and set properties
+  set cp_0_const_0 [ create_bd_cell -type ip -vlnv colindrewes.com:colindrewes:cp_0_const:1.0 cp_0_const_0 ]
 
   # Create interface connections
   connect_bd_intf_net -intf_net S_AXI_1 [get_bd_intf_ports S_AXI] [get_bd_intf_pins axi_gpio_0/S_AXI]
@@ -252,14 +252,14 @@ proc create_root_design { parentCell } {
 
   # Create port connections
   connect_bd_net -net axi_gpio_0_ip2intc_irpt [get_bd_ports ip2intc_irpt] [get_bd_pins axi_gpio_0/ip2intc_irpt]
-  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins cp_F_const_0/clk]
-  connect_bd_net -net cp_F_const_0_done [get_bd_ports done] [get_bd_pins cp_F_const_0/done]
-  connect_bd_net -net cp_F_const_0_pcpi_rd [get_bd_ports pcpi_rd] [get_bd_pins cp_F_const_0/pcpi_rd]
-  connect_bd_net -net pcpi_rs1_1 [get_bd_ports pcpi_rs1] [get_bd_pins cp_F_const_0/pcpi_rs1]
-  connect_bd_net -net pcpi_rs2_1 [get_bd_ports pcpi_rs2] [get_bd_pins cp_F_const_0/pcpi_rs2]
+  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins cp_0_const_0/clk]
+  connect_bd_net -net cp_0_const_0_done [get_bd_ports done] [get_bd_pins cp_0_const_0/done]
+  connect_bd_net -net cp_0_const_0_pcpi_rd [get_bd_ports pcpi_rd] [get_bd_pins cp_0_const_0/pcpi_rd]
+  connect_bd_net -net pcpi_rs1_1 [get_bd_ports pcpi_rs1] [get_bd_pins cp_0_const_0/pcpi_rs1]
+  connect_bd_net -net pcpi_rs2_1 [get_bd_ports pcpi_rs2] [get_bd_pins cp_0_const_0/pcpi_rs2]
   connect_bd_net -net s_axi_aclk_1 [get_bd_ports s_axi_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk]
   connect_bd_net -net s_axi_aresetn_1 [get_bd_ports s_axi_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn]
-  connect_bd_net -net trigger_1 [get_bd_ports trigger] [get_bd_pins cp_F_const_0/trigger]
+  connect_bd_net -net trigger_1 [get_bd_ports trigger] [get_bd_pins cp_0_const_0/trigger]
 
   # Create address segments
   create_bd_addr_seg -range 0x00001000 -offset 0x00000000 [get_bd_addr_spaces S_AXI] [get_bd_addr_segs axi_gpio_0/S_AXI/Reg] SEG_axi_gpio_0_Reg

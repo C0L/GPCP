@@ -1,4 +1,0 @@
-NumberHits:0
-Timestamp: Sun Sep 19 05:47:44 UTC 2021
-VLNV: xilinx.com:ip:blk_mem_gen:8.4
-SynthRuntime: 128
