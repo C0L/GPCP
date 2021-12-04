@@ -36,7 +36,7 @@ always @(posedge clk) begin
         pcpi_wr_i <= 0;
         
         // Execute instruction 
-        if (pcpi_insn_i[6:0] == 7'b1101010) begin
+        if (pcpi_insn_i[6:0] == 7'b0101011) begin
             // Execute instruction running
             ex_running <= 1; 
             
