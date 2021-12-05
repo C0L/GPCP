@@ -15,6 +15,7 @@ array set pd_array {
 array set rm_array {
   0 cp_F_const
   1 cp_0_const
+  2 cp_popcount
 }
 
 # open project and block design
