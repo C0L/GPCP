@@ -65,7 +65,7 @@ always @(posedge clk) begin
             // The core is ready again
             pcpi_ready_i <= 1;
             // Unstall pipeline  
-           // pcpi_wait_i <= 0;
+            pcpi_wait_i <= 0;
         end
     end else if (pr_running) begin
         // The core has completed
@@ -79,7 +79,11 @@ always @(posedge clk) begin
         end
     end else begin
        // TODO NEED RESET
-        trigger     <= 0;
+        trigger      <= 0;
+        pcpi_wr_i    <= 0;
+        pcpi_ready_i <= 0;
+        pcpi_rd_i    <= 0;
+
        // reconfigure <= 0;
     end
 end
