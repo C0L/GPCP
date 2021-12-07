@@ -14,7 +14,7 @@ init.o: init.S
 
 %.o: %.c 
 	@echo "Building object file $@ for $<"
-	/opt/riscv32im/bin/riscv32-unknown-elf-gcc -c -S -Qn -march=rv32im -o $@ -Os --std=c99 $< 
+	/opt/riscv32im/bin/riscv32-unknown-elf-gcc -c -Qn -march=rv32im -o $@ -Os --std=c99 $< 
 
 %.o: %.cpp
 	@echo "Building object file $@ for $<"
